@@ -5,7 +5,7 @@ npm run build
 
 git add -u
 git commit -m "add new notebook"
-git push origin git@github.com:yuhongjing/library.git dev
+git push origin dev
 
 cd docs/.vuepress/dist
 
