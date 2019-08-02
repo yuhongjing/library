@@ -2,8 +2,7 @@ module.exports = [
     {
       text: '手册',
       items: [
-        { text: '校招面经', link: '/notebook/school/read' },
-        { text: '图解HTTP', link: '/notebook/http/read' }
+        { text: '校招面经', link: '/notebook/school/read' }
       ]
     },
     {
@@ -32,6 +31,12 @@ module.exports = [
       text: '源码解析',
       items: [
         { text: 'Loadsh', link: '/code/loadsh/read' }
+      ]
+    },
+    {
+      text: '读书笔记',
+      items: [
+        { text: '技术书籍', link: '/readbook/technology/read' }
       ]
     }
   ]

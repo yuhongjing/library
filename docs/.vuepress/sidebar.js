@@ -4,7 +4,6 @@
  */
 // 手册
 const schoolFile = require('./sidebar/school.js');
-const httpFile = require('./sidebar/http.js');
 // 源码
 const loadshFile = require('./sidebar/loadsh.js');
 // 日常记录
@@ -21,10 +20,11 @@ const designFile = require('./sidebar/design.js');
 const networkFile = require('./sidebar/network.js');
 const hardFile = require('./sidebar/hard.js');
 const systemFile = require('./sidebar/system.js');
+// 读书日记
+const technologyFile = require('./sidebar/technology.js');
 
 module.exports = {
     '/notebook/school/': schoolFile,
-    '/notebook/http/': httpFile,
 
     '/blog/article/': articleFile,
     '/blog/starman/': starmanFile,
@@ -40,5 +40,7 @@ module.exports = {
     '/knowledge/hard/': hardFile,
     '/knowledge/system/': systemFile,
 
-    '/code/loadsh/': loadshFile
+    '/code/loadsh/': loadshFile,
+
+    '/readbook/technology/': technologyFile
   }
