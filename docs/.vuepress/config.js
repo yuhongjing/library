@@ -25,6 +25,7 @@ module.exports = {
   themeConfig: {
     repo: 'yuhongjing',
     sidebarDepth: 2,
+    lastUpdated: '本页最后更新时间',
     editLinks: true,
     docsDir: 'docs',
     locales: {
@@ -32,7 +33,6 @@ module.exports = {
         nav: navFile,
         sidebar: sideBarFile
       }
-    },
-    lastUpdated: '最后修改于'
+    }
   }
 }
