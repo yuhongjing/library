@@ -23,7 +23,7 @@ module.exports = {
   serviceWorker: true,
   theme: 'vue',
   themeConfig: {
-    repo: 'yuhongjing',
+    repo: 'yuhongjing/library',
     sidebarDepth: 2,
     lastUpdated: '本页最后更新时间',
     editLinks: true,
