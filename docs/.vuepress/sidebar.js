@@ -10,6 +10,7 @@ const loadshFile = require('./sidebar/loadsh.js');
 const articleFile = require('./sidebar/article.js');
 const starmanFile = require('./sidebar/starman.js');
 const toolsFile = require('./sidebar/tools.js');
+const commandFile = require('./sidebar/command.js');
 // 知识整理
 const webFile = require('./sidebar/web.js');
 const backendFile = require('./sidebar/backend.js');
@@ -29,6 +30,7 @@ module.exports = {
     '/blog/article/': articleFile,
     '/blog/starman/': starmanFile,
     '/blog/tools/': toolsFile,
+    '/blog/command/': commandFile,
 
     '/knowledge/web/': webFile,
     '/knowledge/backend/': backendFile,

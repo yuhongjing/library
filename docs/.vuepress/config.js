@@ -32,6 +32,7 @@ module.exports = {
         nav: navFile,
         sidebar: sideBarFile
       }
-    }
+    },
+    lastUpdated: '最后修改于'
   }
 }
