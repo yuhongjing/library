@@ -31,7 +31,8 @@ module.exports = [
     {
       text: '源码解析',
       items: [
-        { text: 'Loadsh', link: '/code/loadsh/read' }
+        { text: 'Loadsh', link: '/code/loadsh/read' },
+        { text: 'Webpack', link: '/code/webpack/read'}
       ]
     },
     {

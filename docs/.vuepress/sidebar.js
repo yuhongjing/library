@@ -3,26 +3,27 @@
  * @author yuhongjing
  */
 // 手册
-const schoolFile = require('./sidebar/school.js');
+const schoolFile = require('./sidebar/notebook/school.js');
 // 源码
-const loadshFile = require('./sidebar/loadsh.js');
+const loadshFile = require('./sidebar/code/loadsh.js');
+const webpackFile = require('./sidebar/code/webpack.js');
 // 日常记录
-const articleFile = require('./sidebar/article.js');
-const starmanFile = require('./sidebar/starman.js');
-const toolsFile = require('./sidebar/tools.js');
-const commandFile = require('./sidebar/command.js');
+const articleFile = require('./sidebar/blog/article.js');
+const starmanFile = require('./sidebar/blog/starman.js');
+const toolsFile = require('./sidebar/blog/tools.js');
+const commandFile = require('./sidebar/blog/command.js');
 // 知识整理
-const webFile = require('./sidebar/web.js');
-const backendFile = require('./sidebar/backend.js');
-const databaseFile = require('./sidebar/database.js');
-const algorithmFile = require('./sidebar/algorithm.js');
-const structureFile = require('./sidebar/structure.js');
-const designFile = require('./sidebar/design.js');
-const networkFile = require('./sidebar/network.js');
-const hardFile = require('./sidebar/hard.js');
-const systemFile = require('./sidebar/system.js');
+const webFile = require('./sidebar/knowledge/web.js');
+const backendFile = require('./sidebar/knowledge/backend.js');
+const databaseFile = require('./sidebar/knowledge/database.js');
+const algorithmFile = require('./sidebar/knowledge/algorithm.js');
+const structureFile = require('./sidebar/knowledge/structure.js');
+const designFile = require('./sidebar/knowledge/design.js');
+const networkFile = require('./sidebar/knowledge/network.js');
+const hardFile = require('./sidebar/knowledge/hard.js');
+const systemFile = require('./sidebar/knowledge/system.js');
 // 读书日记
-const technologyFile = require('./sidebar/technology.js');
+const technologyFile = require('./sidebar/readbook/technology.js');
 
 module.exports = {
     '/notebook/school/': schoolFile,
@@ -43,6 +44,7 @@ module.exports = {
     '/knowledge/system/': systemFile,
 
     '/code/loadsh/': loadshFile,
+    '/code/webpack/': webpackFile,
 
     '/readbook/technology/': technologyFile
   }
