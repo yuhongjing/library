@@ -26,6 +26,7 @@ module.exports = [
         { text: '网络知识', link: '/knowledge/network/read' },
         { text: '硬件知识', link: '/knowledge/hard/read' },
         { text: '操作系统知识', link: '/knowledge/system/read' },
+        { text: '环境配置', link: '/knowledge/config/read' },
       ]
     },
     {

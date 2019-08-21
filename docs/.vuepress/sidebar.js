@@ -22,6 +22,7 @@ const designFile = require('./sidebar/knowledge/design.js');
 const networkFile = require('./sidebar/knowledge/network.js');
 const hardFile = require('./sidebar/knowledge/hard.js');
 const systemFile = require('./sidebar/knowledge/system.js');
+const configFile = require('./sidebar/knowledge/config.js');
 // 读书日记
 const technologyFile = require('./sidebar/readbook/technology.js');
 
@@ -42,6 +43,7 @@ module.exports = {
     '/knowledge/network/': networkFile,
     '/knowledge/hard/': hardFile,
     '/knowledge/system/': systemFile,
+    '/knowledge/config/': configFile,
 
     '/code/loadsh/': loadshFile,
     '/code/webpack/': webpackFile,
