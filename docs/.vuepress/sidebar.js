@@ -9,9 +9,9 @@ const loadshFile = require('./sidebar/code/loadsh.js');
 const webpackFile = require('./sidebar/code/webpack.js');
 // 日常记录
 const articleFile = require('./sidebar/blog/article.js');
-const starmanFile = require('./sidebar/blog/starman.js');
 const toolsFile = require('./sidebar/blog/tools.js');
 const commandFile = require('./sidebar/blog/command.js');
+const otherFile = require('./sidebar/blog/other.js');
 // 知识整理
 const webFile = require('./sidebar/knowledge/web.js');
 const backendFile = require('./sidebar/knowledge/backend.js');
@@ -30,9 +30,9 @@ module.exports = {
     '/notebook/school/': schoolFile,
 
     '/blog/article/': articleFile,
-    '/blog/starman/': starmanFile,
     '/blog/tools/': toolsFile,
     '/blog/command/': commandFile,
+    '/blog/other/': otherFile,
 
     '/knowledge/web/': webFile,
     '/knowledge/backend/': backendFile,

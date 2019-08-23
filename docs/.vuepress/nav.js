@@ -9,9 +9,9 @@ module.exports = [
       text: '日常记录',
       items: [
         { text: '闲情随记', link: '/blog/article/read' },
-        { text: '大佬经历', link: '/blog/starman/read' },
         { text: '工具技巧', link: '/blog/tools/read' },
-        { text: '命令整理', link: '/blog/command/read' }
+        { text: '命令整理', link: '/blog/command/read' },
+        { text: '文档综合', link: '/blog/other/read'}
       ]
     },
     {
