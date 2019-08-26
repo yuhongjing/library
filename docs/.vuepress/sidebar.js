@@ -11,7 +11,7 @@ const webpackFile = require('./sidebar/code/webpack.js');
 const articleFile = require('./sidebar/blog/article.js');
 const toolsFile = require('./sidebar/blog/tools.js');
 const commandFile = require('./sidebar/blog/command.js');
-const otherFile = require('./sidebar/blog/other.js');
+const blogOtherFile = require('./sidebar/blog/other.js');
 // 知识整理
 const webFile = require('./sidebar/knowledge/web.js');
 const backendFile = require('./sidebar/knowledge/backend.js');
@@ -25,6 +25,8 @@ const systemFile = require('./sidebar/knowledge/system.js');
 const configFile = require('./sidebar/knowledge/config.js');
 // 读书日记
 const technologyFile = require('./sidebar/readbook/technology.js');
+const literatureFile = require('./sidebar/readbook/literature.js');
+const readbookOtherFile = require('./sidebar/readbook/other.js');
 
 module.exports = {
     '/notebook/school/': schoolFile,
@@ -32,7 +34,7 @@ module.exports = {
     '/blog/article/': articleFile,
     '/blog/tools/': toolsFile,
     '/blog/command/': commandFile,
-    '/blog/other/': otherFile,
+    '/blog/other/': blogOtherFile,
 
     '/knowledge/web/': webFile,
     '/knowledge/backend/': backendFile,
@@ -48,5 +50,7 @@ module.exports = {
     '/code/loadsh/': loadshFile,
     '/code/webpack/': webpackFile,
 
-    '/readbook/technology/': technologyFile
+    '/readbook/technology/': technologyFile,
+    '/readbook/literature/': literatureFile,
+    '/readbook/other/': readbookOtherFile
   }
