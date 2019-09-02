@@ -25,7 +25,7 @@ module.exports = {
   themeConfig: {
     repo: 'yuhongjing/library',
     sidebarDepth: 2,
-    lastUpdated: 'Last Updated',
+    lastUpdated: '上次更新',
     editLinks: true,
     docsDir: 'docs',
     locales: {

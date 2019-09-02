@@ -4,14 +4,14 @@
 
     <Content :custom="false"/>
 
-    <!-- <div class="page-edit">
-      <div class="edit-link" v-if="editLink"
+    <div class="page-edit">
+      <!-- <div class="edit-link" v-if="editLink"
       >
           <a
           :href="rawLink" target="_blank" rel="noopener noreferrer">查看原文</a>
           |  <a :href="editLink" target="_blank" rel="noopener noreferrer">{{ editLinkText }}</a>
         <OutboundLink/>
-      </div>
+      </div> -->
 
       <div
         class="last-updated"
@@ -20,7 +20,7 @@
         <span class="prefix">{{ lastUpdatedText }}: </span>
         <span class="time">{{ lastUpdated }}</span>
       </div>
-    </div> -->
+    </div>
 
     <div class="page-nav" v-if="prev || next">
       <p class="inner">
