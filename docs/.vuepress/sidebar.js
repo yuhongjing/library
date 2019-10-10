@@ -7,6 +7,7 @@ const schoolFile = require('./sidebar/notebook/school.js');
 // 源码
 const loadshFile = require('./sidebar/code/loadsh.js');
 const webpackFile = require('./sidebar/code/webpack.js');
+const zeptoFile = require('./sidebar/code/zepto.js');
 // 日常记录
 const articleFile = require('./sidebar/blog/article.js');
 const toolsFile = require('./sidebar/blog/tools.js');
@@ -49,6 +50,7 @@ module.exports = {
 
     '/code/loadsh/': loadshFile,
     '/code/webpack/': webpackFile,
+    '/code/zepto/': zeptoFile,
 
     '/readbook/technology/': technologyFile,
     '/readbook/literature/': literatureFile,
