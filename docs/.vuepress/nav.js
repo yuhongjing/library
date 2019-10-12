@@ -2,7 +2,8 @@ module.exports = [
     {
       text: '手册',
       items: [
-        { text: '校招面经', link: '/notebook/school/read' }
+        { text: '校招面经', link: '/notebook/school/read' },
+        { text: 'JS Tricks', link: '/notebook/jsTricks/read' }
       ]
     },
     {
