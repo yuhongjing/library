@@ -5,6 +5,7 @@
 // 手册
 const schoolFile = require('./sidebar/notebook/school.js');
 const jsTricksFile = require('./sidebar/notebook/jsTricks.js');
+const cssTricksFile = require('./sidebar/notebook/cssTricks.js');
 // 源码
 const loadshFile = require('./sidebar/code/loadsh.js');
 const webpackFile = require('./sidebar/code/webpack.js');
@@ -33,6 +34,7 @@ const readbookOtherFile = require('./sidebar/readbook/other.js');
 module.exports = {
     '/notebook/school/': schoolFile,
     '/notebook/jsTricks/': jsTricksFile,
+    '/notebook/cssTricks/': cssTricksFile,
 
     '/blog/article/': articleFile,
     '/blog/tools/': toolsFile,
