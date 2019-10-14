@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>linux常用命令 | 余鸿靖的手册小站</title>
+    <meta name="description" content="学而时习之，可以为师矣">
+    <link rel="icon" href="/library/logo.png">
+  <link rel="manifest" href="/library/manifest.json">
+  <meta name="theme-color" content="#3eaf7c">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <link rel="apple-touch-icon" href="/library/icons/apple-touch-icon-152x152.png">
+  <link rel="mask-icon" href="/library/icons/safari-pinned-tab.svg" color="#3eaf7c">
+  <meta name="msapplication-TileImage" content="/icons/msapplication-icon-144x144.png">
+  <meta name="msapplication-TileColor" content="#000000">
+    
+    <link rel="preload" href="/library/assets/css/styles.ee2122ca.css" as="style"><link rel="preload" href="/library/assets/js/app.ee2122ca.js" as="script"><link rel="preload" href="/library/assets/js/15.9a36e77b.js" as="script"><link rel="prefetch" href="/library/assets/css/1.styles.92ba2fe2.css"><link rel="prefetch" href="/library/assets/css/2.styles.32e3e2eb.css"><link rel="prefetch" href="/library/assets/css/3.styles.824a94a5.css"><link rel="prefetch" href="/library/assets/js/1.92ba2fe2.js"><link rel="prefetch" href="/library/assets/js/10.d3dd5f6b.js"><link rel="prefetch" href="/library/assets/js/100.05871aa9.js"><link rel="prefetch" href="/library/assets/js/101.5e85dcca.js"><link rel="prefetch" href="/library/assets/js/102.aa36f7d5.js"><link rel="prefetch" href="/library/assets/js/103.001155a7.js"><link rel="prefetch" href="/library/assets/js/104.4aaf8d26.js"><link rel="prefetch" href="/library/assets/js/11.93444a8c.js"><link rel="prefetch" href="/library/assets/js/12.5df78c1e.js"><link rel="prefetch" href="/library/assets/js/13.095271d7.js"><link rel="prefetch" href="/library/assets/js/14.fb24ef41.js"><link rel="prefetch" href="/library/assets/js/16.13a4d65a.js"><link rel="prefetch" href="/library/assets/js/17.e4272aa6.js"><link rel="prefetch" href="/library/assets/js/18.4a84cfb3.js"><link rel="prefetch" href="/library/assets/js/19.c8f78c5c.js"><link rel="prefetch" href="/library/assets/js/2.32e3e2eb.js"><link rel="prefetch" href="/library/assets/js/20.31c59c15.js"><link rel="prefetch" href="/library/assets/js/21.162393db.js"><link rel="prefetch" href="/library/assets/js/22.25a51d8a.js"><link rel="prefetch" href="/library/assets/js/23.265dd003.js"><link rel="prefetch" href="/library/assets/js/24.939170ae.js"><link rel="prefetch" href="/library/assets/js/25.a5b8f31f.js"><link rel="prefetch" href="/library/assets/js/26.3aa9b964.js"><link rel="prefetch" href="/library/assets/js/27.315aeed4.js"><link rel="prefetch" href="/library/assets/js/28.949b4f0d.js"><link rel="prefetch" href="/library/assets/js/29.f27ab19d.js"><link rel="prefetch" href="/library/assets/js/3.824a94a5.js"><link rel="prefetch" href="/library/assets/js/30.61b9d774.js"><link rel="prefetch" href="/library/assets/js/31.f9284895.js"><link rel="prefetch" href="/library/assets/js/32.13eb887c.js"><link rel="prefetch" href="/library/assets/js/33.521a4c67.js"><link rel="prefetch" href="/library/assets/js/34.24bc7d94.js"><link rel="prefetch" href="/library/assets/js/35.506fd653.js"><link rel="prefetch" href="/library/assets/js/36.a7c06979.js"><link rel="prefetch" href="/library/assets/js/37.afb61980.js"><link rel="prefetch" href="/library/assets/js/38.40f5a638.js"><link rel="prefetch" href="/library/assets/js/39.9c576460.js"><link rel="prefetch" href="/library/assets/js/4.b384b3cc.js"><link rel="prefetch" href="/library/assets/js/40.e3ebbe5e.js"><link rel="prefetch" href="/library/assets/js/41.c0ba4256.js"><link rel="prefetch" href="/library/assets/js/42.345971e2.js"><link rel="prefetch" href="/library/assets/js/43.bb41dc5b.js"><link rel="prefetch" href="/library/assets/js/44.cc88aec7.js"><link rel="prefetch" href="/library/assets/js/45.557e0012.js"><link rel="prefetch" href="/library/assets/js/46.e06ccc4f.js"><link rel="prefetch" href="/library/assets/js/47.b03fdadb.js"><link rel="prefetch" href="/library/assets/js/48.72998c0d.js"><link rel="prefetch" href="/library/assets/js/49.847a2373.js"><link rel="prefetch" href="/library/assets/js/5.28851a30.js"><link rel="prefetch" href="/library/assets/js/50.c35b5586.js"><link rel="prefetch" href="/library/assets/js/51.518b05a4.js"><link rel="prefetch" href="/library/assets/js/52.40d4ae48.js"><link rel="prefetch" href="/library/assets/js/53.cfed7611.js"><link rel="prefetch" href="/library/assets/js/54.56977349.js"><link rel="prefetch" href="/library/assets/js/55.95181616.js"><link rel="prefetch" href="/library/assets/js/56.0534f3a9.js"><link rel="prefetch" href="/library/assets/js/57.e8c88af3.js"><link rel="prefetch" href="/library/assets/js/58.887ac28d.js"><link rel="prefetch" href="/library/assets/js/59.fb9bf29d.js"><link rel="prefetch" href="/library/assets/js/6.375e3186.js"><link rel="prefetch" href="/library/assets/js/60.3cf3e6d0.js"><link rel="prefetch" href="/library/assets/js/61.e2a2fa29.js"><link rel="prefetch" href="/library/assets/js/62.71a729ec.js"><link rel="prefetch" href="/library/assets/js/63.0e9b6f08.js"><link rel="prefetch" href="/library/assets/js/64.08c96071.js"><link rel="prefetch" href="/library/assets/js/65.5cdc3574.js"><link rel="prefetch" href="/library/assets/js/66.1b365b44.js"><link rel="prefetch" href="/library/assets/js/67.01eb127d.js"><link rel="prefetch" href="/library/assets/js/68.4d5bf3c6.js"><link rel="prefetch" href="/library/assets/js/69.66089c63.js"><link rel="prefetch" href="/library/assets/js/7.ac8d7d3c.js"><link rel="prefetch" href="/library/assets/js/70.44c31b3d.js"><link rel="prefetch" href="/library/assets/js/71.7465d2e1.js"><link rel="prefetch" href="/library/assets/js/72.d0dd3017.js"><link rel="prefetch" href="/library/assets/js/73.ba1c3157.js"><link rel="prefetch" href="/library/assets/js/74.3862e454.js"><link rel="prefetch" href="/library/assets/js/75.cfcd5636.js"><link rel="prefetch" href="/library/assets/js/76.cdd3b7a3.js"><link rel="prefetch" href="/library/assets/js/77.7e9425ea.js"><link rel="prefetch" href="/library/assets/js/78.5dfb8120.js"><link rel="prefetch" href="/library/assets/js/79.06458628.js"><link rel="prefetch" href="/library/assets/js/8.61a1359f.js"><link rel="prefetch" href="/library/assets/js/80.659996bb.js"><link rel="prefetch" href="/library/assets/js/81.5c3228cf.js"><link rel="prefetch" href="/library/assets/js/82.819445e9.js"><link rel="prefetch" href="/library/assets/js/83.d6e97ddb.js"><link rel="prefetch" href="/library/assets/js/84.5cc22460.js"><link rel="prefetch" href="/library/assets/js/85.afb426cb.js"><link rel="prefetch" href="/library/assets/js/86.23185bc4.js"><link rel="prefetch" href="/library/assets/js/87.10d75df5.js"><link rel="prefetch" href="/library/assets/js/88.e675360e.js"><link rel="prefetch" href="/library/assets/js/89.a434ff43.js"><link rel="prefetch" href="/library/assets/js/9.f24e5d0b.js"><link rel="prefetch" href="/library/assets/js/90.66b6a5b5.js"><link rel="prefetch" href="/library/assets/js/91.c9c3832f.js"><link rel="prefetch" href="/library/assets/js/92.6693f6b2.js"><link rel="prefetch" href="/library/assets/js/93.3fc08193.js"><link rel="prefetch" href="/library/assets/js/94.2e4ad0b7.js"><link rel="prefetch" href="/library/assets/js/95.5984eb74.js"><link rel="prefetch" href="/library/assets/js/96.f7750e4a.js"><link rel="prefetch" href="/library/assets/js/97.e5ce0337.js"><link rel="prefetch" href="/library/assets/js/98.99bb558c.js"><link rel="prefetch" href="/library/assets/js/99.1b666453.js">
+    <link rel="stylesheet" href="/library/assets/css/styles.ee2122ca.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/library/" class="home-link router-link-active"><!----> <span class="site-name">余鸿靖的手册小站</span></a> <div class="links" style="max-width:nullpx;"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">手册</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/library/notebook/school/read.html" class="nav-link">校招面经</a></li><li class="dropdown-item"><!----> <a href="/library/notebook/jsTricks/read.html" class="nav-link">JS Tricks</a></li><li class="dropdown-item"><!----> <a href="/library/notebook/cssTricks/read.html" class="nav-link">CSS Tricks</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">日常记录</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/library/blog/article/read.html" class="nav-link">闲情随记</a></li><li class="dropdown-item"><!----> <a href="/library/blog/tools/read.html" class="nav-link">工具技巧</a></li><li class="dropdown-item"><!----> <a href="/library/blog/command/read.html" class="nav-link">命令整理</a></li><li class="dropdown-item"><!----> <a href="/library/blog/other/read.html" class="nav-link">文档综合</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">知识整理</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/library/knowledge/web/read.html" class="nav-link">前端知识</a></li><li class="dropdown-item"><!----> <a href="/library/knowledge/backend/read.html" class="nav-link">后端知识</a></li><li class="dropdown-item"><!----> <a href="/library/knowledge/database/read.html" class="nav-link">数据库知识</a></li><li class="dropdown-item"><!----> <a href="/library/knowledge/algorithm/read.html" class="nav-link">算法知识</a></li><li class="dropdown-item"><!----> <a href="/library/knowledge/structure/read.html" class="nav-link">数据结构知识</a></li><li class="dropdown-item"><!----> <a href="/library/knowledge/design/read.html" class="nav-link">设计模式知识</a></li><li class="dropdown-item"><!----> <a href="/library/knowledge/network/read.html" class="nav-link">网络知识</a></li><li class="dropdown-item"><!----> <a href="/library/knowledge/hard/read.html" class="nav-link">硬件知识</a></li><li class="dropdown-item"><!----> <a href="/library/knowledge/system/read.html" class="nav-link">操作系统知识</a></li><li class="dropdown-item"><!----> <a href="/library/knowledge/config/read.html" class="nav-link">环境配置</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">源码解析</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/library/code/loadsh/read.html" class="nav-link">Loadsh</a></li><li class="dropdown-item"><!----> <a href="/library/code/webpack/read.html" class="nav-link">Webpack</a></li><li class="dropdown-item"><!----> <a href="/library/code/zepto/read.html" class="nav-link">Zepto</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">读书笔记</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/library/readbook/technology/read.html" class="nav-link">技术书籍</a></li><li class="dropdown-item"><!----> <a href="/library/readbook/literature/read.html" class="nav-link">文学书籍</a></li><li class="dropdown-item"><!----> <a href="/library/readbook/other/read.html" class="nav-link">杂项书籍</a></li></ul></div></div> <a href="https://github.com/yuhongjing/library" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav></div></header> <div class="sidebar-mask"></div> <div class="sidebar"><nav class="nav-links"><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">手册</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/library/notebook/school/read.html" class="nav-link">校招面经</a></li><li class="dropdown-item"><!----> <a href="/library/notebook/jsTricks/read.html" class="nav-link">JS Tricks</a></li><li class="dropdown-item"><!----> <a href="/library/notebook/cssTricks/read.html" class="nav-link">CSS Tricks</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">日常记录</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/library/blog/article/read.html" class="nav-link">闲情随记</a></li><li class="dropdown-item"><!----> <a href="/library/blog/tools/read.html" class="nav-link">工具技巧</a></li><li class="dropdown-item"><!----> <a href="/library/blog/command/read.html" class="nav-link">命令整理</a></li><li class="dropdown-item"><!----> <a href="/library/blog/other/read.html" class="nav-link">文档综合</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">知识整理</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/library/knowledge/web/read.html" class="nav-link">前端知识</a></li><li class="dropdown-item"><!----> <a href="/library/knowledge/backend/read.html" class="nav-link">后端知识</a></li><li class="dropdown-item"><!----> <a href="/library/knowledge/database/read.html" class="nav-link">数据库知识</a></li><li class="dropdown-item"><!----> <a href="/library/knowledge/algorithm/read.html" class="nav-link">算法知识</a></li><li class="dropdown-item"><!----> <a href="/library/knowledge/structure/read.html" class="nav-link">数据结构知识</a></li><li class="dropdown-item"><!----> <a href="/library/knowledge/design/read.html" class="nav-link">设计模式知识</a></li><li class="dropdown-item"><!----> <a href="/library/knowledge/network/read.html" class="nav-link">网络知识</a></li><li class="dropdown-item"><!----> <a href="/library/knowledge/hard/read.html" class="nav-link">硬件知识</a></li><li class="dropdown-item"><!----> <a href="/library/knowledge/system/read.html" class="nav-link">操作系统知识</a></li><li class="dropdown-item"><!----> <a href="/library/knowledge/config/read.html" class="nav-link">环境配置</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">源码解析</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/library/code/loadsh/read.html" class="nav-link">Loadsh</a></li><li class="dropdown-item"><!----> <a href="/library/code/webpack/read.html" class="nav-link">Webpack</a></li><li class="dropdown-item"><!----> <a href="/library/code/zepto/read.html" class="nav-link">Zepto</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">读书笔记</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/library/readbook/technology/read.html" class="nav-link">技术书籍</a></li><li class="dropdown-item"><!----> <a href="/library/readbook/literature/read.html" class="nav-link">文学书籍</a></li><li class="dropdown-item"><!----> <a href="/library/readbook/other/read.html" class="nav-link">杂项书籍</a></li></ul></div></div> <a href="https://github.com/yuhongjing/library" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav>  <ul class="sidebar-links"><li><div class="sidebar-group first"><p class="sidebar-heading open"><span>常用命令</span> <!----></p> <ul class="sidebar-group-items"><li><a href="/library/blog/command/read.html" class="sidebar-link">介绍</a></li><li><a href="/library/blog/command/git.html" class="sidebar-link">git命令</a></li><li><a href="/library/blog/command/vscode.html" class="sidebar-link">VS Code技巧</a></li><li><a href="/library/blog/command/iterm2.html" class="sidebar-link">iTerm2快捷键</a></li><li><a href="/library/blog/command/vim.html" class="sidebar-link">Vim命令整理</a></li><li><a href="/library/blog/command/Alfred4.html" class="sidebar-link">Alfred 4使用手册</a></li><li><a href="/library/blog/command/linux.html" class="active sidebar-link">linux常用命令</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/library/blog/command/linux.html#常用的linux命令整理" class="sidebar-link">常用的linux命令整理</a></li><li class="sidebar-sub-header"><a href="/library/blog/command/linux.html#cd命令" class="sidebar-link">cd命令</a></li><li class="sidebar-sub-header"><a href="/library/blog/command/linux.html#ls命令" class="sidebar-link">ls命令</a></li><li class="sidebar-sub-header"><a href="/library/blog/command/linux.html#grep命令" class="sidebar-link">grep命令</a></li><li class="sidebar-sub-header"><a href="/library/blog/command/linux.html#find命令" class="sidebar-link">find命令</a></li><li class="sidebar-sub-header"><a href="/library/blog/command/linux.html#cp命令" class="sidebar-link">cp命令</a></li><li class="sidebar-sub-header"><a href="/library/blog/command/linux.html#mv命令" class="sidebar-link">mv命令</a></li><li class="sidebar-sub-header"><a href="/library/blog/command/linux.html#rm命令" class="sidebar-link">rm命令</a></li><li class="sidebar-sub-header"><a href="/library/blog/command/linux.html#ps命令" class="sidebar-link">ps命令</a></li><li class="sidebar-sub-header"><a href="/library/blog/command/linux.html#kill命令" class="sidebar-link">kill命令</a></li><li class="sidebar-sub-header"><a href="/library/blog/command/linux.html#killall命令" class="sidebar-link">killall命令</a></li><li class="sidebar-sub-header"><a href="/library/blog/command/linux.html#file命令" class="sidebar-link">file命令</a></li><li class="sidebar-sub-header"><a href="/library/blog/command/linux.html#tar命令" class="sidebar-link">tar命令</a></li><li class="sidebar-sub-header"><a href="/library/blog/command/linux.html#cat命令" class="sidebar-link">cat命令</a></li><li class="sidebar-sub-header"><a href="/library/blog/command/linux.html#chgrp命令" class="sidebar-link">chgrp命令</a></li><li class="sidebar-sub-header"><a href="/library/blog/command/linux.html#chown命令" class="sidebar-link">chown命令</a></li><li class="sidebar-sub-header"><a href="/library/blog/command/linux.html#chmod命令" class="sidebar-link">chmod命令</a></li><li class="sidebar-sub-header"><a href="/library/blog/command/linux.html#vim命令" class="sidebar-link">vim命令</a></li><li class="sidebar-sub-header"><a href="/library/blog/command/linux.html#gcc命令" class="sidebar-link">gcc命令</a></li><li class="sidebar-sub-header"><a href="/library/blog/command/linux.html#time命令" class="sidebar-link">time命令</a></li></ul></li><li><a href="/library/blog/command/markdown.html" class="sidebar-link">markdown语法</a></li></ul></div></li></ul> </div> <div class="page"> <div class="content"><h2 id="常用的linux命令整理"><a href="#常用的linux命令整理" aria-hidden="true" class="header-anchor">#</a> 常用的linux命令整理</h2> <h2 id="cd命令"><a href="#cd命令" aria-hidden="true" class="header-anchor">#</a> cd命令</h2> <p>切换目录</p> <div class="language-shell extra-class"><pre class="language-text"><code>cd /root/document # 绝对路径
+cd ./path # 当前目录
+cd path # 当前目录
+cd ../path  # 上级目录
+cd ~  # 用户主目录
+</code></pre></div><h2 id="ls命令"><a href="#ls命令" aria-hidden="true" class="header-anchor">#</a> ls命令</h2> <p>查看当前目录下的文件</p> <div class="language-shell extra-class"><pre class="language-text"><code>-l    # 列出长数据串，包含文件的属性与权限数据等
+-a    # 列出全部的文件，连同隐藏文件（开头为.的文件)一同也列出来
+-d    # 仅列出项目本身，而不是列出目录的文件数据
+-h    # 将文件容量以较易读的方式(GB, KB等)列出来
+-R    # 连同子目录的内容一起列出来(递归)
+</code></pre></div><div class="tip custom-block"><p class="custom-block-title">提示</p> <p>参数可以组合使用,例如<br> <code>ls -lR # 以长数据串的形式列出当前目录下的所有文件</code></p></div> <h2 id="grep命令"><a href="#grep命令" aria-hidden="true" class="header-anchor">#</a> grep命令</h2> <p>分析一行的信息，该命令通常与管道命令一起使用，用于对一些命令的输出进行筛选加工等。<br>
+它的简单语法为:  <strong><code>grep [-acinv] [--color=auto] '查找字符串' filename</code></strong></p> <div class="language-shell extra-class"><pre class="language-text"><code>-a    # 将binary文件以text文件的方式查找数据
+-c    # 计算找到 要查询的字符串 的次数
+-i    # 忽略大小写
+-v    # 反向选择
+
+# 例如:
+# 取出文件/etc/man.config中包含MANPATH的行，并把关键字添加颜色
+grep --color=auto 'MANPATH' /etc/man.confg
+# 把ls -l的输出中包含字母file(不区分大小写)的内容输出
+ls -l | grep -i file
+</code></pre></div><h2 id="find命令"><a href="#find命令" aria-hidden="true" class="header-anchor">#</a> find命令</h2> <p>find是一个查找功能非常强大的命令，参数较多而且复杂。<br>
+基本语法: <strong><code>find [PATH] [option] [action]</code></strong></p> <p><strong><code>时间有关的参数</code></strong></p> <div class="language-shell extra-class"><pre class="language-text"><code>-mtime n    # n为数字，意思是n天之前的&quot;一天内&quot;被更改过的文件名
+-mtime +n   # 列出在n天之前(不包含n天本身)被更改过的文件名
+-mtime -n   # 列出在n天之前(包含n天本身)被更改过的文件名
+-newer file # 列出比file还要新的文件名
+
+# 例如
+find /root -mtime 0 # /root目录下今天之内有改动的文件
+</code></pre></div><p><strong><code>用户和用户组名有关的参数</code></strong></p> <div class="language-shell extra-class"><pre class="language-text"><code>-user name    # 列出文件所有者为name的文件
+-group name   # 列出文件所属用户组为name的文件
+-uid n        # 列出文件所有者为用户ID为n的文件
+-gid n        # 列出文件所属用户组为用户组ID为n的文件
+
+# 例如
+find /home -user yuhongjing # 查找/home目录下所有者为yuhongjing的文件
+</code></pre></div><p><strong><code>文件权限及名称有关的参数</code></strong></p> <div class="language-shell extra-class"><pre class="language-text"><code>-name filename    # 找出文件名为filename的文件
+-size +或-        # 找出比size还要大或小的文件
+-type TYPE        # 找出文件类型为TYPE的文件
+-perm mode        # 查找文件权限刚好等于mode的文件，mode用数字表示，如0755
+-perm -mode       # 查找文件权限必须要完全包括mode权限的文件
+-perm +mode       # 查找文件权限包含任一mode权限的文件
+
+# 例如
+find / -name passwd # 查找文件名为passwd的文件
+find . -perm 0755   # 查找当前目录中文件权限为0755的文件
+find . -size +12k   # 查找当前目录中大于12KB的文件
+</code></pre></div><h2 id="cp命令"><a href="#cp命令" aria-hidden="true" class="header-anchor">#</a> cp命令</h2> <p>复制文件，可以将多个文件一次性复制到一个目录下</p> <div class="language-shell extra-class"><pre class="language-text"><code>-a    # 将文件的特性一起复制
+-p    # 连同文件的属性一同复制，常用于备份
+-i    # 若目标文件已经存在，则覆盖时会先询问操作
+-r    # 递归持续复制，用于目录的复制
+-u    # 目标文件与源文件有差异时才会复制
+
+# 例如
+cp -a file1 file2 # 连同文件的所有特性把文件file1复制成文件file2
+cp file1 file2 file3 dir # 把文件file1、2、3复制到目录dir中
+</code></pre></div><h2 id="mv命令"><a href="#mv命令" aria-hidden="true" class="header-anchor">#</a> mv命令</h2> <p>移动文件、目录或更名</p> <div class="language-shell extra-class"><pre class="language-text"><code>-f    # force强制的意思，如果目标文件已经存在，不会询问而直接覆盖
+-i    # 若目标已经存在，就会询问是否覆盖
+-u    # 若目标已经存在，且比目标文件新，才会覆盖
+
+# 注意 该命令可以把一个文件或多个文件一次移动一个文件夹中，但是最后一个目标文件一定要是“目录”。
+
+# 例如
+mv file1 file2 file3 dir # 把文件file1、2、3移动到目录dir中
+mv file1 file2  # 把文件file1重命名为file2
+</code></pre></div><h2 id="rm命令"><a href="#rm命令" aria-hidden="true" class="header-anchor">#</a> rm命令</h2> <p>删除文件或目录</p> <div class="language-shell extra-class"><pre class="language-text"><code>-f    # force强制的意思，忽略不存在的文件，不会出现警告消息
+-i    # 互动模式，在删除前会询问用户
+-r    # 递归删除，常用语目录删除，非常危险
+
+# 例如
+rm -i file  # 删除文件file，在删除前会询问用户是否进行该操作
+rm -fr dir  # 强制删除目录dir中的所有文件
+</code></pre></div><h2 id="ps命令"><a href="#ps命令" aria-hidden="true" class="header-anchor">#</a> ps命令</h2> <p>某个时间点的进程运行情况选取下来并输出，procees的意思</p> <div class="language-shell extra-class"><pre class="language-text"><code>-A    # 所有进程均显示出来
+-a    # 不会显示terminal有关的所有进程
+-u    # 有效用户的相关进程
+-x    # 一般与a参数一起使用，可列出完整的信息
+-l    # 较长，较详细的将PID的信息列出
+
+# 例如
+ps aux  # 查看系统的所有进程数据
+ps ax   # 查看不与terminal有关的所有进程
+ps -lA  # 查看系统的所有进程数据
+ps axjf # 查看同一部分进程树状态
+</code></pre></div><h2 id="kill命令"><a href="#kill命令" aria-hidden="true" class="header-anchor">#</a> kill命令</h2> <p>向某个工作或者某个PID传送一个信息，通常与ps和jobs命令一起使用。<br>
+基本语法: <strong><code>kill -signal PID</code></strong></p> <div class="language-shell extra-class"><pre class="language-text"><code># 最前面的数字为信号的代号， 使用时可以用代号代替相应的新号
+1: SIGHUP   # 启动被终止的进程
+2: SIGINT   # 相当于输入ctrl + c, 中断一个程序的进行
+9: SIGKILL  # 强制中断一个进程的进行
+15: SIGTERM # 以正常的结束进程方式来终止进程
+17: SIGSTOP # 相当于输入ctrl + z, 暂停一个进程的进行
+
+# 例如
+# 以正常的结束进程方式来中断第一个后台工作，可用jobs命令查看后台的第一个工作进程
+kill -SIGTERM %1
+# 重新改动进程ID为PID的进程，PID可用PS命令通过管道命令加上grep命令进行筛选获得
+kill -SIGHUP  PID
+</code></pre></div><h2 id="killall命令"><a href="#killall命令" aria-hidden="true" class="header-anchor">#</a> killall命令</h2> <p>向一个命令启动的进程发送一个信号。<br>
+基础语法: <strong><code>killall [-iIe] [command name]</code></strong></p> <div class="language-shell extra-class"><pre class="language-text"><code>-i    # 交互式的意思，若需要删除时，会询问用户
+-e    # 表示后面接的command name要一致，但command name不能超过15个字符
+-I    # 命令名称忽略大小写
+
+# 例如：
+killall -SIGHUP syslogd # 重新启动syslogd
+</code></pre></div><h2 id="file命令"><a href="#file命令" aria-hidden="true" class="header-anchor">#</a> file命令</h2> <p>判断接在file命令后的文件的基本数据。<br>
+基本语法: <strong><code>file filename</code></strong></p> <div class="language-shell extra-class"><pre class="language-text"><code># 例如
+file ./test
+</code></pre></div><h2 id="tar命令"><a href="#tar命令" aria-hidden="true" class="header-anchor">#</a> tar命令</h2> <p>对文件进行压缩和解压。</p> <div class="language-shell extra-class"><pre class="language-text"><code>-c    # 新建打包文件
+-t    # 查看打包文件的内容含有哪些文件名
+-x    # 解打包或解压缩的功能，可以搭配-C（大写）指定解压的目录，注意-c,-t,-x不能同时出现在同一条命令中
+-j    # 通过bzip2的支持进行压缩/解压缩
+-z    # 通过gzip的支持进行压缩/解压缩
+-v    # 在压缩/解压缩过程中，将正在处理的文件名显示出来
+-f filename   # filename为要处理的文件
+-C dir    # 指定压缩/解压缩的目录dir
+
+# 例如
+tar -zvxf filename
+
+压缩：tar -jcv -f filename.tar.bz2 要被处理的文件或目录名称
+查询：tar -jtv -f filename.tar.bz2
+解压：tar -jxv -f filename.tar.bz2 -C 欲解压缩的目录
+</code></pre></div><h2 id="cat命令"><a href="#cat命令" aria-hidden="true" class="header-anchor">#</a> cat命令</h2> <p>查看文本文件的内容，通常与管道或more和less一起使用，可以一页页的查看数据。<br>
+基本语法: <strong><code>cat [filename] | [less|more]</code></strong></p> <h2 id="chgrp命令"><a href="#chgrp命令" aria-hidden="true" class="header-anchor">#</a> chgrp命令</h2> <p>改变文件所属用户组<br>
+基本语法: <strong><code>chgrp [-R] dirname/filename</code></strong></p> <div class="language-shell extra-class"><pre class="language-text"><code>-R    # 进行递归的持续对所有文件和子目录更改
+
+# 例如
+chgrp users -R ./dir # 递归的把dir目录下的所有文件和子目录用户组修改为users
+</code></pre></div><h2 id="chown命令"><a href="#chown命令" aria-hidden="true" class="header-anchor">#</a> chown命令</h2> <p>改变文件的所有者，与<code>chgrp</code>命令的使用方法相同，只是修改的文件属性不同。</p> <h2 id="chmod命令"><a href="#chmod命令" aria-hidden="true" class="header-anchor">#</a> chmod命令</h2> <p>改变文件的权限<br>
+基本语法: <strong><code>chmod [-R] xyz [file|dir]</code></strong></p> <div class="language-shell extra-class"><pre class="language-text"><code>-R    # 递归持续的更改，所有子目录都会更改
+</code></pre></div><h2 id="vim命令"><a href="#vim命令" aria-hidden="true" class="header-anchor">#</a> vim命令</h2> <p>用于文本编辑，接受一个或多个文件名作为参数，如果文件存在就打开，不存在就创建文件。</p> <h2 id="gcc命令"><a href="#gcc命令" aria-hidden="true" class="header-anchor">#</a> gcc命令</h2> <p>将c程序编译成可执行文件</p> <div class="language-shell extra-class"><pre class="language-text"><code>
+-o    # output之意，用于指定生成一个可执行文件的文件名
+-c    # 用于把源文件生成目标文件（.o)，并阻止编译器创建一个完整的程序
+-I    # 增加编译时搜索头文件的路径
+-L    # 增加编译时搜索静态连接库的路径
+-S    # 把源文件生成汇编代码文件
+-lm   # 表示标准库的目录中名为libm.a的函数库
+-lpthread     # 连接NPTL实现的线程库
+-std=     # 用于指定把使用的C语言的版本
+ 
+# 例如：
+# 把源文件test.c按照c99标准编译成可执行程序test
+gcc -o test test.c -lm -std=c99
+#把源文件test.c转换为相应的汇编程序源文件test.s
+gcc -S test.c
+</code></pre></div><h2 id="time命令"><a href="#time命令" aria-hidden="true" class="header-anchor">#</a> time命令</h2> <p>用于测试一个命令(即程序)的运行时间。</p> <div class="language-shell extra-class"><pre class="language-text"><code># 例如
+time ./process
+time ps aux
+</code></pre></div></div> <div class="page-edit"><!----></div> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/library/blog/command/Alfred4.html" class="prev">
+          Alfred 4使用手册
+        </a></span> <span class="next"><a href="/library/blog/command/markdown.html">
+          markdown语法
+        </a>
+        →
+      </span></p></div> <div class="bsa-cpc-wrapper"><div class="bsa-cpc"></div></div></div> <!----></div></div>
+    <script src="/library/assets/js/app.ee2122ca.js" defer></script><script src="/library/assets/js/15.9a36e77b.js" defer></script>
+    <script>
+      var _hmt = _hmt || [];
+      (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?c3446600de53c605ba4f6c792e47dff9";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  </body>
+</html>
