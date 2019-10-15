@@ -1,5 +1,5 @@
 ---
-title: git连接多托管网站
+title: Git连接多托管网站
 sidebarDepth: 0
 ---
 ### Git同一台电脑连接多个远程仓库
