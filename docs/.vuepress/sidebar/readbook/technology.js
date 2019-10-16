@@ -15,9 +15,20 @@ module.exports = [
         'css禅意花园',
         'javascript语言精粹',
         'javascript高级程序设计',
-        'javasciprt函数式编程',
+        'javascript函数式编程',
         '你不知道的javascript',
-        '高性能的javascript'
+        '高性能的javascript',
+        '201principlesofsoftwaredevelopment',
+        '编写可读写代码的艺术',
+        '代码大全',
+        '代码整洁之道',
+        '深入浅出Webpack',
+        '疯狂Java讲义',
+        'PHP核心技术与最佳实践',
+        'vuejs实战',
+        'MySQL必知必会',
+        'Node即学即用',
+        '高性能MySQL'
       ]
     }
   ]
