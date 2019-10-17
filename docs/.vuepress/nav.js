@@ -13,6 +13,7 @@ module.exports = [
         { text: '闲情随记', link: '/blog/article/read' },
         { text: '工具技巧', link: '/blog/tools/read' },
         { text: '命令整理', link: '/blog/command/read' },
+        { text: '必备软件', link: '/blog/software/read' },
         { text: '文档综合', link: '/blog/other/read'}
       ]
     },

@@ -14,6 +14,7 @@ const zeptoFile = require('./sidebar/code/zepto.js');
 const articleFile = require('./sidebar/blog/article.js');
 const toolsFile = require('./sidebar/blog/tools.js');
 const commandFile = require('./sidebar/blog/command.js');
+const softwareFile = require('./sidebar/blog/software.js');
 const blogOtherFile = require('./sidebar/blog/other.js');
 // 知识整理
 const webFile = require('./sidebar/knowledge/web.js');
@@ -39,6 +40,7 @@ module.exports = {
     '/blog/article/': articleFile,
     '/blog/tools/': toolsFile,
     '/blog/command/': commandFile,
+    '/blog/software/': softwareFile,
     '/blog/other/': blogOtherFile,
 
     '/knowledge/web/': webFile,

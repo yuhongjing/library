@@ -4,9 +4,7 @@ module.exports = [
       collapsable: false,
       children: [
         'read',
-        '代码产出',
-        'Mac必备应用',
-        'Vscode必备插件'
+        '代码产出'
       ]
     }
 ]

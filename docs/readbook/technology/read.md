@@ -17,6 +17,7 @@ title: 介绍
 * [JavaScript函数式编程](./javascript函数式编程.md)
 * [JavaScript语言精粹](./javascript语言精粹.md)
 * [JS权威指南](./js权威指南.md)
+* [JavaScript高级程序设计](./javascript高级程序设计.md)
 
 ## Node
 * [Node即学即用](./Node即学即用.md)

@@ -1,4 +1,5 @@
 ---
+# layout: DiyLayout
 home: true
 heroImage: /hero.png
 actionText: GO →
