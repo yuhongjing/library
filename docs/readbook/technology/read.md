@@ -10,6 +10,7 @@ title: 介绍
 ## CSS
 * [CSS禅意花园](./css禅意花园.md)
 * [CSS世界](./css世界.md)
+* [CSS揭秘](./CSS揭秘.md)
 
 ## JS
 * [高性能的JavaScript](./高性能的javascript.md)
@@ -18,9 +19,11 @@ title: 介绍
 * [JavaScript语言精粹](./javascript语言精粹.md)
 * [JS权威指南](./js权威指南.md)
 * [JavaScript高级程序设计](./javascript高级程序设计.md)
+* [JavaScript忍者秘籍](./javascript忍者秘籍.md)
 
 ## Node
 * [Node即学即用](./Node即学即用.md)
+* [深入浅出Node.js](./深入浅出NodeJs.md)
 
 ## 前端生态
 * [锋利的jQuery](./锋利的jquery.md)
@@ -51,3 +54,4 @@ title: 介绍
 * [剑指offer](./剑指offer.md)
 * [数据结构与算法分析-C语言描述](./数据结构与算法分析C语言描述.md)
 * [图解Http](./图解http.md)
+* [算法导论](./算法导论.md)

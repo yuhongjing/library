@@ -28,7 +28,11 @@ module.exports = [
         'vuejs实战',
         'MySQL必知必会',
         'Node即学即用',
-        '高性能MySQL'
+        '高性能MySQL',
+        'CSS揭秘',
+        '深入浅出NodeJs',
+        'javascript忍者秘籍',
+        '算法导论'
       ]
     }
   ]
