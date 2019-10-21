@@ -118,7 +118,7 @@ module.exports = {
             'after': true
         }],
         'handle-callback-err': [2, '^(err|error)$'],
-        'indent': [2, 4],
+        'indent': [2, 4, {'SwitchCase': 1}],
         'jsx-quotes': [2, 'prefer-single'],
         'key-spacing': [2, {
             'beforeColon': false,

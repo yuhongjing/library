@@ -4,10 +4,10 @@ sidebarDepth: 0
 ---
 
 ## 收集常用的JS方法
-1. [String Skill](./string.md)
-2. [Number Skill](./number.md)
-3. [Boolean Skill](./boolean.md)
-4. [Array Skill](./array.md)
-5. [Object Skill](./object.md)
-6. [Function SKill](./function.md)
-7. [DOM Skill](./dom.md)
+* [String Skill](./string.md)
+* [Number Skill](./number.md)
+* [Boolean Skill](./boolean.md)
+* [Array Skill](./array.md)
+* [Object Skill](./object.md)
+* [Function SKill](./function.md)
+* [DOM Skill](./dom.md)
