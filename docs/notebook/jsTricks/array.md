@@ -54,7 +54,7 @@ let b = 1;
 // a b => 1 0
 ```
 
-## 过滤空值
+## 过滤假值
 > **空值**
 >> **undefined、 null、 ""、 0、 false、 NaN**
 

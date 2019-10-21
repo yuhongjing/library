@@ -11,9 +11,9 @@ sidebarDepth: 2
 
 [位运算符详情](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators)
 ```js
-const num1 = ~~1.69;
-const num2 = 1.69 | 0;
-const num3 = 1.69 >> 0;
+const num1 = ~~1.69; // 正数Math.floor() 负数Math.ceil()
+const num2 = 1.69 | 0; // 取整
+const num3 = 1.69 >> 0; // 取整
 // num1, num2, num3 => 1, 1, 1
 ```
 
@@ -27,6 +27,7 @@ const num = FillZero(169, 5); // num => '00169'
 > **只对null、""、 false、 数值字符串有效**
 
 ```js
++ 或 * 都可，实际是调用.valueOf方法。
 const num1 = +null;
 const num2 = +'';
 const num3 = +false;
@@ -55,7 +56,8 @@ const num = OddEven(2); // num => 'even'
 
 // 更简单的
 const num1 = 2;
-num1 % 2; // false 奇数 true 偶数
+!!(num1 % 2); // false 偶数 true 奇数
+!!(num1 & 1); // false 偶数 true 奇数
 ```
 
 ## 取最小最大值
@@ -70,4 +72,12 @@ const max = Math.max(...arr);
 ```js
 const RandomNum = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 const num = RandomNum(1, 10); // num => 9
+```
+
+## 判断NaN
+```js
+const number = 'ds' * 1;
+Number.isNaN(number); // true
+// 因为NaN !== NaN
+number !== number; // true
 ```
