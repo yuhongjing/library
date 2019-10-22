@@ -28,6 +28,7 @@ module.exports = {
     lastUpdated: '上次更新',
     editLinks: true,
     docsDir: 'docs',
+    searchMaxSuggestions: 30,
     locales: {
       '/': {
         nav: navFile,
