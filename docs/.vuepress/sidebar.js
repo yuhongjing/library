@@ -28,9 +28,11 @@ const networkFile = require('./sidebar/knowledge/network.js');
 const hardFile = require('./sidebar/knowledge/hard.js');
 const systemFile = require('./sidebar/knowledge/system.js');
 const configFile = require('./sidebar/knowledge/config.js');
+const architectureFile = require('./sidebar/knowledge/architecture.js');
 // 读书日记
 const technologyFile = require('./sidebar/readbook/technology.js');
 const literatureFile = require('./sidebar/readbook/literature.js');
+const poetryFile = require('./sidebar/readbook/poetry.js');
 const readbookOtherFile = require('./sidebar/readbook/other.js');
 
 module.exports = {
@@ -55,6 +57,7 @@ module.exports = {
     '/knowledge/hard/': hardFile,
     '/knowledge/system/': systemFile,
     '/knowledge/config/': configFile,
+    '/knowledge/architecture/': architectureFile,
 
     '/code/loadsh/': loadshFile,
     '/code/webpack/': webpackFile,
@@ -62,5 +65,6 @@ module.exports = {
 
     '/readbook/technology/': technologyFile,
     '/readbook/literature/': literatureFile,
+    '/readbook/poetry/': poetryFile,
     '/readbook/other/': readbookOtherFile
   }

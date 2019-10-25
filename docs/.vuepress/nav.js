@@ -31,6 +31,7 @@ module.exports = [
         { text: '硬件知识', link: '/knowledge/hard/read' },
         { text: '操作系统知识', link: '/knowledge/system/read' },
         { text: '环境配置', link: '/knowledge/config/read' },
+        { text: '项目架构', link: '/knowledge/architecture/read' }
       ]
     },
     {
@@ -46,6 +47,7 @@ module.exports = [
       items: [
         { text: '技术书籍', link: '/readbook/technology/read' },
         { text: '文学书籍', link: '/readbook/literature/read' },
+        { text: '诗词歌曲', link: '/readbook/poetry/read' },
         { text: '杂项书籍', link: '/readbook/other/read' }
       ]
     }
