@@ -55,6 +55,7 @@ module.exports = [
       text: '其他项目',
       items: [
         { text: '旅行日志', link: 'https://yuhongjing.github.io/trip/#/' },
+        { text: '小裕博客', link: 'https://pxy1996.github.io/' },
         { text: '旧博客', link: 'https://yuhongjing.github.io' }
       ]
     }
