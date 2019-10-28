@@ -3,14 +3,24 @@ module.exports = [
     title: "常用命令",
     collapsable: false,
     children: [
-      'read',
+      'read'
+    ]
+  },
+  {
+    title: "命令语言类",
+    children: [
       'git',
-      'vscode',
-      'iterm2',
       'vim',
-      'Alfred4',
       'linux',
-      'markdown',
+      'markdown'
+    ]
+  },
+  {
+    title: "软件快捷键类",
+    children: [
+      'iterm2',
+      'Alfred4',
+      'vscode',
       'Tmux'
     ]
   }
