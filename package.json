@@ -32,15 +32,6 @@
     "url": "https://github.com/vuejs/vuepress/issues"
   },
   "homepage": "https://github.com/vuejs/vuepress#readme",
-  "gitHooks": {
-    "pre-commit": "lint-staged"
-  },
-  "lint-staged": {
-    "*.{js,vue}": [
-      "eslint --fix",
-      "git add"
-    ]
-  },
   "dependencies": {
     "@babel/core": "7.0.0-beta.47",
     "@vue/babel-preset-app": "3.0.0-beta.11",

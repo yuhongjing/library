@@ -35,7 +35,8 @@ module.exports = [
       title: "Node",
       children: [
         'Node即学即用',
-        '深入浅出NodeJs'
+        '深入浅出NodeJs',
+        'NodeJs来一打C加加扩展'
       ]
     },
     {

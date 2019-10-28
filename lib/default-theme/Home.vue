@@ -14,23 +14,23 @@
       </p>
 
       <p
-        class="action"
         v-if="data.actionText && data.actionLink"
+        class="action"
       >
         <NavLink
-          class="action-button"
           :item="actionLink"
+          class="action-button"
         />
       </p>
     </div>
 
     <div
-      class="features"
       v-if="data.features && data.features.length"
+      class="features"
     >
       <div
-        class="feature"
         v-for="feature in data.features"
+        class="feature"
       >
         <h2>{{ feature.title }}</h2>
         <p>{{ feature.details }}</p>
@@ -40,8 +40,8 @@
     <Content custom/>
 
     <div
-      class="footer"
       v-if="data.footer"
+      class="footer"
     >
       {{ data.footer }}
     </div>
@@ -49,24 +49,24 @@
 </template>
 
 <script>
-import NavLink from './NavLink.vue'
+import NavLink from './NavLink.vue';
 
 export default {
-  components: { NavLink },
+    components: {NavLink},
 
-  computed: {
-    data () {
-      return this.$page.frontmatter
-    },
+    computed: {
+        data () {
+            return this.$page.frontmatter;
+        },
 
-    actionLink () {
-      return {
-        link: this.data.actionLink,
-        text: this.data.actionText
-      }
+        actionLink () {
+            return {
+                link: this.data.actionLink,
+                text: this.data.actionText
+            };
+        }
     }
-  }
-}
+};
 </script>
 
 <style lang="stylus">

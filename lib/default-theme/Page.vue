@@ -14,15 +14,15 @@
       </div> -->
 
       <div
-        class="last-updated"
         v-if="lastUpdated"
+        class="last-updated"
       >
         <span class="prefix">{{ lastUpdatedText }}: </span>
         <span class="time">{{ lastUpdated }}</span>
       </div>
     </div>
 
-    <div class="page-nav" v-if="prev || next">
+    <div v-if="prev || next" class="page-nav">
       <p class="inner">
         <span
           v-if="prev"
@@ -31,8 +31,8 @@
           ←
           <router-link
             v-if="prev"
-            class="prev"
             :to="prev.path"
+            class="prev"
           >
             {{ prev.title || prev.path }}
           </router-link>
@@ -58,140 +58,140 @@
 </template>
 
 <script>
-import { resolvePage, normalize, outboundRE, endingSlashRE } from './util'
+import {resolvePage, normalize, outboundRE, endingSlashRE} from './util';
 
 export default {
-  props: ['sidebarItems'],
+    props: ['sidebarItems'],
 
-  computed: {
-    lastUpdated () {
-      if (this.$page.lastUpdated) {
-        return new Date(this.$page.lastUpdated).toLocaleString(this.$lang)
-      }
-    },
+    computed: {
+        lastUpdated () {
+            if (this.$page.lastUpdated) {
+                return new Date(this.$page.lastUpdated).toLocaleString(this.$lang);
+            }
+        },
 
-    lastUpdatedText () {
-      if (typeof this.$themeLocaleConfig.lastUpdated === 'string') {
-        return this.$themeLocaleConfig.lastUpdated
-      }
-      if (typeof this.$site.themeConfig.lastUpdated === 'string') {
-        return this.$site.themeConfig.lastUpdated
-      }
-      return 'Last Updated'
-    },
+        lastUpdatedText () {
+            if (typeof this.$themeLocaleConfig.lastUpdated === 'string') {
+                return this.$themeLocaleConfig.lastUpdated;
+            }
+            if (typeof this.$site.themeConfig.lastUpdated === 'string') {
+                return this.$site.themeConfig.lastUpdated;
+            }
+            return 'Last Updated';
+        },
 
-    prev () {
-      const prev = this.$page.frontmatter.prev
-      if (prev === false) {
-        return
-      } else if (prev) {
-        return resolvePage(this.$site.pages, prev, this.$route.path)
-      } else {
-        return resolvePrev(this.$page, this.sidebarItems)
-      }
-    },
+        prev () {
+            const prev = this.$page.frontmatter.prev;
+            if (prev === false) {
+                return;
+            } else if (prev) {
+                return resolvePage(this.$site.pages, prev, this.$route.path);
+            } else {
+                return resolvePrev(this.$page, this.sidebarItems);
+            }
+        },
 
-    next () {
-      const next = this.$page.frontmatter.next
-      if (next === false) {
-        return
-      } else if (next) {
-        return resolvePage(this.$site.pages, next, this.$route.path)
-      } else {
-        return resolveNext(this.$page, this.sidebarItems)
-      }
-    },
+        next () {
+            const next = this.$page.frontmatter.next;
+            if (next === false) {
+                return;
+            } else if (next) {
+                return resolvePage(this.$site.pages, next, this.$route.path);
+            } else {
+                return resolveNext(this.$page, this.sidebarItems);
+            }
+        },
 
-    editLink () {
-      if (this.$page.frontmatter.editLink === false) {
-        return
-      }
-      const {
-        repo,
-        editLinks,
-        docsDir = '',
-        docsBranch = 'master',
-        docsRepo = repo
-      } = this.$site.themeConfig
+        editLink () {
+            if (this.$page.frontmatter.editLink === false) {
+                return;
+            }
+            const {
+                repo,
+                editLinks,
+                docsDir = '',
+                docsBranch = 'master',
+                docsRepo = repo
+            } = this.$site.themeConfig;
 
-      let path = normalize(this.$page.path)
-      if (endingSlashRE.test(path)) {
-        path += 'README.md'
-      } else {
-        path += '.md'
-      }
-      if (docsRepo && editLinks) {
-        return this.createEditLink(repo, docsRepo, docsDir, docsBranch, path)
-      }
-    },
+            let path = normalize(this.$page.path);
+            if (endingSlashRE.test(path)) {
+                path += 'README.md';
+            } else {
+                path += '.md';
+            }
+            if (docsRepo && editLinks) {
+                return this.createEditLink(repo, docsRepo, docsDir, docsBranch, path);
+            }
+        },
 
-    editLinkText () {
-      return (
-        this.$themeLocaleConfig.editLinkText ||
+        editLinkText () {
+            return (
+                this.$themeLocaleConfig.editLinkText ||
         this.$site.themeConfig.editLinkText ||
         `Edit this page`
-      )
+            );
+        },
+        rawLink () {
+            const path = normalize(this.$page.path);
+            const rawPath = `https://vuepress.vuejs.org${path}`;
+            return rawPath;
+        }
     },
-    rawLink () {
-      const path = normalize(this.$page.path)
-      const rawPath = `https://vuepress.vuejs.org${path}`
-      return rawPath
-    }
-  },
 
-  methods: {
-    createEditLink (repo, docsRepo, docsDir, docsBranch, path) {
-      const bitbucket = /bitbucket.org/
-      if (bitbucket.test(repo)) {
-        const base = outboundRE.test(docsRepo)
-          ? docsRepo
-          : repo
-        return (
-          base.replace(endingSlashRE, '') +
+    methods: {
+        createEditLink (repo, docsRepo, docsDir, docsBranch, path) {
+            const bitbucket = /bitbucket.org/;
+            if (bitbucket.test(repo)) {
+                const base = outboundRE.test(docsRepo)
+                    ? docsRepo
+                    : repo;
+                return (
+                    base.replace(endingSlashRE, '') +
            `/${docsBranch}` +
            (docsDir ? '/' + docsDir.replace(endingSlashRE, '') : '') +
            path +
            `?mode=edit&spa=0&at=${docsBranch}&fileviewer=file-view-default`
-        )
-      }
+                );
+            }
 
-      const base = outboundRE.test(docsRepo)
-        ? docsRepo
-        : `https://github.com/${docsRepo}`
+            const base = outboundRE.test(docsRepo)
+                ? docsRepo
+                : `https://github.com/${docsRepo}`;
 
-      return (
-        base.replace(endingSlashRE, '') +
+            return (
+                base.replace(endingSlashRE, '') +
         `/edit/${docsBranch}` +
         (docsDir ? '/' + docsDir.replace(endingSlashRE, '') : '') +
         path
-      )
+            );
+        }
     }
-  }
-}
+};
 
 function resolvePrev (page, items) {
-  return find(page, items, -1)
+    return find(page, items, -1);
 }
 
 function resolveNext (page, items) {
-  return find(page, items, 1)
+    return find(page, items, 1);
 }
 
 function find (page, items, offset) {
-  const res = []
-  items.forEach(item => {
-    if (item.type === 'group') {
-      res.push(...item.children || [])
-    } else {
-      res.push(item)
+    const res = [];
+    items.forEach(item => {
+        if (item.type === 'group') {
+            res.push(...item.children || []);
+        } else {
+            res.push(item);
+        }
+    });
+    for (let i = 0; i < res.length; i++) {
+        const cur = res[i];
+        if (cur.type === 'page' && cur.path === page.path) {
+            return res[i + offset];
+        }
     }
-  })
-  for (let i = 0; i < res.length; i++) {
-    const cur = res[i]
-    if (cur.type === 'page' && cur.path === page.path) {
-      return res[i + offset]
-    }
-  }
 }
 </script>
 

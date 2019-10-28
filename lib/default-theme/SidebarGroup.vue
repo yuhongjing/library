@@ -1,26 +1,25 @@
 <template>
   <div
-    class="sidebar-group"
     :class="{ first, collapsable }"
+    class="sidebar-group"
   >
     <p
-      class="sidebar-heading"
       :class="{ open }"
+      class="sidebar-heading"
       @click="$emit('toggle')"
     >
       <span>{{ item.title }}</span>
       <span
-        class="arrow"
         v-if="collapsable"
-        :class="open ? 'down' : 'right'">
-      </span>
+        :class="open ? 'down' : 'right'"
+        class="arrow"/>
     </p>
 
     <DropdownTransition>
       <ul
+        v-if="open || !collapsable"
         ref="items"
         class="sidebar-group-items"
-        v-if="open || !collapsable"
       >
         <li v-for="child in item.children">
           <SidebarLink :item="child"/>
@@ -31,14 +30,14 @@
 </template>
 
 <script>
-import SidebarLink from './SidebarLink.vue'
-import DropdownTransition from './DropdownTransition.vue'
+import SidebarLink from './SidebarLink.vue';
+import DropdownTransition from './DropdownTransition.vue';
 
 export default {
-  name: 'SidebarGroup',
-  props: ['item', 'first', 'open', 'collapsable'],
-  components: { SidebarLink, DropdownTransition }
-}
+    name: 'SidebarGroup',
+    components: {SidebarLink, DropdownTransition},
+    props: ['item', 'first', 'open', 'collapsable']
+};
 </script>
 
 <style lang="stylus">

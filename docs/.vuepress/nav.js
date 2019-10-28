@@ -50,5 +50,12 @@ module.exports = [
         { text: '诗词歌曲', link: '/readbook/poetry/read' },
         { text: '杂项书籍', link: '/readbook/other/read' }
       ]
+    },
+    {
+      text: '其他项目',
+      items: [
+        { text: '旅行日志', link: 'https://yuhongjing.github.io/trip/#/' },
+        { text: '旧博客', link: 'https://yuhongjing.github.io' }
+      ]
     }
   ]

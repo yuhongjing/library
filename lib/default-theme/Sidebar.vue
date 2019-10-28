@@ -2,7 +2,7 @@
   <div class="sidebar">
     <NavLinks/>
     <slot name="top"/>
-    <ul class="sidebar-links" v-if="items.length">
+    <ul v-if="items.length" class="sidebar-links">
       <li v-for="(item, i) in items" :key="i">
         <SidebarGroup
           v-if="item.type === 'group'"
@@ -20,61 +20,61 @@
 </template>
 
 <script>
-import SidebarGroup from './SidebarGroup.vue'
-import SidebarLink from './SidebarLink.vue'
-import NavLinks from './NavLinks.vue'
-import { isActive } from './util'
+import SidebarGroup from './SidebarGroup.vue';
+import SidebarLink from './SidebarLink.vue';
+import NavLinks from './NavLinks.vue';
+import {isActive} from './util';
 
 export default {
-  components: { SidebarGroup, SidebarLink, NavLinks },
+    components: {SidebarGroup, SidebarLink, NavLinks},
 
-  props: ['items'],
+    props: ['items'],
 
-  data () {
-    return {
-      openGroupIndex: 0
-    }
-  },
-
-  created () {
-    this.refreshIndex()
-  },
-
-  watch: {
-    '$route' () {
-      this.refreshIndex()
-    }
-  },
-
-  methods: {
-    refreshIndex () {
-      const index = resolveOpenGroupIndex(
-        this.$route,
-        this.items
-      )
-      if (index > -1) {
-        this.openGroupIndex = index
-      }
+    data () {
+        return {
+            openGroupIndex: 0
+        };
     },
 
-    toggleGroup (index) {
-      this.openGroupIndex = index === this.openGroupIndex ? -1 : index
+    watch: {
+        '$route' () {
+            this.refreshIndex();
+        }
     },
 
-    isActive (page) {
-      return isActive(this.$route, page.path)
+    created () {
+        this.refreshIndex();
+    },
+
+    methods: {
+        refreshIndex () {
+            const index = resolveOpenGroupIndex(
+                this.$route,
+                this.items
+            );
+            if (index > -1) {
+                this.openGroupIndex = index;
+            }
+        },
+
+        toggleGroup (index) {
+            this.openGroupIndex = index === this.openGroupIndex ? -1 : index;
+        },
+
+        isActive (page) {
+            return isActive(this.$route, page.path);
+        }
     }
-  }
-}
+};
 
 function resolveOpenGroupIndex (route, items) {
-  for (let i = 0; i < items.length; i++) {
-    const item = items[i]
-    if (item.type === 'group' && item.children.some(c => isActive(route, c.path))) {
-      return i
+    for (let i = 0; i < items.length; i++) {
+        const item = items[i];
+        if (item.type === 'group' && item.children.some(c => isActive(route, c.path))) {
+            return i;
+        }
     }
-  }
-  return -1
+    return -1;
 }
 </script>
 
