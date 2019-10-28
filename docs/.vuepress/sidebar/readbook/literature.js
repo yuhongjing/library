@@ -11,4 +11,4 @@ module.exports = [
       '亮剑'
     ]
   }
-]
+];
