@@ -7,6 +7,7 @@ const schoolFile = require('./sidebar/notebook/school.js');
 const jsTricksFile = require('./sidebar/notebook/jsTricks.js');
 const cssTricksFile = require('./sidebar/notebook/cssTricks.js');
 const notebookAlgorithmFile = require('./sidebar/notebook/algorithm.js');
+const diftersFile = require('./sidebar/notebook/difters.js');
 // 源码
 const loadshFile = require('./sidebar/code/loadsh.js');
 const webpackFile = require('./sidebar/code/webpack.js');
@@ -40,6 +41,7 @@ module.exports = {
     '/notebook/jsTricks/': jsTricksFile,
     '/notebook/cssTricks/': cssTricksFile,
     '/notebook/algorithm/': notebookAlgorithmFile,
+    '/notebook/difters/': diftersFile,
 
     '/blog/article/': articleFile,
     '/blog/tools/': toolsFile,

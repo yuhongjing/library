@@ -5,7 +5,8 @@ module.exports = [
         { text: '校招面经', link: '/notebook/school/read' },
         { text: 'JS Tricks', link: '/notebook/jsTricks/read' },
         { text: 'CSS Tricks', link: '/notebook/cssTricks/read' },
-        { text: '算法整理', link: '/notebook/algorithm/read' }
+        { text: '算法整理', link: '/notebook/algorithm/read' },
+        { text: '北漂日志', link: '/notebook/difters/read'}
       ]
     },
     {

@@ -12,6 +12,12 @@ const _arr = [0, 1, 2];
 const arr = [..._arr]; // arr => [0, 1, 2]
 ```
 
+## 类数组对象转为数组
+```js
+const listItems = document.querySelectorAll('.list-item');
+const toArray = [...listItems];
+```
+
 ## 合并数组
 ```js
 const arr1 = [0, 1, 2];
