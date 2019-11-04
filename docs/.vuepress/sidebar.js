@@ -19,6 +19,7 @@ const commandFile = require('./sidebar/blog/command.js');
 const softwareFile = require('./sidebar/blog/software.js');
 const blogOtherFile = require('./sidebar/blog/other.js');
 // 知识整理
+const mindmapFile = require('./sidebar/knowledge/mindmap.js');
 const webFile = require('./sidebar/knowledge/web.js');
 const backendFile = require('./sidebar/knowledge/backend.js');
 const databaseFile = require('./sidebar/knowledge/database.js');
@@ -49,6 +50,7 @@ module.exports = {
     '/blog/software/': softwareFile,
     '/blog/other/': blogOtherFile,
 
+    '/knowledge/mindmap/': mindmapFile,
     '/knowledge/web/': webFile,
     '/knowledge/backend/': backendFile,
     '/knowledge/database/': databaseFile,

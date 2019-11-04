@@ -148,7 +148,7 @@ export default {
                     : repo;
                 return (
                     base.replace(endingSlashRE, '') +
-           `/${docsBranch}` +
+            `/${docsBranch}` +
            (docsDir ? '/' + docsDir.replace(endingSlashRE, '') : '') +
            path +
            `?mode=edit&spa=0&at=${docsBranch}&fileviewer=file-view-default`
