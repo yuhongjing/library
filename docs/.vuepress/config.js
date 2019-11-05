@@ -21,7 +21,6 @@ module.exports = {
     ['meta', { name: 'msapplication-TileColor', content: '#000000' }]
   ],
   serviceWorker: true,
-  theme: 'vue',
   themeConfig: {
     repo: 'yuhongjing/library',
     sidebarDepth: 2,
