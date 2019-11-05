@@ -90,3 +90,19 @@ target
 node_modules
 *.db
 ```
+
+
+## 其他
+* 暂存区内容还原
+```git
+# 查找最近10条add的内容
+find .git/objects -type f | xargs ls -lt | sed 10q
+
+# 内容例子
+# -r--r--r--  1 yuhongjing  staff      162 11  4 15:53 .git/objects/ff/b7a6c59262007a4f8723716d02eb608fb49acd
+
+# objects后面的就是ID, 去除/, ID为ffb7a6c59262007a4f8723716d02eb608fb49acd
+
+# 还原文件
+git cat-file -p ID > 地址(例如docs/a.md)
+```

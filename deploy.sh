@@ -3,7 +3,7 @@ set -e
 
 npm run build
 
-git add -u
+git add .
 git commit -m "add new notebook"
 git push origin dev
 

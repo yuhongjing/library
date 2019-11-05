@@ -32,6 +32,10 @@ sidebarDepth: 1
 
 跳到行尾: Ctrl + e
 
+清除一格: esc + backspace
+
+跳到上一个单词: esc + b
+
 清屏(滚轮按钮下滑，原本内容还在上面): Ctrl + l 或 Cmd + r
 ```
 
