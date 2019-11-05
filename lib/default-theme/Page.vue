@@ -1,7 +1,6 @@
 <template>
   <div class="page">
     <slot name="top"/>
-
     <Content :custom="false"/>
 
     <div class="page-edit">
@@ -21,7 +20,7 @@
         <span class="time">{{ lastUpdated }}</span>
       </div>
     </div>
-
+    12312312
     <div v-if="prev || next" class="page-nav">
       <p class="inner">
         <span
