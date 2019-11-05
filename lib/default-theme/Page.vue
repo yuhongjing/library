@@ -59,10 +59,10 @@
 
 <script>
 import {resolvePage, normalize, outboundRE, endingSlashRE} from './util';
+import mediumZoom from 'medium-zoom';
 
 export default {
     props: ['sidebarItems'],
-
     computed: {
         lastUpdated () {
             if (this.$page.lastUpdated) {
@@ -139,7 +139,21 @@ export default {
         }
     },
 
+    updated() {
+        this.zoomFunc();
+    },
+
+    mounted() {
+        this.zoomFunc();
+    },
+
     methods: {
+        zoomFunc() {
+            mediumZoom('#zoom-root img', {
+                scrollOffset: 10000,
+                container: '#zoom-root'
+            });
+        },
         createEditLink (repo, docsRepo, docsDir, docsBranch, path) {
             const bitbucket = /bitbucket.org/;
             if (bitbucket.test(repo)) {

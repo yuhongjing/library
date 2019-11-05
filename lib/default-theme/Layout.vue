@@ -1,5 +1,6 @@
 <template>
   <div
+    id="zoom-root"
     :class="pageClasses"
     class="theme-container"
     @touchstart="onTouchStart"
@@ -181,3 +182,11 @@ export default {
 
 <style src="prismjs/themes/prism-tomorrow.css"></style>
 <style src="./styles/theme.styl" lang="stylus"></style>
+<style>
+.medium-zoom-overlay {
+    z-index: 1000;
+}
+.medium-zoom-image.medium-zoom-image--opened {
+    z-index: 1001;
+}
+</style>
