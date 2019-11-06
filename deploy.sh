@@ -7,7 +7,6 @@ git add .
 git commit -m "add new notebook"
 git push origin dev
 
-cp CNAME docs/.vuepress/dist
 cd docs/.vuepress/dist
 
 git init
