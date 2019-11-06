@@ -11,3 +11,4 @@ sidebarDepth: 0
 * [Object Skill](./object.md)
 * [Function SKill](./function.md)
 * [DOM Skill](./dom.md)
+* [代码片段](./code.md)

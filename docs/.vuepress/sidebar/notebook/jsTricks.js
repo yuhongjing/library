@@ -10,7 +10,8 @@ module.exports = [
       'array',
       'object',
       'function',
-      'dom'
+      'dom',
+      'code'
     ]
   }
 ]
