@@ -18,6 +18,7 @@ sidebarDepth: 1
 * [GitLens](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens) 根据git，显示每一行代码的作者，代码提交时间以及commit信息
 * [Rainbow Brackets](https://marketplace.visualstudio.com/items?itemName=2gua.rainbow-brackets) 每一对的花括号颜色匹配，方便辨认代码层级
 * [Indent Rainbow](https://marketplace.visualstudio.com/items?itemName=oderwat.indent-rainbow) 缩进颜色配对，配合上一个插件，从此再也不怕找错代码层级了
+* [TODO Highlight](https://marketplace.visualstudio.com/items?itemName=wayou.vscode-todo-highlight) 高亮注释TODO、FIXME，再也不怕工作被打断了
 
 ## 主题插件
 * [Dracula Official](https://marketplace.visualstudio.com/items?itemName=dracula-theme.theme-dracula) 德古拉吸血鬼主题

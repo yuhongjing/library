@@ -4,7 +4,8 @@ module.exports = [
       collapsable: false,
       children: [
         'read',
-        'solid'
+        'solid',
+        '简单工厂模式'
       ]
     }
   ]

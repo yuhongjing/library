@@ -23,6 +23,4 @@ class Polling {
         clearInterval(this.timer);
     }
 }
-
-export default Polling;
 ```
