@@ -4,7 +4,8 @@ module.exports = [
     collapsable: false,
     children: [
       'read',
-      'eslint'
+      'eslint',
+      'php'
     ]
   }
 ]
