@@ -5,7 +5,8 @@ module.exports = [
       children: [
         'read',
         'solid',
-        '简单工厂模式'
+        '简单工厂模式',
+        '策略模式'
       ]
     }
   ]
