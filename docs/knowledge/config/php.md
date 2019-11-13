@@ -1,5 +1,5 @@
 ---
-title: PHP环境配置
+title: PHP
 ---
 
 # PHP环境配置

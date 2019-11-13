@@ -5,7 +5,8 @@ module.exports = [
     children: [
       'read',
       'eslint',
-      'php'
+      'php',
+      'mysql'
     ]
   }
 ]
