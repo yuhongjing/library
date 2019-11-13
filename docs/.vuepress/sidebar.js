@@ -31,6 +31,7 @@ const hardFile = require('./sidebar/knowledge/hard.js');
 const systemFile = require('./sidebar/knowledge/system.js');
 const configFile = require('./sidebar/knowledge/config.js');
 const architectureFile = require('./sidebar/knowledge/architecture.js');
+const englishFile = require('./sidebar/knowledge/english.js');
 // 读书日记
 const technologyFile = require('./sidebar/readbook/technology.js');
 const literatureFile = require('./sidebar/readbook/literature.js');
@@ -62,6 +63,7 @@ module.exports = {
     '/knowledge/system/': systemFile,
     '/knowledge/config/': configFile,
     '/knowledge/architecture/': architectureFile,
+    '/knowledge/english/': englishFile,
 
     '/code/loadsh/': loadshFile,
     '/code/webpack/': webpackFile,

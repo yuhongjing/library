@@ -21,6 +21,8 @@ sidebarDepth: 1
 * [Navicat](https://www.navicat.com.cn/products) 数据库可视化管理工具
 
 ## 其他工具
-* [Alfred 4](https://www.alfredapp.com/whats-new/) 快速启动器(搜索等)
+* [Alfred 4](https://www.alfredapp.com/whats-new/) 快速启动器
 * [source code pro](https://adobe-fonts.github.io/source-code-pro/) 程序员必备的字体
 * [Magican Rest](https://apps.apple.com/cn/app/magicanrest/id634255909?mt=12) 定时休息提醒
+* [Clearview](https://www.thecanoesoft.com/clearview/) 阅读器
+* [eZip](https://ezip.awehunt.com/) 解压工具

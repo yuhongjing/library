@@ -10,7 +10,8 @@ module.exports = [
       title: "HTML",
       children: [
         'html',
-        'html-滚动条'
+        'html-滚动条',
+        'html-交叉观察者'
       ]
     },
     {
