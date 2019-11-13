@@ -218,12 +218,7 @@ module.exports = {
         'one-var': [2, {
             'initialized': 'never'
         }],
-        'operator-linebreak': [2, 'after', {
-            'overrides': {
-                '?': 'before',
-                ':': 'before'
-            }
-        }],
+        'operator-linebreak': [2, 'before'],
         'padded-blocks': [2, 'never'],
         'quotes': [2, 'single', {
             'avoidEscape': true,
