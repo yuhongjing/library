@@ -102,6 +102,7 @@ html {
 * 要点: 通过`text-overflow: ellipsis`对溢出的文本在末端添加`...`
 * 场景: **单行文字溢出、多行文字溢出**
 * 兼容: `text-overflow`、`line-clamp`、`box-orient`
+* 注意: 当父元素为`flexbox`时，需要在父元素处添加`overflow: hidden`
 
 ```css
 /* 单行省略 */
@@ -183,5 +184,28 @@ html {
 ```css
 :last-child {
     margin-left: auto;
+}
+```
+
+## 使用padding-top实现图片宽高相同
+* 要点: 使用`flexbox横向布局时`，图片的高需要通过`padding-top: xx%`实现高宽相同
+* 场景: **方形图片**
+* 兼容: `flex`
+
+```css
+/* 图片九宫格 */
+.image-list {
+    display: flex;
+    justify-content: space-between;
+}
+.image-list > .item {
+    width: 33%;
+    height: 0;
+    padding-top: 33%; /* 基于width */
+    position: relative;
+}
+.image-list > .item > img {
+    width: 100%;
+    height: 100%;
 }
 ```
