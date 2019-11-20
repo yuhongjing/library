@@ -21,7 +21,8 @@ module.exports = [
       'iterm2',
       'Alfred4',
       'vscode',
-      'Tmux'
+      'Tmux',
+      'Mac'
     ]
   }
 ]
