@@ -6,7 +6,8 @@ module.exports = [
       'read',
       'eslint',
       'php',
-      'mysql'
+      'mysql',
+      'c'
     ]
   }
 ]
