@@ -36,7 +36,8 @@ module.exports = [
     {
       title: "React",
       children: [
-        'react'
+        'react',
+        'react-编码规范'
       ]
     },
     {
