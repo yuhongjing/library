@@ -10,6 +10,19 @@ React编写规范整理，书写漂亮的React代码。
 * `使用JSX表达式`: 不要使用React.createElement的写法
 * `函数组件和class类组件的使用场景`: 如果定义的组件不需要props和state，建议将组件定义为成函数组件，否则定义为class类组件（不过现在有了react-hooks，也可以尝试函数组件）
 
+## 文件命名
+* 组件文件使用一致的`.js`或`.jsx`后缀，不应该在项目中出现部分组件为`.js`，部分为`.jsx`的情况
+
+## 模块化
+* 组织多个组件的目录使用一个`index.js`以命名导出的形式暴露所有组件
+
+推荐:
+```js
+export {default as MyComponent1} from './MyComponent1';
+export {default as MyComponent2} from './MyComponent2';
+export {default as MyComponent3} from './MyComponent3';
+```
+
 ## 组件声明
 * 组件名称和定义该组件的文件名称建议要保持一致
 
