@@ -5,5 +5,12 @@ module.exports = [
       children: [
         'read'
       ]
+    },
+    {
+      title: "MySQL",
+      children: [
+          'MySQL介绍',
+          'MySQL开发规范'
+      ]
     }
   ]

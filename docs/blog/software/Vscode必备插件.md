@@ -26,3 +26,4 @@ sidebarDepth: 1
 ## 其他插件
 * [Code Runner](https://marketplace.visualstudio.com/items?itemName=formulahendry.code-runner) 支持多重语言的立即执行
 * [carbon-now-sh](https://marketplace.visualstudio.com/items?itemName=ericadamski.carbon-now-sh) 截取代码并生成漂亮的代码图
+* [WakaTime](https://marketplace.visualstudio.com/items?itemName=WakaTime.vscode-wakatime) 统计每日敲代码时间及记录操作习惯
