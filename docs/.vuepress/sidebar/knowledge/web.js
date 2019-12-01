@@ -30,6 +30,7 @@ module.exports = [
       title: "Vue",
       children: [
         'vue',
+        'vue-编码规范',
         'vue-devtool'
       ]
     },
