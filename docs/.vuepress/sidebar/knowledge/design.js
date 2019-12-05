@@ -33,6 +33,7 @@ module.exports = [
       children: [
         '装饰者模式',
         '代理模式',
+        '外观模式'
       ]
     }
   ]

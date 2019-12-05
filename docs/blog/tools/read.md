@@ -13,3 +13,6 @@ title: 介绍
 
 ## 系统相关
 * [Win 10激活](./win10激活.md)
+
+## 其余
+* [PicGo配合GitHub图床](./PicGo配合Github图床.md)
