@@ -26,3 +26,4 @@ sidebarDepth: 1
 * [Magican Rest](https://apps.apple.com/cn/app/magicanrest/id634255909?mt=12) 定时休息提醒
 * [Clearview](https://www.thecanoesoft.com/clearview/) 阅读器
 * [eZip](https://ezip.awehunt.com/) 解压工具
+* [PicGo](https://github.com/Molunerfinn/PicGo/releases) 图床
