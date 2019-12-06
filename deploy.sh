@@ -7,7 +7,7 @@ node workCount.js
 
 git add .
 git commit -m "add new notebook"
-git push origin dev
+git push origin dev-v1
 
 cd docs/.vuepress/dist
 
