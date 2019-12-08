@@ -9,48 +9,48 @@ module.exports = [
     {
       title: "HTML",
       children: [
-        'html',
-        'html-滚动条',
-        'html-交叉观察者'
+        'html/read',
+        'html/滚动条',
+        'html/交叉观察者'
       ]
     },
     {
       title: "CSS",
       children: [
-        'css'
+        'css/read'
       ]
     },
     {
       title: "JavaScript",
       children: [
-        'javascript'
+        'javascript/read'
       ]
     },
     {
       title: "Vue",
       children: [
-        'vue',
-        'vue-编码规范',
-        'vue-devtool'
+        'vue/read',
+        'vue/编码规范',
+        'vue/devtool'
       ]
     },
     {
       title: "React",
       children: [
-        'react',
-        'react-编码规范'
+        'react/read',
+        'react/编码规范'
       ]
     },
     {
       title: "Webpack",
       children: [
-        'webpack'
+        'webpack/read'
       ]
     },
     {
       title: "TypeScript",
       children: [
-        'typescript'
+        'typescript/read'
       ]
     }
   ]

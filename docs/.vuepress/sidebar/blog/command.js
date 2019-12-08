@@ -9,20 +9,20 @@ module.exports = [
   {
     title: "命令语言类",
     children: [
-      'git',
-      'vim',
-      'linux',
-      'markdown'
+      '命令语言类/git',
+      '命令语言类/vim',
+      '命令语言类/linux',
+      '命令语言类/markdown'
     ]
   },
   {
     title: "软件快捷键类",
     children: [
-      'iterm2',
-      'Alfred4',
-      'vscode',
-      'Tmux',
-      'Mac'
+      '软件快捷键类/iterm2',
+      '软件快捷键类/Alfred4',
+      '软件快捷键类/vscode',
+      '软件快捷键类/Tmux',
+      '软件快捷键类/Mac'
     ]
   }
 ]

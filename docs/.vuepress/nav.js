@@ -40,7 +40,7 @@ module.exports = [
     {
       text: '源码解析',
       items: [
-        { text: 'Loadsh', link: '/code/loadsh/read'},
+        { text: 'Lodash', link: '/code/lodash/read'},
         { text: 'Webpack', link: '/code/webpack/read'},
         { text: 'Zepto', link: '/code/zepto/read'}
       ]

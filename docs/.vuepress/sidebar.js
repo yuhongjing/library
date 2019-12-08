@@ -9,7 +9,7 @@ const cssTricksFile = require('./sidebar/notebook/cssTricks.js');
 const notebookAlgorithmFile = require('./sidebar/notebook/algorithm.js');
 const diftersFile = require('./sidebar/notebook/difters.js');
 // 源码
-const loadshFile = require('./sidebar/code/loadsh.js');
+const lodashFile = require('./sidebar/code/lodash.js');
 const webpackFile = require('./sidebar/code/webpack.js');
 const zeptoFile = require('./sidebar/code/zepto.js');
 // 日常记录
@@ -65,7 +65,7 @@ module.exports = {
     '/knowledge/architecture/': architectureFile,
     '/knowledge/english/': englishFile,
 
-    '/code/loadsh/': loadshFile,
+    '/code/lodash/': lodashFile,
     '/code/webpack/': webpackFile,
     '/code/zepto/': zeptoFile,
 

@@ -5,10 +5,10 @@ sidebarDepth: 1
 # 前言
 前端的知识综合整理。
 
-* [HTML5](./html.md)
-* [CSS3](./css.md)
-* [JavaScript](./javascript.md)
-* [Vue](./vue.md)
-* [React](./react.md)
-* [Webpack](./webpack.md)
-* [TypeScript](./typescript.md)
+* [HTML5](./html/read.md)
+* [CSS3](./css/read.md)
+* [JavaScript](./javascript/read.md)
+* [Vue](./vue/read.md)
+* [React](./react/read.md)
+* [Webpack](./webpack/read.md)
+* [TypeScript](./typescript/read.md)
