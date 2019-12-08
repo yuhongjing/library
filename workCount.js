@@ -37,7 +37,6 @@ function fileDisplay(filePath) {
 function fileFilters(fileName) {
     return !fileNameFilters.includes(fileName);
 }
-
 function replaceFile() {
     const configFilePath = path.resolve(__dirname, './docs/.vuepress/config.js');
     const buffer = String(fs.readFileSync(configFilePath));
