@@ -1,9 +1,9 @@
 #!/usr/bin/env sh
 set -e
 
-npm run build
-
 node workCount.js
+
+npm run build
 
 git add .
 git commit -m "add new notebook"

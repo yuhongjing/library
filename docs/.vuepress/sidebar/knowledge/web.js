@@ -38,7 +38,8 @@ module.exports = [
       title: "React",
       children: [
         'react/read',
-        'react/编码规范'
+        'react/编码规范',
+        'react/从零实现Redux'
       ]
     },
     {

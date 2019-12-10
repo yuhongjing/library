@@ -44,7 +44,6 @@ function replaceFile() {
     const newBuffer = buffer.replace(reg, `小站目前有${amountArticleNumber}篇文章共${amountWordNumber}字，继续努力`);
     fs.writeFileSync(configFilePath, newBuffer);
 }
-console.log('============================');
 fileDisplay(filePath);
 replaceFile();
 

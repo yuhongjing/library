@@ -24,7 +24,8 @@ module.exports = [
         'array/read',
         'array/chunk',
         'array/compact',
-        'array/concat'
+        'array/concat',
+        'array/difference'
       ]
     }
   ]
