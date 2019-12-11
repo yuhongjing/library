@@ -23,7 +23,15 @@ module.exports = [
     {
       title: "JavaScript",
       children: [
-        'javascript/read'
+        'javascript/read',
+        {
+          title: '正则表达式',
+          children: [
+            'javascript/正则表达式/read',
+            'javascript/正则表达式/字符匹配攻略'
+          ]
+        },
+        'javascript/函数柯里化'
       ]
     },
     {
@@ -39,7 +47,8 @@ module.exports = [
       children: [
         'react/read',
         'react/编码规范',
-        'react/从零实现Redux'
+        'react/从零实现Redux',
+        'react/完全理解高阶组件'
       ]
     },
     {
