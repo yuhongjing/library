@@ -48,7 +48,8 @@ module.exports = [
         'react/read',
         'react/编码规范',
         'react/从零实现Redux',
-        'react/完全理解高阶组件'
+        'react/完全理解高阶组件',
+        'react/ReactHooks'
       ]
     },
     {
