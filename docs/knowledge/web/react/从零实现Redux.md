@@ -3,6 +3,7 @@ title: 从零实现Redux
 ---
 
 # 从零实现一个Redux
+一步一步的从零实现一个Redux。
 
 ## 前言
 

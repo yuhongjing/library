@@ -28,7 +28,13 @@ module.exports = [
           title: '正则表达式',
           children: [
             'javascript/正则表达式/read',
-            'javascript/正则表达式/字符匹配攻略'
+            'javascript/正则表达式/字符匹配攻略',
+            'javascript/正则表达式/位置匹配攻略',
+            'javascript/正则表达式/括号的作用',
+            'javascript/正则表达式/回溯法原理',
+            'javascript/正则表达式/正则表达式的拆分',
+            'javascript/正则表达式/正则表达式的构建',
+            'javascript/正则表达式/正则表达式编程'
           ]
         },
         'javascript/函数柯里化'
@@ -48,6 +54,7 @@ module.exports = [
         'react/read',
         'react/编码规范',
         'react/从零实现Redux',
+        'react/从零构建React',
         'react/完全理解高阶组件',
         'react/ReactHooks'
       ]
