@@ -3,14 +3,15 @@ module.exports = [
       title: "数据库知识",
       collapsable: false,
       children: [
-        'read'
+        'read',
+        '常用的SQL语句'
       ]
     },
     {
       title: "MySQL",
       children: [
-          'MySQL介绍',
-          'MySQL开发规范'
+          'mysql/MySQL介绍',
+          'mysql/MySQL开发规范',
       ]
     }
   ]
