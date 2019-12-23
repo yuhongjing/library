@@ -10,7 +10,8 @@ module.exports = [
         title: "闲情随记",
         children: [
           '闲情随记/five-years-plan',
-          '闲情随记/人是怎么废掉的'
+          '闲情随记/人是怎么废掉的',
+          '闲情随记/十年学会编程'
         ]
     },
     {
