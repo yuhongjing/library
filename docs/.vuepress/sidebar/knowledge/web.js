@@ -34,7 +34,8 @@ module.exports = [
             'javascript/正则表达式/回溯法原理',
             'javascript/正则表达式/正则表达式的拆分',
             'javascript/正则表达式/正则表达式的构建',
-            'javascript/正则表达式/正则表达式编程'
+            'javascript/正则表达式/正则表达式编程',
+            'javascript/正则表达式/速查表'
           ]
         },
         'javascript/函数柯里化'
