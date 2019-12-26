@@ -11,6 +11,7 @@ module.exports = [
       'object',
       'function',
       'dom',
+      '正则表达式',
       'code'
     ]
   }

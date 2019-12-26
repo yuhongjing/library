@@ -54,8 +54,26 @@ module.exports = [
       children: [
         'react/read',
         'react/编码规范',
-        'react/从零实现Redux',
-        'react/从零构建React',
+        {
+          title: '从零构建React',
+          children: [
+            'react/从零构建React/前言',
+            'react/从零构建React/回顾React',
+            'react/从零构建React/实现createElement'
+          ]
+        },
+        {
+          title: '从零实现Redux',
+          children: [
+            'react/从零实现Redux/前言',
+            'react/从零实现Redux/状态管理器',
+            'react/从零实现Redux/多文件协作',
+            'react/从零实现Redux/中间件middleware',
+            'react/从零实现Redux/完整的redux',
+            'react/从零实现Redux/最佳实践',
+            'react/从零实现Redux/总结'
+          ]
+        },
         'react/完全理解高阶组件',
         'react/ReactHooks'
       ]
