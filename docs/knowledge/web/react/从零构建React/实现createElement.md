@@ -84,7 +84,9 @@ function createElement(type, props, ...children) {
 
 `children`数组也可以包含原始值，例如：string、number等。
 
-## 包裹原始值和设置children默认值为空数组
+## 特殊处理文本节点
+
+为了实现代码简洁，实现方便。我们对文本节点做点特殊处理。
 
 当`children`的子元素不是对象时，我们创建一个特殊的类型(`TEXT_ELEMENT`)来包裹它。
 
