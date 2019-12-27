@@ -11,7 +11,7 @@ title: 博客第一篇文章
 
 # 制定几个小目标
 1. 熟练几门前端语言(html5+javascript+css3)    
-2. 熟练几门后台语言(php7+python5)  
+2. 熟练几门后台语言(php7+python3)  
 3. 熟练几门框架(vue.js+bootstrap3+Thinkphp5+laravel5.4)   
 4. 数据库设计(mysql)  
 5. 看《数据结构及算法分析第二版》《剑指offer》《编码:隐匿在计算机软硬件背后的语言》《深入理解计算机系统》  

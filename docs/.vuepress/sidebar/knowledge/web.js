@@ -60,7 +60,8 @@ module.exports = [
             'react/从零构建React/前言',
             'react/从零构建React/回顾React',
             'react/从零构建React/实现createElement',
-            'react/从零构建React/实现render'
+            'react/从零构建React/实现render',
+            'react/从零构建React/ConcurrentMode'
           ]
         },
         {
