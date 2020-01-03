@@ -2,7 +2,7 @@
 home: true
 heroImage: /hero.png
 actionText: 开始阅读 →
-actionLink: /notebook/school/read
+actionLink: /knowledge/mindmap/知识体系
 features:
 - title: 网站说明
   details: 本网站起源于小裕，希望今后小裕能一帆风顺。

@@ -4,6 +4,7 @@ module.exports = [
     collapsable: false,
     children: [
       'read',
+      '知识体系',
       '高效学习',
       '自我管理',
       '端正学习态度',
