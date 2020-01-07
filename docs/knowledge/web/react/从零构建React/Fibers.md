@@ -140,6 +140,8 @@ function render(element, container) {
     }
   };
 }
+
+let nextUnitOfWork = null;
 ```
 
 ### 循环工作单元
