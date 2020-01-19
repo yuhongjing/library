@@ -19,3 +19,4 @@ Mac与Window不一样的操作快捷键整理
 快速搜索|`command + 空格`
 删除文件|`command + del`
 锁屏|`command + option + 关机键`
+内置翻译软件|`control + command + d`

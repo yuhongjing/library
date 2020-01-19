@@ -88,7 +88,7 @@ Windows/Linux: `ctrl + i`
 
 ### 跳转到文件顶部/尾部
 ::: tip 快速跳转到文件顶部和尾部
-Mac: `cmd + (up 或 down)`
+Mac: `cmd + (up 或 down)`  
 Windows: `ctrl + (up 或 down)`  
 Linux: `ctrl + (homt 或 end)`
 :::
@@ -104,4 +104,16 @@ Windows/Linux: `ctrl + shift + [`
 ### 打开多个窗口
 ::: tip 快读打开多个窗口
 Mac: `cmd + 数字`
+:::
+
+### 跳转指定行
+::: tip 跳转到指定的行数
+Mac: `ctrl + g`  
+Windows/Linux: `ctrl + g`
+:::
+
+### 跳到文件
+::: tip 跳转文件
+Mac: `cmd + p`  
+Windows/Linux: `ctrl + p`
 :::

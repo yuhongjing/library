@@ -21,17 +21,20 @@ title: 前言
 * [模板方法模式](./行为型模式/模板方法模式.md)
 * [观察者模式](./行为型模式/观察者模式.md)
 * [状态模式](./行为型模式/状态模式/read.md)
+* [备忘录模式](./行为型模式/备忘录模式/read.md)
 
 ## 结构型模式
 * [装饰者模式](./结构型模式/装饰者模式.md)
 * [代理模式](./结构型模式/代理模式.md)
 * [外观模式](./结构型模式/外观模式.md)
+* [适配器模式](./结构型模式/适配器模式/read.md)
 
 ## 参考资料
 
 ### Java描述
 * [大话设计模式]()
 * [菜鸟教程](https://www.runoob.com/design-pattern/design-pattern-tutorial.html)
+* [深入浅出设计模式(Head First Design Patterns)]()
 
 ### C++描述
 * [图说设计模式](https://design-patterns.readthedocs.io/zh_CN/latest/creational_patterns/builder.html)
