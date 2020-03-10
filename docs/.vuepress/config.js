@@ -6,7 +6,7 @@ module.exports = {
     '/': {
       lang: 'zh-CN',
       title: '余鸿靖的手册小站',
-      description: '小站目前有287篇文章共404014字，继续努力'
+      description: '小站目前有290篇文章共407986字，继续努力'
     }
   },
   head: [
