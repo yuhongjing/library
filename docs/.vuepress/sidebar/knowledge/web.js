@@ -58,12 +58,15 @@ module.exports = [
           title: '从零构建React',
           children: [
             'react/从零构建React/前言',
-            'react/从零构建React/回顾React',
-            'react/从零构建React/实现createElement',
-            'react/从零构建React/实现render',
-            'react/从零构建React/ConcurrentMode',
-            'react/从零构建React/Fibers',
-            'react/从零构建React/CommitPhases',
+            'react/从零构建React/从最简单的React渲染说起',
+            'react/从零构建React/实现createElement函数',
+            'react/从零构建React/实现render函数',
+            'react/从零构建React/并发模式ConcurrentMode',
+            'react/从零构建React/Fibers数据结构',
+            'react/从零构建React/render和commit阶段',
+            'react/从零构建React/更新和删除节点Reconciliation',
+            'react/从零构建React/函数组件',
+            'react/从零构建React/函数组件Hooks',
             'react/从零构建React/总结'
           ]
         },
