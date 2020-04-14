@@ -20,7 +20,7 @@ function render(element, container) {
     .filter(isProperty)
     .forEach(name => 
        dom[name] = element.props[name]
-    });
+    );
   
   // 递归遍历子节点
   element.props.children.forEach(child =>
