@@ -87,6 +87,30 @@ module.exports = [
             '行为型模式/命令模式/PHP实现',
             '行为型模式/命令模式/JS实现'
           ]
+        },
+        {
+          title: '职责链模式',
+          children: [
+            '行为型模式/职责链模式/read'
+          ]
+        },
+        {
+          title: '中介者模式',
+          children: [
+            '行为型模式/中介者模式/read'
+          ]
+        },
+        {
+          title: '解释器模式',
+          children: [
+            '行为型模式/解释器模式/read'
+          ]
+        },
+        {
+          title: '访问者模式',
+          children: [
+            '行为型模式/访问者模式/read'
+          ]
         }
       ]
     },
@@ -119,7 +143,20 @@ module.exports = [
             '结构型模式/桥接模式/PHP实现',
             '结构型模式/桥接模式/JS实现'
           ]
+        },
+        {
+          title: '享元模式',
+          children: [
+            '结构型模式/享元模式/read'
+          ]
         }
       ]
-    }
+    },
+    {
+      title: "总结",
+      collapsable: false,
+      children: [
+        '总结'
+      ]
+    },
   ]
