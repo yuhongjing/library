@@ -27,3 +27,4 @@ sidebarDepth: 1
 * [Clearview](https://www.thecanoesoft.com/clearview/) 阅读器
 * [eZip](https://ezip.awehunt.com/) 解压工具
 * [PicGo](https://github.com/Molunerfinn/PicGo/releases) 图床
+* [印象笔记](https://www.yinxiang.com/) 记录学习的点点滴滴

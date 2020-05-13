@@ -10,8 +10,7 @@ module.exports = [
       title: "HTML",
       children: [
         'html/read',
-        'html/滚动条',
-        'html/交叉观察者'
+        'html/滚动条'
       ]
     },
     {
@@ -24,6 +23,13 @@ module.exports = [
       title: "JavaScript",
       children: [
         'javascript/read',
+        {
+          title: 'ECMAScript',
+          children: [
+            'javascript/ECMAScript/交叉观察者',
+            'javascript/ECMAScript/弱引用映射'
+          ]
+        },
         {
           title: '正则表达式',
           children: [
