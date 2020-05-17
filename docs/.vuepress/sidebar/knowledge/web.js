@@ -24,10 +24,20 @@ module.exports = [
       children: [
         'javascript/read',
         {
+          title: '基础概念',
+          children: [
+            'javascript/基础概念/原型与原型链',
+            'javascript/基础概念/作用域执行上下文与闭包',
+            'javascript/基础概念/同步异步'
+          ]
+        },
+        {
           title: 'ECMAScript',
           children: [
             'javascript/ECMAScript/交叉观察者',
-            'javascript/ECMAScript/弱引用映射'
+            'javascript/ECMAScript/弱引用映射',
+            'javascript/ECMAScript/代理',
+            'javascript/ECMAScript/反射'
           ]
         },
         {
