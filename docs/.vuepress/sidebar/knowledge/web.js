@@ -28,7 +28,17 @@ module.exports = [
           children: [
             'javascript/基础概念/原型与原型链',
             'javascript/基础概念/作用域执行上下文与闭包',
-            'javascript/基础概念/同步异步'
+            'javascript/基础概念/同步异步',
+            'javascript/基础概念/宏任务与微任务',
+            'javascript/基础概念/实现class与extends',
+            'javascript/基础概念/实现继承',
+            'javascript/基础概念/this',
+            'javascript/基础概念/applyCallBind',
+            'javascript/基础概念/模块化',
+            'javascript/基础概念/轮询',
+            'javascript/基础概念/长连接和短连接',
+            'javascript/基础概念/存储',
+            'javascript/基础概念/跨域'
           ]
         },
         {
