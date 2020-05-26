@@ -33,10 +33,7 @@ const configFile = require('./sidebar/knowledge/config.js');
 const architectureFile = require('./sidebar/knowledge/architecture.js');
 const englishFile = require('./sidebar/knowledge/english.js');
 // 读书日记
-const technologyFile = require('./sidebar/readbook/technology.js');
-const literatureFile = require('./sidebar/readbook/literature.js');
-const poetryFile = require('./sidebar/readbook/poetry.js');
-const readbookOtherFile = require('./sidebar/readbook/other.js');
+const readBookFile = require('./sidebar/readbook/readBook.js');
 
 module.exports = {
     '/notebook/school/': schoolFile,
@@ -69,8 +66,5 @@ module.exports = {
     '/code/webpack/': webpackFile,
     '/code/zepto/': zeptoFile,
 
-    '/readbook/technology/': technologyFile,
-    '/readbook/literature/': literatureFile,
-    '/readbook/poetry/': poetryFile,
-    '/readbook/other/': readbookOtherFile
+    '/readbook/': readBookFile
   }

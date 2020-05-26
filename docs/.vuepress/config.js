@@ -6,7 +6,7 @@ module.exports = {
     '/': {
       lang: 'zh-CN',
       title: '余鸿靖的手册小站',
-      description: '小站目前有326篇文章共451717字，继续努力'
+      description: '小站目前有262篇文章共445236字，继续努力'
     }
   },
   head: [
@@ -33,6 +33,11 @@ module.exports = {
         nav: navFile,
         sidebar: sideBarFile
       }
+    }
+  },
+  markdown: {
+    extendMarkdown: md => {
+      md.use(require('markdown-it-task-lists'), {enabled: false});
     }
   },
   plugins: {

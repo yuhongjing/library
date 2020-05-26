@@ -46,13 +46,8 @@ module.exports = [
       ]
     },
     {
-      text: '读书笔记',
-      items: [
-        { text: '技术书籍', link: '/readbook/technology/read' },
-        { text: '文学书籍', link: '/readbook/literature/read' },
-        { text: '诗词歌曲', link: '/readbook/poetry/read' },
-        { text: '杂项书籍', link: '/readbook/other/read' }
-      ]
+      text: '阅读',
+      link: '/readbook/technology'
     },
     {
       text: '其他项目',
