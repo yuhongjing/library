@@ -5,6 +5,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "vuepress dev docs",
+    "start": "nodemon --ext md,vue --watch .vuepress --watch . --exec vuepress dev docs",
     "build": "vuepress build docs",
     "deploy": "bash deploy.sh"
   },
@@ -16,6 +17,7 @@
     "vuepress": "^1.2.0"
   },
   "dependencies": {
-    "markdown-it-task-lists": "^2.1.1"
+    "markdown-it-task-lists": "^2.1.1",
+    "nodemon": "^2.0.4"
   }
 }
