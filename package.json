@@ -19,5 +19,8 @@
   "dependencies": {
     "markdown-it-task-lists": "^2.1.1",
     "nodemon": "^2.0.4"
+  },
+  "resolutions": {
+    "watchpack": "1.6.1"
   }
 }
