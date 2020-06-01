@@ -11,7 +11,7 @@ title: 介绍
 
 * [计算机概论](./计算机概论.md)
 * [Linux是什么与如何学习](./Linux是什么与如何学习.md)
-* 主机规划与磁盘分区
+* [主机规划与磁盘分区](./主机规划与磁盘分区.md)
 * 安装CentOS 7.x
 * 首次登录与在线求助
 
@@ -46,3 +46,19 @@ title: 介绍
 * 软件安装RPM、SRPM与YUM
 * X Window设置介绍
 * Linux内核编译与管理
+
+## 资料汇总
+* 鸟哥Linux网站： [http://linux.vbird.org/searching.php](http://linux.vbird.org/searching.php)
+* study-area： [http://www.study-area.org](http://www.study-area.org)
+* TLDP： [http://www.tldp.org/](http://www.tldp.org/)
+* Linux开发网站： [//kernel.org](//kernel.org)
+
+
+
+## 讨论区
+
+提问的智慧： [https://phorum.vbird.org/viewtopic.php/?t=96](https://phorum.vbird.org/viewtopic.php/?t=96)
+
+* 酷学园讨论区：[http://phorum.study-area.org/](http://phorum.study-area.org/)
+* 鸟哥的私房菜馆讨论区：[http://phorum.vbird.org/](http://phorum.vbird.org/)
+
