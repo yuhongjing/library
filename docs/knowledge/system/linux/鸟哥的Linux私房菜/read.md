@@ -12,7 +12,7 @@ title: 介绍
 * [计算机概论](./计算机概论.md)
 * [Linux是什么与如何学习](./Linux是什么与如何学习.md)
 * [主机规划与磁盘分区](./主机规划与磁盘分区.md)
-* 安装CentOS 7.x
+* [安装CentOS 7.x](./安装CentOS7x.md)
 * 首次登录与在线求助
 
 ### Linux文件、目录与磁盘格式
@@ -52,6 +52,10 @@ title: 介绍
 * study-area： [http://www.study-area.org](http://www.study-area.org)
 * TLDP： [http://www.tldp.org/](http://www.tldp.org/)
 * Linux开发网站： [//kernel.org](//kernel.org)
+* CentsOS安装
+  * 官方网站：http://mirror.centos.org/centos/7/isos/
+  * 中科大镜像：http://centos.ustc.edu.cn/centos/7/isos/
+  * 清华大学镜像：http://mirrors.tuna.tsinghua.edu.cn/centos/7/isos/
 
 
 
