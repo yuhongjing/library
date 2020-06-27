@@ -38,7 +38,8 @@ module.exports = [
             'javascript/基础概念/轮询',
             'javascript/基础概念/长连接和短连接',
             'javascript/基础概念/存储',
-            'javascript/基础概念/跨域'
+            'javascript/基础概念/跨域',
+            'javascript/基础概念/async与defer'
           ]
         },
         {
