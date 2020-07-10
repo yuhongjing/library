@@ -41,5 +41,16 @@ module.exports = [
           ]
         }
       ]
+    },
+    {
+      title: "Nginx",
+      children: [
+        {
+          title: '基础概念',
+          children: [
+            'nginx/基础概念/nginx介绍'
+          ]
+        }
+      ]
     }
   ]

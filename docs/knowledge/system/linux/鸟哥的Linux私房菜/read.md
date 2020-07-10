@@ -56,8 +56,12 @@ title: 介绍
   * 官方网站：[http://mirror.centos.org/centos/7/isos/](http://mirror.centos.org/centos/7/isos/)
   * 中科大镜像：[http://centos.ustc.edu.cn/centos/7/isos/](http://centos.ustc.edu.cn/centos/7/isos/)
   * 清华大学镜像：[http://mirrors.tuna.tsinghua.edu.cn/centos/7/isos/](http://mirrors.tuna.tsinghua.edu.cn/centos/7/isos/)
-
-
+* 各种文件系统的文件名长度限制介绍：[https://en.wikipedia.org/wiki/Comparison_of_file_systems](https://en.wikipedia.org/wiki/Comparison_of_file_systems)
+* FHS标准的相关说明
+  * 维基百科：[https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard](https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard)
+  * FHS2.3（2004年）标准文件：[http://www.pathname.com/fhs/pub/fhs-2.3.html](http://www.pathname.com/fhs/pub/fhs-2.3.html)
+  * FHS3.0（2015年）标准文件：[http://refspecs.linuxfoundation.org/FHS_3.0/fhs-3.0.pdf](http://refspecs.linuxfoundation.org/FHS_3.0/fhs-3.0.pdf)
+* 关于Journaling日志式文件系统的相关说明：[http://www.linuxplanet.com/linuxplanet/reports/3726/1/](http://www.linuxplanet.com/linuxplanet/reports/3726/1/)
 
 ## 讨论区
 
