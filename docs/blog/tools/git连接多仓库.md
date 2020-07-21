@@ -9,11 +9,11 @@ ls ~/.ssh
 ```
 如果存在id_rsa和id_rsa.pub,说明已存在一对公钥/私钥。
 
-### 创建新的密匙，并指定密匙的名称，例如id_rsa_X
+### 创建新的密匙，并指定密匙的名称，例如id_rsa_github
 ```bash
-ssh-keygen -t rsa -f ~/.ssh/id_rsa_x -C "yourmail@xxx.com"
+ssh-keygen -t rsa -f ~/.ssh/id_rsa_github -C "yourmail@xxx.com"
 ```
-操作完成后，该目录会多出id_rsa_x和id_rsa_x.pub两个文件。
+操作完成后，该目录会多出id_rsa_github和id_rsa_github.pub两个文件。
 
 ### 在`~/.ssh/`文件夹下创建一个config文件
 ```bash
@@ -25,28 +25,28 @@ vim config
 ### 编写config文件，配置不同的仓库指向不同的密钥文件
 ```bash
 # 第一个账号，默认使用的账号
-Host github.com
-HostName github.com
-User git
-IdentityFile ~/.ssh/id_rsa
+Host *github.com
+HostName ssh.github.com
+User yuhongjing
+IdentityFile ~/.ssh/id_rsa_github
 # 第二个账号
-Host icode.baidu.com  # second为前缀名，可以任意设置
-HostName icode.baidu.com
-User git
-IdentityFile ~/.ssh/id_rsa_x
+Host baidu  # second为前缀名，可以任意设置
+HostName relay.baidu-int.com
+User yuhongjing
+IdentityFile ~/.ssh/id_rsa_icode
 ```
 
 ### 查看SSH密匙的值，分别添加到对应的Git账户中
 ```bash
-cat id_rsa.pub
-cat id_rsa_x.pub
+cat id_rsa_icode.pub
+cat id_rsa_github.pub
 ```
 
 ### 清空本地SSH缓存，添加新的SSH密匙到SSH agent中
 ```bash
 ssh-add -D
-ssh-add id_rsa
-ssh-add id_rsa_x
+ssh-add id_rsa_icode
+ssh-add id_rsa_github
 ```
 
 ### 确认新密匙是否添加成功
