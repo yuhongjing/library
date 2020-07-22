@@ -7,7 +7,8 @@ module.exports = [
       'eslint',
       'php',
       'mysql',
-      'c'
+      'c',
+      'redis'
     ]
   }
 ]
