@@ -29,7 +29,6 @@ module.exports = [
             'javascript/基础概念/原型与原型链',
             'javascript/基础概念/作用域执行上下文与闭包',
             'javascript/基础概念/同步异步',
-            'javascript/基础概念/宏任务与微任务',
             'javascript/基础概念/实现class与extends',
             'javascript/基础概念/实现继承',
             'javascript/基础概念/this',
@@ -110,7 +109,8 @@ module.exports = [
           ]
         },
         'react/完全理解高阶组件',
-        'react/ReactHooks'
+        'react/ReactHooks',
+        'react/Immer'
       ]
     },
     {
