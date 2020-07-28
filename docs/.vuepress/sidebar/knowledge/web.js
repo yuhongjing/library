@@ -110,7 +110,8 @@ module.exports = [
         },
         'react/完全理解高阶组件',
         'react/ReactHooks',
-        'react/Immer'
+        'react/Immer',
+        'react/ReduxThunk'
       ]
     },
     {

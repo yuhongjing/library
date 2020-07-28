@@ -263,7 +263,7 @@ const reducer = (state, action) => produce(state, draft => {
 
 可以看见，通过produce，代码已经精简了非常多。
 
-不过，我们还可以利用produce能够先制造出producer的特点，代码还可以更优雅：
+不过，我们还可以利用produce能够先制造出producer（柯里化）的特点，代码还可以更优雅：
 
 ```js
 const reducer = produce((draft, action) => {
