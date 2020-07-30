@@ -4,9 +4,7 @@ module.exports = [
       items: [
         { text: '校招面经', link: '/notebook/school/read' },
         { text: 'JS Tricks', link: '/notebook/jsTricks/read' },
-        { text: 'CSS Tricks', link: '/notebook/cssTricks/read' },
-        { text: '算法整理', link: '/notebook/algorithm/read' },
-        { text: '北漂日志', link: '/notebook/difters/read'}
+        { text: 'CSS Tricks', link: '/notebook/cssTricks/read' }
       ]
     },
     {
@@ -35,14 +33,6 @@ module.exports = [
         { text: '环境配置', link: '/knowledge/config/read' },
         { text: '项目架构', link: '/knowledge/architecture/read' },
         { text: '英语知识', link: '/knowledge/english/read' }
-      ]
-    },
-    {
-      text: '源码解析',
-      items: [
-        { text: 'Lodash', link: '/code/lodash/read'},
-        { text: 'Webpack', link: '/code/webpack/read'},
-        { text: 'Zepto', link: '/code/zepto/read'}
       ]
     },
     {

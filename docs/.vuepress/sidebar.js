@@ -6,12 +6,6 @@
 const schoolFile = require('./sidebar/notebook/school.js');
 const jsTricksFile = require('./sidebar/notebook/jsTricks.js');
 const cssTricksFile = require('./sidebar/notebook/cssTricks.js');
-const notebookAlgorithmFile = require('./sidebar/notebook/algorithm.js');
-const diftersFile = require('./sidebar/notebook/difters.js');
-// 源码
-const lodashFile = require('./sidebar/code/lodash.js');
-const webpackFile = require('./sidebar/code/webpack.js');
-const zeptoFile = require('./sidebar/code/zepto.js');
 // 日常记录
 const articleFile = require('./sidebar/blog/article.js');
 const toolsFile = require('./sidebar/blog/tools.js');
@@ -39,8 +33,6 @@ module.exports = {
     '/notebook/school/': schoolFile,
     '/notebook/jsTricks/': jsTricksFile,
     '/notebook/cssTricks/': cssTricksFile,
-    '/notebook/algorithm/': notebookAlgorithmFile,
-    '/notebook/difters/': diftersFile,
 
     '/blog/article/': articleFile,
     '/blog/tools/': toolsFile,
@@ -61,10 +53,6 @@ module.exports = {
     '/knowledge/config/': configFile,
     '/knowledge/architecture/': architectureFile,
     '/knowledge/english/': englishFile,
-
-    '/code/lodash/': lodashFile,
-    '/code/webpack/': webpackFile,
-    '/code/zepto/': zeptoFile,
 
     '/readbook/': readBookFile
   }
