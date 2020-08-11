@@ -36,13 +36,20 @@ module.exports = [
       ]
     },
     {
+      text: '源码',
+      items: [
+        { text: '工具库', link: '/source/tool/read'},
+        { text: '类库', link: '/source/class/read' },
+        { text: '框架', link: '/source/frame/read'}
+      ]
+    },
+    {
       text: '阅读',
       link: '/readbook/technology'
     },
     {
-      text: '其他项目',
+      text: '友链',
       items: [
-        { text: '旅行日志', link: 'https://yuhongjing.github.io/trip/#/' },
         { text: '小裕博客', link: 'https://pxy1996.github.io/' },
         { text: '旧博客', link: 'https://yuhongjing.github.io' }
       ]

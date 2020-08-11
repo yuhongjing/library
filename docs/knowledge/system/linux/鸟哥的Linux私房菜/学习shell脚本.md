@@ -1,5 +1,5 @@
 ---
-title: 学习shell脚本
+ title: 学习shell脚本
 ---
 
 # 学习shell脚本
@@ -136,6 +136,70 @@ title: 学习shell脚本
 
 * 条件判断式可使用if...then来判断，若是固定变量内容的情况下，可使用case \$var in ... esac来处理。
 
+* ```shell
+  # if...then 语法
+  if [ 条件判断式一 ]; then
+    语句一
+  elif [ 条件判断式二 ]; then
+    语句二
+  else
+    语句三
+  fi
+  
+  # case $var in ... esac 语法
+  case $变量名称 in
+    "第一个变量内容")
+       程序段
+       ;;
+    "第二个变量内容")
+       程序段
+       ;;
+    *)
+       程序段
+       exit 1
+       ;;
+  esac
+  ```
+
 * 循环主要分为不定循环(while与until)以及固定循环(for)，配合do、done来完成所需任务。
 
+* ```shell
+  # while do done 语法——不定循环
+  while [ condition ] # 当条件成立，就开始循环
+  do
+  	程序段落
+  done
+  
+  # until do done 语法——不定循环
+  until [ condition ] # 当条件成立，就终止循环
+  do
+  	程序段落
+  done
+  
+  # for...do...done 语法——固定循环
+  for var in con1 con2 con3 ... # 对于数字可以 $ (seq 1 100)
+  do
+    程序段落
+  done
+  
+  # for...do...done 语法——固定循环 第二种表达方式 数值处理
+  for ((初始值; 限制值; 赋值运算))
+  do
+  	程序段
+  done
+  ```
+
+* 函数`function`，需要写在程序最前面，且函数也支持`$0`、`$1`，表示函数名、参数1、参数2....
+
+* ```shell
+  # 语法
+  function fname() {
+    程序段
+  }
+  ```
+
 * 我们可使用sh -x script.sh来进行程序的debug。
+
+  * `-n`：不执行脚本，仅查询语法问题。
+  * `-v`：在执行脚本前，先将脚本文件的内容输出在屏幕上。
+  * `-x`：将使用到的脚本内容显示在屏幕上。

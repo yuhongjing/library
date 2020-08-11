@@ -26,6 +26,10 @@ const systemFile = require('./sidebar/knowledge/system.js');
 const configFile = require('./sidebar/knowledge/config.js');
 const architectureFile = require('./sidebar/knowledge/architecture.js');
 const englishFile = require('./sidebar/knowledge/english.js');
+// 源码
+const toolFile = require('./sidebar/source/tool.js');
+const classFile = require('./sidebar/source/class.js');
+const frameFile = require('./sidebar/source/frame.js');
 // 读书日记
 const readBookFile = require('./sidebar/readbook/readBook.js');
 
@@ -53,6 +57,10 @@ module.exports = {
     '/knowledge/config/': configFile,
     '/knowledge/architecture/': architectureFile,
     '/knowledge/english/': englishFile,
+
+    '/source/tool/': toolFile,
+    '/source/class/': classFile,
+    '/source/frame/': frameFile,
 
     '/readbook/': readBookFile
   }
