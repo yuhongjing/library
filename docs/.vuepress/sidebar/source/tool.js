@@ -7,7 +7,33 @@ module.exports = [
       {
         title: 'Lodash源码',
         children: [
-          'lodash/read'
+          'lodash/read',
+
+          'lodash/slice支持负数',
+          'lodash/实现Map',
+          'lodash/实现findIndex',
+          'lodash/扁平化数组',
+          'lodash/数组去重',
+          'lodash/tail',
+          'lodash/实现filter',
+          'lodash/对象设置属性值',
+          'lodash/实现reduce',
+
+          'lodash/数组长度合法校验',
+          'lodash/如何判断类对象',
+          'lodash/如何判断类数组',
+          'lodash/获取数据类型',
+          'lodash/获取数据类型兼容性',
+
+          'lodash/sameValueZero规范',
+          'lodash/缓存数据Undefined问题',
+          'lodash/标记段',
+          'lodash/数组差集',
+          'lodash/数组交集',
+          'lodash/数字转整数',
+          'lodash/缓存memoize',
+          'lodash/字符串转路径数组',
+          'lodash/深层取值',
         ]
       }
     ]
