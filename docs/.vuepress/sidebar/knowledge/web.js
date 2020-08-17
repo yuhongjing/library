@@ -72,6 +72,7 @@ module.exports = [
       children: [
         'vue/read',
         'vue/编码规范',
+        'vue/项目结构',
         'vue/devtool'
       ]
     },
@@ -80,6 +81,7 @@ module.exports = [
       children: [
         'react/read',
         'react/编码规范',
+        'react/项目结构',
         {
           title: '从零构建React',
           children: [

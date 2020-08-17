@@ -15,6 +15,7 @@ title: 前言
 * [实现filter](./实现filter.md)
 * [对象设置属性值](./对象设置属性值.md)
 * [实现reduce](./实现reduce.md)
+* [实现forEach](./实现forEach.md)
 
 
 ## 校验、判断类型
