@@ -16,6 +16,7 @@ title: 前言
 * [对象设置属性值](./对象设置属性值.md)
 * [实现reduce](./实现reduce.md)
 * [实现forEach](./实现forEach.md)
+* [实现some](./实现some.md)
 
 
 ## 校验、判断类型
@@ -36,3 +37,8 @@ title: 前言
 * [缓存memoize](./缓存memoize.md) **【有趣】**
 * [字符串转路径数组](./字符串转路径数组.md)
 * [深层取值](./深层取值.md) **【有趣】**
+* [获取可枚举长度](./获取可枚举长度.md)
+* [防抖Debounce](./防抖Debounce.md)
+* [节流Throttle](./节流Throttle.md) **【有趣】**
+* [两值对比](./两值对比.md)
+
