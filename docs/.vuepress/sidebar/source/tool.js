@@ -18,6 +18,8 @@ module.exports = [
           'lodash/实现filter',
           'lodash/对象设置属性值',
           'lodash/实现reduce',
+          'lodash/实现forEach',
+          'lodash/实现some',
 
           'lodash/数组长度合法校验',
           'lodash/如何判断类对象',
@@ -34,6 +36,10 @@ module.exports = [
           'lodash/缓存memoize',
           'lodash/字符串转路径数组',
           'lodash/深层取值',
+          'lodash/获取可枚举长度',
+          'lodash/防抖Debounce',
+          'lodash/节流Throttle',
+          'lodash/两值对比'
         ]
       }
     ]

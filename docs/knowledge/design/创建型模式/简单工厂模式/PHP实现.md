@@ -5,6 +5,7 @@ title: PHP实现
 # 简单工厂模式-PHP
 * [数据库](#数据库)
 * [加减乘除](#加减乘除)
+* [木门](#木门)
 
 ## 数据库
 切换数据库场景。
@@ -110,3 +111,49 @@ $operation->setA(1);
 $operation->setB(2);
 echo $operation->getResult();
 ```
+
+## 木门
+
+得到一个木门，只需传入参数即可生成不同类型的木门，无须关注生成细节。
+
+```php
+<?php
+
+interface Door {
+    public function getWidth(): float;
+    public function getHeight(): float;
+}
+
+class WoodenDoor implements Door {
+    protected $width;
+    protected $height;
+
+    public function __construct(float $width, float $height) {
+        $this->width = $width;
+        $this->height = $height;
+    }
+
+    public function getWidth(): float {
+        return $this->width;
+    }
+
+    public function getHeight(): float {
+        return $this->height;
+    }
+}
+
+class DoorFactory {
+    public static function makeDoor($width, $height): Door {
+        return new WoodenDoor($width, $height);
+    }
+}
+
+// client
+$door = DoorFactory::makeDoor(100, 200);
+
+echo 'Width: ' . $door->getWidth();
+echo 'Height: ' . $door->getHeight();
+
+$door2 = DoorFactory::makeDoor(50, 100);
+```
+
