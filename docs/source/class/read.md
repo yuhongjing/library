@@ -7,4 +7,6 @@ title: 介绍
 
 类库，功能比较专一、同时也能兼顾深度。
 
-例如：Redux、Moment等。
+* Moment
+* [Redux](./Redux/read.md)
+* React-Redux
