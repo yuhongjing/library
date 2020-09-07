@@ -45,7 +45,10 @@ module.exports = [
     },
     {
       text: '阅读',
-      link: '/readbook/technology'
+      items: [
+        { text: '技术书籍', link: '/readbook/technology/read'},
+        { text: '其他书籍', link: '/readbook/other/read'}
+      ]
     },
     {
       text: '友链',

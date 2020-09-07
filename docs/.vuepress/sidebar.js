@@ -31,7 +31,8 @@ const toolFile = require('./sidebar/source/tool.js');
 const classFile = require('./sidebar/source/class.js');
 const frameFile = require('./sidebar/source/frame.js');
 // 读书日记
-const readBookFile = require('./sidebar/readbook/readBook.js');
+const technologyFile = require('./sidebar/readbook/technology.js');
+const otherFile = require('./sidebar/readbook/other.js');
 
 module.exports = {
     '/notebook/school/': schoolFile,
@@ -62,5 +63,6 @@ module.exports = {
     '/source/class/': classFile,
     '/source/frame/': frameFile,
 
-    '/readbook/': readBookFile
+    '/readbook/technology/': technologyFile,
+    '/readbook/other/': otherFile
   }

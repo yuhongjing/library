@@ -16,13 +16,13 @@ title: 前言
 
 Redux一共暴露了5个API。
 
-* [createStore](./createStore.md)
+* [createStore](./createStore.md)：核心功能，提供`dispatch`、`订阅发布`等功能。
 
-* [combineReducers](./combineReducers.md)
+* [combineReducers](./combineReducers.md)：
 
-* [bindActionCreators](./bindActionCreators.md)
+* [bindActionCreators](./bindActionCreators.md)：
 
-* [applyMiddleware](./applyMiddleware.md)
+* [applyMiddleware](./applyMiddleware.md)：中间件，增强`dispatch`功能。
 
-* [compose](./compose.md)
+* [compose](./compose.md)：工具函数，合成多个函数。
 
