@@ -27,6 +27,7 @@ const configFile = require('./sidebar/knowledge/config.js');
 const architectureFile = require('./sidebar/knowledge/architecture.js');
 const englishFile = require('./sidebar/knowledge/english.js');
 // 源码
+const debuggerFile = require('./sidebar/source/debugger.js');
 const toolFile = require('./sidebar/source/tool.js');
 const classFile = require('./sidebar/source/class.js');
 const frameFile = require('./sidebar/source/frame.js');
@@ -59,6 +60,7 @@ module.exports = {
     '/knowledge/architecture/': architectureFile,
     '/knowledge/english/': englishFile,
 
+    '/source/debugger/': debuggerFile,
     '/source/tool/': toolFile,
     '/source/class/': classFile,
     '/source/frame/': frameFile,

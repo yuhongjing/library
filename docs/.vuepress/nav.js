@@ -38,6 +38,7 @@ module.exports = [
     {
       text: '源码',
       items: [
+        { text: '调试', link: '/source/debugger/read'},
         { text: '工具库', link: '/source/tool/read'},
         { text: '类库', link: '/source/class/read' },
         { text: '框架', link: '/source/frame/read'}
