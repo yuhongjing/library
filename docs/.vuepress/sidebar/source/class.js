@@ -15,7 +15,8 @@ module.exports = [
           'Redux/compose',
           'Redux/isPlainObject'
         ]
-      }
+      },
+      'Events'
     ]
   }
 ]

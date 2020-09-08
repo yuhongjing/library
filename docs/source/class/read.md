@@ -10,3 +10,6 @@ title: 介绍
 * Moment
 * [Redux](./Redux/read.md)
 * React-Redux
+* Axios
+* Promise
+* [Events](./Events.md)

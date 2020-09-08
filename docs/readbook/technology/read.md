@@ -14,13 +14,13 @@ title: 技术书籍
 
 ## JS
 - [ ] 《高性能的JavaScript》
-- [x] 《You-Dont-Know-JS》
+- [x] 《You Dont Know JS》
 - [x] 《JavaScript函数式编程》
 - [x] 《JavaScript语言精粹》
 - [x] 《JS权威指南》
 - [x] 《JavaScript高级程序设计》
 - [ ] 《JavaScript忍者秘籍》
-- [ ] 《Mostly Adequate Guide》
+- [x] 《Mostly Adequate Guide》
 
 ## Node
 - [ ] 《Node即学即用》

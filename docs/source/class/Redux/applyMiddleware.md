@@ -124,6 +124,25 @@ const callback = params => {
 // 这个callback就是被扩展的dispatch函数
 // 这个str就是action
 compose(validNotObject, validNotNumber)(callback)('str');
+
+// **********************************************************
+// 要点来了，compose应该是从右到左执行，为什么这里是先执行左边的函数呢？
+
+// 主要是因为两层的设计，可以看见第一层时，仍然是从右至左的执行
+// compose(validNotObject, validNotNumber) === validNotObject(validNotNumber)
+
+// 此时传入callback后，会组合成『一个』新的函数，并且返回了这『一个』新的函数，此时未执行。
+// compose(validNotObject, validNotNumber)(callback)
+
+// 函数的内容为validNotObject的内容
+// if (typeof action !== 'object') {
+//    console.log("参数不是对象，符合要求");
+//  }
+//  return next(action);
+
+// 先通过compose将中间件反序，使得外层中间件获得内层中间件引用。
+// 如此一来，就可以进行链式调用。
+// 有点绕，有点精妙吧，利用了函数式编程的两大工具柯里化与组合。
 ```
 
 可以看见中间件函数有两个箭头（两层函数），因此需要调用两层参数才能执行。
@@ -192,8 +211,8 @@ export default thunk;
 
 ## 总结
 
-* 中间件的执行是顺序执行的，即链式调用。
-* 每个`dispatch`的生成是反序（从右至左，这里我理解了很久），其实这里只是想说明函数链式调用是通过**函数嵌套**实现的。
+* 中间件的执行是顺序执行的。
+* 每个`dispatch`的生成是反序，其实这里只是想说明函数链式调用是通过**函数嵌套**实现的。
 
 
 

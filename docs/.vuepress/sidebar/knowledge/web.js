@@ -67,6 +67,7 @@ module.exports = [
         {
           title: '函数式编程',
           children: [
+            'javascript/函数式编程/read',
             'javascript/函数式编程/柯里化',
             'javascript/函数式编程/组合'
           ]
