@@ -18,9 +18,13 @@ title: Events
 
 `events`生成实例后，其各个原型方法任君调用，相互都比较独立，不存在一环嵌套一环的情况。
 
-因此，其结构就是普通的订阅/发布者模式的结构，非常简单。
+因此，其结构就是普通的`订阅/发布者模式`的结构，非常简单。
 
 ```js
+EventEmitter.prototype._events = undefined; // 订阅对象，记录当前存在的订阅方法
+EventEmitter.prototype._eventsCount = 0; // 订阅方法数量
+EventEmitter.prototype._maxListeners = undefined; // 每个订阅方法，最大订阅成员
+
 // 入口
 function EventEmitter() {
   // new 生成实例时，会调用init方法，初始化配置
@@ -78,15 +82,15 @@ EventEmitter.prototype.prependOnceListener = function prependOnceListener(type, 
  // ... 
 }；
 
-// 移出某个订阅方法
+// 移除某个订阅方法
 EventEmitter.prototype.removeListener = function removeListener(type, listener) {
  // ... 
 }；
 
-// 与on一样，为了兼容，移出某个订阅方法
+// 与on一样，为了兼容，移除某个订阅方法
 EventEmitter.prototype.off = EventEmitter.prototype.removeListener;
 
-// 移出所有订阅方法
+// 移除所有订阅方法
 EventEmitter.prototype.removeAllListeners = function removeAllListeners(type) {
   // ...
 }；
@@ -421,8 +425,8 @@ EventEmitter.prototype.prependOnceListener = function prependOnceListener(type, 
 	return this;
 };
 
-// fired: 标识位，是否移出此订阅器
-// wrapFn: 包装后的函数，用于移出订阅器
+// fired: 标识位，是否移除此订阅器
+// wrapFn: 包装后的函数，用于移除订阅器
 function _onceWrap(target, type, listener) {
   var state = { fired: false, wrapFn: undefined, target: target, type: type, listener: listener };
   var wrapped = onceWrapper.bind(state);
@@ -435,9 +439,9 @@ function _onceWrap(target, type, listener) {
 
 // 包装函数
 function onceWrapper() {
-  // 是否需要移出该订阅成员
+  // 是否需要移除该订阅成员
   if (!this.fired) {
-    // 先移出监听器，再触发真正的订阅函数
+    // 先移除监听器，再触发真正的订阅函数
     this.target.removeListener(this.type, this.wrapFn);
     this.fired = true;
     // 调用真正的订阅函数
@@ -448,13 +452,17 @@ function onceWrapper() {
 }
 ```
 
-该`API`实现一次性订阅事件，其核心逻辑为`装饰器模式，订阅函数外层包括一层函数，执行真正订阅函数之前，移出该订阅成员`。
+该`API`实现一次性订阅事件，其核心逻辑为`装饰器模式，订阅函数外层包括一层函数，执行真正订阅函数之前，移除该订阅成员`。
 
 ### off/removeListener/removeAllListeners
 
 ```js
 EventEmitter.prototype.off = EventEmitter.prototype.removeListener;
 
+// 移除指定的listener，因此传入的listener函数引用必须与on订阅的回调引用一致
+// const callback = () => {console.log("我是回调函数")}
+// myEmitter.on('test', callback);
+// myEmitter.removeListener('test', callback); 移除的callback与订阅的callback引用相同
 EventEmitter.prototype.removeListener = function removeListener(type, listener) {
       var list, events, position, i, originalListener;
 
@@ -470,19 +478,26 @@ EventEmitter.prototype.removeListener = function removeListener(type, listener) 
       if (list === undefined)
         return this;
 
-      // 仅有一个成员或者为once成员
+      // 当前订阅方法，仅有一个订阅成员时或者当前订阅成员为once类型
       if (list === listener || list.listener === listener) {
+        // 如果移除当前订阅方法后，订阅方法数为0
         if (--this._eventsCount === 0)
+          // 则初始化订阅配置
           this._events = Object.create(null);
         else {
+          // 当前存在多个订阅方法时，按正常逻辑，移除当前listener
           delete events[type];
+          // 如果当前订阅方法中，存在订阅removeListener方法，发布相关信息
           if (events.removeListener)
             this.emit('removeListener', type, list.listener || listener);
         }
+        // 订阅队列有多个成员，为队列类型时
       } else if (typeof list !== 'function') {
+        // 循环整个队列，寻找当前listener位置
         position = -1;
 
         for (i = list.length - 1; i >= 0; i--) {
+          // 判断是否等于listener，以方法和once两种情况判断
           if (list[i] === listener || list[i].listener === listener) {
             originalListener = list[i].listener;
             position = i;
@@ -490,18 +505,22 @@ EventEmitter.prototype.removeListener = function removeListener(type, listener) 
           }
         }
 
+        // 未找到，直接返回不做任何处理
         if (position < 0)
           return this;
 
+        // 移除成员，做了特殊处理，shift效率更高
         if (position === 0)
           list.shift();
         else {
           spliceOne(list, position);
         }
 
+        // 一个成员时，将队列退回方法，保持一致
         if (list.length === 1)
           events[type] = list[0];
 
+        // 如果当前订阅方法中，存在订阅removeListener方法，发布相关信息
         if (events.removeListener !== undefined)
           this.emit('removeListener', type, originalListener || listener);
       }
@@ -510,5 +529,223 @@ EventEmitter.prototype.removeListener = function removeListener(type, listener) 
     };
 ```
 
+`off/removeListener API`实现了移除单个订阅成员的功能，核心逻辑为`找到订阅方法，获取其成员是否与存在传入listener，然后删除此成员`。
 
+这里做了几个操作
+
+* `listener`必须为函数
+* 区分成员数，单个与多个的操作区分
+* 数组成员时，移除策略做了区分，然后成员为单个时，成员队列变换为成员方法
+* 如果存在`removeListener`订阅事件，则发布它
+
+```js
+EventEmitter.prototype.removeAllListeners = function removeAllListeners(type) {
+      var listeners, events, i;
+
+      events = this._events;
+      if (events === undefined)
+        return this;
+
+      // 没订阅removeListener方法，则无须触发removeListener
+      if (events.removeListener === undefined) {
+        // 没有传送任何参数
+        if (arguments.length === 0) {
+          // 直接初始化订阅配置，清除全部订阅方法及其事件
+          this._events = Object.create(null);
+          this._eventsCount = 0;
+          // 如果传送了type参数，且订阅方法中存在type时，仅移除此订阅方法
+        } else if (events[type] !== undefined) {
+          // 如果移除此订阅方法后，订阅方法数为0
+          if (--this._eventsCount === 0)
+            // 初始化订阅配置
+            this._events = Object.create(null);
+          else
+            // 否则仅移除此订阅方法
+            delete events[type];
+        }
+        return this;
+      }
+
+      // 如果订阅了removeListener，需触发removeListener订阅方法
+      // 如果没有传送任何参数，则移除全部订阅方法
+      if (arguments.length === 0) {
+        // 遍历订阅方法的全部key
+        var keys = Object.keys(events);
+        var key;
+        for (i = 0; i < keys.length; ++i) {
+          key = keys[i];
+          // 除了removeListener，其余订阅方法全部移除
+          if (key === 'removeListener') continue;
+          // 除了removeListener，其余key移除传入removeAllListeners遍历删除
+          // 每个方法移除时，都会触发removeAllListeners方法
+          this.removeAllListeners(key);
+        }
+        // 其余事件移除完毕后，最后移除removeListener方法
+        this.removeAllListeners('removeListener');
+        // 初始化订阅配置
+        this._events = Object.create(null);
+        this._eventsCount = 0;
+        return this;
+      }
+
+      // 如果传入type，则仅移除此订阅方法
+      listeners = events[type];
+
+      // 这里不直接调用this.removeAllListeners(key)的原因是为了触发removeListener方法
+
+      // 单个成员时直接移除
+      if (typeof listeners === 'function') {
+        this.removeListener(type, listeners);
+        // 多个成员时，遍历移除
+      } else if (listeners !== undefined) {
+        for (i = listeners.length - 1; i >= 0; i--) {
+          this.removeListener(type, listeners[i]);
+        }
+      }
+
+      return this;
+    };
+```
+
+该`API`实现了删除全部订阅方法或者删除某个订阅方法的功能，其核心逻辑为`直接初始化订阅配置，或者删除某个订阅方法即可`。
+
+这里做了几个操作
+
+* 区分是否订阅`removeListener`
+* 区分是否传入`type`
+* 其他方法移除时，需要触发`removeListener`方法，因此`removeListener`需要在最后移除
+
+### listenerCount
+
+```js
+// 这个API在Node V4.0.0已被弃用，调用方式如下：
+// const myEmitter = new MyEmitter();
+// myEmitter.on('event', () => {});
+// myEmitter.on('event', () => {});
+// console.log(EventEmitter.listenerCount(myEmitter, 'event')); output: 2
+
+EventEmitter.listenerCount = function(emitter, type) {
+  // 兼容，判断当前emitter是否存在listenerCount方法
+  if (typeof emitter.listenerCount === 'function') {
+    return emitter.listenerCount(type);
+  } else {
+    return listenerCount.call(emitter, type);
+  }
+};
+
+// 目前使用这个API
+EventEmitter.prototype.listenerCount = listenerCount;
+
+function listenerCount(type) {
+  var events = this._events;
+
+  if (events !== undefined) {
+    // 获取对应的订阅事件成员
+    var evlistener = events[type];
+
+    // 为function表示单个成员
+    if (typeof evlistener === 'function') {
+      return 1;
+      // 否则多个成员，返回成员数组长度
+    } else if (evlistener !== undefined) {
+      return evlistener.length;
+    }
+  }
+
+  return 0;
+}
+```
+
+该`API`实现了返回当前某个订阅方法的订阅成员人数，核心逻辑为`返回订阅成员长度，数组或函数`。
+
+### listeners/rawListeners
+
+```js
+// 返回订阅队列全部成员，封装的订阅成员，返回其真正的订阅成员 event.listener
+EventEmitter.prototype.listeners = function listeners(type) {
+  return _listeners(this, type, true);
+};
+
+// 返回订阅队列全部成员，包括封装的订阅成员，例如 once
+EventEmitter.prototype.rawListeners = function rawListeners(type) {
+  return _listeners(this, type, false);
+};
+
+function _listeners(target, type, unwrap) {
+  var events = target._events;
+
+  if (events === undefined)
+    return [];
+
+  var evlistener = events[type];
+  if (evlistener === undefined)
+    return [];
+
+  // 单个成员时
+  if (typeof evlistener === 'function')
+    // 判断是否返回封装的订阅成员(例如once)
+    return unwrap ? [evlistener.listener || evlistener] : [evlistener];
+
+  return unwrap ?
+    unwrapListeners(evlistener) : arrayClone(evlistener, evlistener.length);
+}
+
+function unwrapListeners(arr) {
+  var ret = new Array(arr.length);
+  // 遍历成员队列
+  // 判断是否为封装的订阅成员
+  // 是->返回真正的订阅成员 arr[i].listener
+  // 否->直接返回订阅成员 arr[i]
+  for (var i = 0; i < ret.length; ++i) {
+    ret[i] = arr[i].listener || arr[i];
+  }
+  return ret;
+}
+```
+
+该`API`返回了订阅方法的全部成员(**拷贝**)，核心逻辑为`获取对应订阅方法，拷贝订阅队列或方法返回即可`。
+
+这里做了如下操作
+
+* 判断是否需要返回封装的订阅成员，是否获取`.listener`
+* 单成员直接返回，多成员拷贝返回
+
+###  getMaxListeners/setMaxListeners
+
+```js
+EventEmitter.prototype._maxListeners = undefined;
+
+var defaultMaxListeners = 10;
+
+function _getMaxListeners(that) {
+  // 判断是否设置了最大订阅成员，否则为默认的订阅成员数量
+  if (that._maxListeners === undefined)
+    return EventEmitter.defaultMaxListeners;
+  return that._maxListeners;
+}
+
+EventEmitter.prototype.getMaxListeners = function getMaxListeners() {
+  return _getMaxListeners(this);
+};
+
+EventEmitter.prototype.setMaxListeners = function setMaxListeners(n) {
+  // 判断是否为数值型
+  if (typeof n !== 'number' || n < 0 || NumberIsNaN(n)) {
+    throw new RangeError('The value of "n" is out of range. It must be a non-negative number. Received ' + n + '.');
+  }
+  this._maxListeners = n;
+  return this;
+};
+```
+
+这两`API`实现了获取、设置最大订阅成员数量的功能，实现非常简单。核心逻辑为`改变_maxListeners变量即可`。
+
+这里做了几个操作
+
+* 判断数值规范
+* 判断是否使用默认值
+
+## 总结
+
+典型的`订阅/发布模式`代码，算是这个设计模式的经典例子。
 
