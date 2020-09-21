@@ -5,7 +5,7 @@ module.exports = [
     children: [
       'read',
       {
-        title: 'Lodash源码',
+        title: 'Lodash',
         children: [
           'lodash/read',
 

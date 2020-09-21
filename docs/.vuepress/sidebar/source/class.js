@@ -5,7 +5,7 @@ module.exports = [
     children: [
       'read',
       {
-        title: 'Redux源码',
+        title: 'Redux',
         children: [
           'Redux/read',
           'Redux/createStore',
@@ -16,7 +16,20 @@ module.exports = [
           'Redux/isPlainObject'
         ]
       },
-      'Events'
+      'Events',
+      {
+        title: 'Axios',
+        children: [
+          'Axios/read',
+          'Axios/入口文件',
+          'Axios/默认Config配置',
+          'Axios/axios构造器类',
+          'Axios/拦截器中间件',
+          'Axios/dispatchRequest',
+          'Axios/取消请求cancel',
+          'Axios/工具方法'
+        ]
+      }
     ]
   }
 ]
