@@ -11,5 +11,5 @@ title: 介绍
 * [Redux](./Redux/read.md)
 * React-Redux
 * [Axios](./Axios/read.md)
-* Promise
+* [Promise](./Promise/read.md)
 * [Events](./Events.md)

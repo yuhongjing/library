@@ -29,6 +29,19 @@ module.exports = [
           'Axios/取消请求cancel',
           'Axios/工具方法'
         ]
+      },
+      {
+        title: 'Promise',
+        children: [
+          'Promise/read',
+          'Promise/Promise构造器',
+          'Promise/finally',
+          'Promise/done',
+          'Promise/es6',
+          'Promise/node',
+          'Promise/rejection',
+          'Promise/synchronous'
+        ]
       }
     ]
   }

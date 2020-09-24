@@ -12,6 +12,22 @@ title: 前言
 
 学习Redux源码，不想每次出现问题，因不知其运行原理而没法解决。
 
+## 目录架构
+
+```
+|-- src
+  |-- utils 工具方法
+    |-- actionTypes.js Redux私有属性
+    |-- isPlainObject.js 判断纯对象
+    |-- warning.js 报错
+  |-- applyMiddleware.js 中间件
+  |-- bindActionCreators.js 父子组件传递dispatch
+  |-- combineReducers.js 合并reducer
+  |-- compose.js 组合函数
+  |-- createStore.js 创建Redux store
+  |-- index.js 入口文件
+```
+
 ## API
 
 Redux一共暴露了5个API。
