@@ -178,6 +178,7 @@ function resolve(self, newValue) {
       return reject(self, LAST_ERROR);
     }
     // 处理resolve(promise)的情况
+    // 处理return new Promise的情况，串行调用Promise
     if (
       then === self.then &&
       newValue instanceof Promise
