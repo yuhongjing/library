@@ -4,7 +4,7 @@ module.exports = [
       collapsable: false,
       children: [
         'read',
-        '代码产出'
+        'git规范'
       ]
     }
 ]

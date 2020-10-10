@@ -1,6 +1,5 @@
 ---
 title: Behavior Skill
-sidebarDepth: 2
 ---
 
 # Behavior Skill

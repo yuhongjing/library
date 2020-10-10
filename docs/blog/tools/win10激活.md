@@ -1,16 +1,15 @@
 ---
 title: Win10激活
-sidebarDepth: 0
 ---
-### Win10家庭版和专业版的激活方法
+# Win10家庭版和专业版的激活方法
 几句命令即可。
 
-### ID码
+## ID码
 进入系统设置，输入对应ID码   
 Win10家庭版ID: `00342-34947-91204-AAOEM`  
 Win10专业版ID: `W269N-WFGWX-YVC9B-4J6C9-T83GX`
 
-### 安装
+## 安装
 1. 输入以下命令: `slmgr /ipk W269N-WFGWX-YVC9B-4J6C9-T83GX`  
 弹出窗口提示: "成功的安装了产品密匙"。
 

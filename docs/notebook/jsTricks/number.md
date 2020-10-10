@@ -1,6 +1,5 @@
 ---
 title: Number Skill
-sidebarDepth: 2
 ---
 
 # Number Skill

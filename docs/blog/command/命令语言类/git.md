@@ -1,8 +1,7 @@
 ---
 title: git命令
-sidebarDepth: 1
 ---
-## 配置Git相关命令
+# 配置Git相关命令
 Git的配置文件为`.gitconfig`，它可以在用户主目录(全局配置)下,也可以在项目目录(项目配置)下。
 1. 显示Git配置: `git config --list`
 2. 编辑Git配置: `git config -e [--global]`

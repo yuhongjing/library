@@ -1,13 +1,12 @@
 ---
 title: Git修改作者
-sidebarDepth: 0
 ---
 
-### Git修改作者
+# Git修改作者
 一台电脑连接多个Git远程仓库时，需要配置多个Git账户信息。  
 有时候Git的`user.name`和`user.email`可能会匹配错乱，从而导致commitor信息不显示。   
 
-### 修改命令
+## 修改命令
 在项目根目录下，输入以下命令可以更改所有的历史commit作者:
 ```shell
 git filter-branch --env-filter '
@@ -21,12 +20,12 @@ export GIT_AUTHOR_EMAIL
 '
 ```
 
-### 强推远程仓库
+## 强推远程仓库
 `git log`查看仓库历史日志，确认是否修改成功。  
 
 `git push origin master --force`强制推送到远程仓库。
 
-### 错误解决
+## 错误解决
 常见错误收集。
 ```shell
 Cannot create a new backup.

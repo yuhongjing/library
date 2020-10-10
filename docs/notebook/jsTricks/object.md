@@ -1,6 +1,5 @@
 ---
 title: Object Skill
-sidebarDepth: 2
 ---
 
 # Object Skill

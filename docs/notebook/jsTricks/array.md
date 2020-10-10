@@ -1,6 +1,5 @@
 ---
 title: Array Skill
-sidebarDepth: 2
 ---
 
 # Array Skill

@@ -1,6 +1,5 @@
 ---
 title: Color Skill
-sidebarDepth: 2
 ---
 
 # Color Skill

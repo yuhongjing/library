@@ -1,6 +1,5 @@
 ---
 title: Function Skill
-sidebarDepth: 2
 ---
 
 # Function Skill

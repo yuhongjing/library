@@ -1,8 +1,7 @@
 ---
 title: VS Code必备插件
-sidebarDepth: 1
 ---
-## VS Code必备插件
+# VS Code必备插件
 以下插件能够大大的提高开发效率和开发幸福感。
 
 ## 代码规范类插件

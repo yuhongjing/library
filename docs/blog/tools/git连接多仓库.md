@@ -1,28 +1,38 @@
 ---
-title: Git连接多托管网站
-sidebarDepth: 0
+title: Git连接多个远程仓库
 ---
-### Git同一台电脑连接多个远程仓库
-在MAC的终端下输入以下命令,查看密匙
+
+# Git连接多个远程仓库
+
+一、 在MAC的终端下输入以下命令,查看密匙
+
 ```bash
 ls ~/.ssh
 ```
 如果存在id_rsa和id_rsa.pub,说明已存在一对公钥/私钥。
 
-### 创建新的密匙，并指定密匙的名称，例如id_rsa_github
+
+
+二、 创建新的密匙，并指定密匙的名称，例如id_rsa_github
+
 ```bash
 ssh-keygen -t rsa -f ~/.ssh/id_rsa_github -C "yourmail@xxx.com"
 ```
 操作完成后，该目录会多出id_rsa_github和id_rsa_github.pub两个文件。
 
-### 在`~/.ssh/`文件夹下创建一个config文件
+
+
+三、 在`~/.ssh/`文件夹下创建一个config文件
 ```bash
 cd ~/.ssh/
 touch config
 vim config
 ```
 
-### 编写config文件，配置不同的仓库指向不同的密钥文件
+
+
+四、 编写config文件，配置不同的仓库指向不同的密钥文件
+
 ```bash
 # 第一个账号，默认使用的账号
 Host *github.com
@@ -36,25 +46,37 @@ User yuhongjing
 IdentityFile ~/.ssh/id_rsa_icode
 ```
 
-### 查看SSH密匙的值，分别添加到对应的Git账户中
+
+
+五、 查看SSH密匙的值，分别添加到对应的Git账户中
+
 ```bash
 cat id_rsa_icode.pub
 cat id_rsa_github.pub
 ```
 
-### 清空本地SSH缓存，添加新的SSH密匙到SSH agent中
+
+
+六、 清空本地SSH缓存，添加新的SSH密匙到SSH agent中
+
 ```bash
 ssh-add -D
 ssh-add id_rsa_icode
 ssh-add id_rsa_github
 ```
 
-### 确认新密匙是否添加成功
+
+
+七、 确认新密匙是否添加成功
+
 ```bash
 ssh-add -l
 ```
 
-### 测试ssh链接
+
+
+八、 测试ssh链接
+
 ```bash
 ssh -T git@github.com
 ssh -T git@icode.baidu.com
@@ -62,7 +84,10 @@ ssh -T git@icode.baidu.com
 # 出现上述提示，连接成功
 ```
 
-### 取消git全局用户名/邮箱的设置，设置独立的用户名/邮箱
+
+
+九、 取消git全局用户名/邮箱的设置，设置独立的用户名/邮箱
+
 ```bash
 # 取消全局 用户名/邮箱 配置
 git config --global --unset user.name
@@ -72,12 +97,18 @@ git config user.email "xxxx@xx.com"
 git config user.name "xxxx"
 ```
 
-### 查看git项目的配置
+
+
+十、 查看git项目的配置
+
 ```bash
 git config --list
 ```
 
-### 命令行进入项目目录，重建origin
+
+
+十一、 命令行进入项目目录，重建origin
+
 ```bash
 git remote rm origin
 # 远程仓库地址，注意Host名称
@@ -85,6 +116,8 @@ git remote add origin git@second.github.com:githubUserName/repName.git
 git remote -v # 查看远程
 ```
 
-::: tip 提示
-[Git命令大全](../command/git.md)
-:::
+
+
+十二、 [Git命令大全](../command/git.md)
+
+

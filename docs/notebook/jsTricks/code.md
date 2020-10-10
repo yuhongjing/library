@@ -1,6 +1,5 @@
 ---
 title: 代码片段
-sidebarDepth: 2
 ---
 
 # 代码片段

@@ -6,7 +6,7 @@ title: 基础概念
 
 `桥接模式`(Bridge Pattern)也叫`柄体模式`(Handle and Body)或`接口模式`(Interface)。
 
-`组合模式`属于`对象结构型设计模式`。
+桥接模式属于`对象结构型模式`。
 
 ## 模式动机
 

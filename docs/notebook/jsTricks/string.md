@@ -1,6 +1,5 @@
 ---
 title: String Skill
-sidebarDepth: 2
 ---
 
 # String Skill

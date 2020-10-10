@@ -41,6 +41,14 @@ module.exports = [
           'lodash/节流Throttle',
           'lodash/两值对比'
         ]
+      },
+      {
+        title: 'jQuery',
+        children: [
+          'jquery/read',
+          'jquery/结构分析',
+          'jquery/源码解析'
+        ]
       }
     ]
   }

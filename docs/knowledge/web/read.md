@@ -1,6 +1,5 @@
 ---
 title: 介绍
-sidebarDepth: 1
 ---
 # 前言
 前端的知识综合整理。

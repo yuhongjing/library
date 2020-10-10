@@ -1,10 +1,10 @@
 ---
 title: ESLint
-sidebarDepth: 1
 ---
-## ESLint是个啥？
+# ESLint是个啥？
 同一个项目，保持代码风格的一致，是非常重要的一个规范。  
 ESLint可以极大的提高团队代码的一致性和规范性，ESLint可以根据配置自动修复和格式化代码。
+
 ## 那该如何安装这个玩意呢？
 1. 首先安装VsCode的`EsLint`和`vetur`插件
 

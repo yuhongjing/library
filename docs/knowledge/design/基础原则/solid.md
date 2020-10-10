@@ -1,6 +1,5 @@
 ---
 title: S.O.L.I.D
-sidebarDepth: 2
 ---
 
 # SOLID原则

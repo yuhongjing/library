@@ -1,9 +1,8 @@
 ---
 title: markdown语法
-sidebarDepth: 1
 ---
 
-## markdown语法大全
+# markdown语法大全
 
 ## 标题
 ```markdown

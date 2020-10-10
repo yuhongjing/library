@@ -1,6 +1,5 @@
 ---
 title: Layout Skill
-sidebarDepth: 2
 ---
 
 # Layout Skill

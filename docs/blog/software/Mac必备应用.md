@@ -1,8 +1,7 @@
 ---
 title: Mac必备应用
-sidebarDepth: 1
 ---
-## Mac必备应用汇总
+# Mac必备应用汇总
 提高Mac开发效率的应用
 
 ## 编辑器

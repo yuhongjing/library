@@ -1,6 +1,5 @@
 ---
 title: Compoent Skill
-sidebarDepth: 2
 ---
 
 # Compoent Skill

@@ -1,6 +1,5 @@
 ---
 title: Dom Skill
-sidebarDepth: 2
 ---
 
 # Dom Skill

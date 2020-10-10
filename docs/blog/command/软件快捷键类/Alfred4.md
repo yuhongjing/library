@@ -1,8 +1,7 @@
 ---
 title: Alfred 4使用手册
-sidebarDepth: 1
 ---
-## Alfred 4快速启动器
+# Alfred 4快速启动器
 整理一些常用的使用方法。
 ::: tip 启动Alfred 4快捷键
 `option` + `空格`

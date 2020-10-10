@@ -6,7 +6,7 @@ title: 基础概念
 
 `备忘录模式`(Memento Pattern)又叫做`快照模式`(Snapshot Pattern)或`Token模式`。
 
-`备忘录模式`属于`对象行为型设计模式`。
+备忘录模式属于`对象行为型模式`。
 
 ## 模式动机
 

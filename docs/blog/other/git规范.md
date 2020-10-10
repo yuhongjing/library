@@ -1,0 +1,37 @@
+---
+title: Git规范
+---
+
+# Git规范
+
+整理Git提交时的规范。
+
+## 分支命名
+
+* `master` 主分支，负责记录上线版本的迭代，该分支代码与线上代码是完全一致的。
+* `develop` 开发分支，负责记录相对稳定的版本。
+* `feature/*` 特征(功能)分支，用于开发新的功能，不同的功能创建不同的的功能分支，功能分支开发完成并自测通过之后，需要合并到develop分支，删除该分支。（基于develop分支创建）
+* `bugfix/*` bug修复分支，用于修复不紧急的bug，普通bug均需要创建bugfix分支开发，开发完成自测没问题之后，合并到develop分支后，删除该分支。（基于develop分支创建）
+* `release/*` 发布分支，用于代码上线准备，由测试同学发布到测试环境进行测试，测试过程中发现bug需要开发人员在该分支上进行修复，所有bug修复完后，在上线之前，需要合并该分支到master和develop分支。（基于develop分支创建）
+* `hotfix/*` 紧急bug修复分支，该分支仅在紧急情况下适用，用于紧急修复线上bug，修复完成后，需要合并该分支到master和develop分支。（基于master分支创建）
+
+## Commit Message格式
+
+Commit Message以`type: subject`格式提交。
+
+例如：`git commit -m fix: 修复XX按钮点击后，无反应的bug`。
+
+### type 提交类型
+
+* feature 新特性
+* fix 修改问题
+* style 代码格式修改
+* test 测试用例修改
+* docs 文档修改
+* refactor 代码重构
+* misc 其他修改，比如构建流程、依赖管理
+
+### subject 提交描述
+
+本次commit目的简短描述，一般不超过50个字。
+

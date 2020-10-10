@@ -1,6 +1,5 @@
 ---
 title: 介绍
-sidebarDepth: 2
 ---
 
 # 脑图整理

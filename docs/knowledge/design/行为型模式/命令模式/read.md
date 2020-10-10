@@ -4,7 +4,7 @@ title: 基础概念
 
 # 命令模式
 
-命令模式(`Command Pattern`)，又叫做动作模式(`Action`)或事物模式(`Transaction`)属于对象行为型模式。
+`命令模式`(Command Pattern)，又叫做`动作模式`(Action)或`事物模式`(Transaction)属于对象行为型模式。
 
 ## 模式动机
 

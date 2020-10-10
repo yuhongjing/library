@@ -25,13 +25,13 @@ abstract class HandsetSoft {
 // 手机游戏
 class HandsetGame extends HandsetSoft {
     public function run() {
-        echo '运行手机游戏\n';
+        echo "运行手机游戏\n";
     }
 }
 // 手机通讯录
 class HandsetAddressList extends HandsetSoft {
     public function run() {
-        echo '运行手机通讯录\n';
+        echo "运行手机通讯录\n";
     }
 }
 

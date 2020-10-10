@@ -1,7 +1,11 @@
 ---
 title: iTerm2快捷键
-sidebarDepth: 1
 ---
+
+# iTerm2快捷键
+
+整理iTerm2常用快捷键。
+
 ## 标签相关快捷键
 ```
 新建标签: Cmd + t

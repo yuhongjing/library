@@ -1,6 +1,5 @@
 ---
 title: Figure Skill
-sidebarDepth: 2
 ---
 
 # Figure Skill

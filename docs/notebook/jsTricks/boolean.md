@@ -1,6 +1,5 @@
 ---
 title: Boolean Skill
-sidebarDepth: 2
 ---
 
 # Boolean Skill
