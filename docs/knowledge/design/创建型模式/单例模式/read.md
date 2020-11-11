@@ -4,7 +4,7 @@ title: 基本概念
 
 # 单例模式
 
-`单例模式`(Singleton Pattern)单例模式又名单件模式或单态模式。
+`单例模式`(Singleton Pattern)，又称单件模式或单态模式。
 
 单例模式属于`对象创建型模式`。
 

@@ -45,6 +45,7 @@ title: 前言
 * [大话设计模式]()
 * [菜鸟教程](https://www.runoob.com/design-pattern/design-pattern-tutorial.html)
 * [深入浅出设计模式(Head First Design Patterns)]()
+* [Java Design Pattern]()
 
 ### C++描述
 * [图说设计模式](https://design-patterns.readthedocs.io/zh_CN/latest/creational_patterns/builder.html)

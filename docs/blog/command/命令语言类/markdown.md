@@ -88,23 +88,63 @@ title: markdown语法
 例如 `|内容|内容|内容|` 两边不能空
 :::
 
-## 代码
-```markdown
+## 代码块
+````
 `我是单行代码`
 
-(```我是代码的种类(例如js)
+``` 语言种类
     我是多行代码
     我是多行代码
     我是多行代码
-```)
-
 ```
+````
+
+## Diff
+````
+```diff
+function test() {
+  console.log('test');
+- const a = 5;
+- console.log(a);
++ const b = 7;
++ console.log(b);
+}
+```
+````
+
+效果如下：
+
+```diff
+function test() {
+  console.log('test');
+- const a = 5;
+- console.log(a);
++ const b = 7;
++ console.log(b);
+}
+```
+
+## 代码块嵌套
+`````
+````
+  ```
+    外层比内层多一个`即可
+  ```
+````
+`````
+
+效果如下：
+
+````
+  ```
+    外层比内层多一个`即可
+  ```
+````
 
 ## 流程图
 我也不咋用, 贴一个别人的吧
-```markdown
-
-(```flow
+````markdown
+```flow
   st=>start: 开始
   op=>operation: My Operation
   cond=>condition: Yes or No?
@@ -112,6 +152,5 @@ title: markdown语法
   st->op->cond
   cond(yes)->e
   cond(no)->op
-&```)
-
-```
+&```
+````
