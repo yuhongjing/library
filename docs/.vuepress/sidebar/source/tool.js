@@ -46,8 +46,7 @@ module.exports = [
         title: 'jQuery',
         children: [
           'jquery/read',
-          'jquery/结构分析',
-          'jquery/源码解析'
+          'jquery/结构分析'
         ]
       }
     ]

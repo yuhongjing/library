@@ -1,5 +1,5 @@
 ---
-title: PHP实现
+title: JS实现
 ---
 
 # 迭代器模式-JS
