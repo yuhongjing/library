@@ -8,7 +8,15 @@ module.exports = [
       'php',
       'mysql',
       'c',
-      'redis'
+      'redis',
+      {
+        title: 'Git',
+        children: [
+          'git/read',
+          'git/commit',
+          'git/branch'
+        ]
+      }
     ]
   }
 ]
