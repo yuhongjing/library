@@ -3,7 +3,9 @@ title: PHP实现
 ---
 
 # 状态模式-PHP
+
 * [工作状态](#工作状态)
+* [文本编辑器](#文本编辑器)
 
 ## 工作状态
 模拟一天上班在各个时间段的工作状态。
@@ -150,4 +152,71 @@ $emergencyProjects->WriteProgram(); // 当前时间：22 不行了，睡觉
 // $emergencyProjects->WriteProgram(); // 当前时间：19 下班回家
 // $emergencyProjects->setHour(22);
 // $emergencyProjects->WriteProgram(); // 当前时间：22 下班回家
+```
+
+## 文本编辑器
+
+文本编辑器可以改变状态，当锁定为大写时，输出的字母都是大写；当锁定小写时，输出的字母都是小写。
+
+```php
+<?php
+interface WritingState {
+  public function write(string $words);
+}
+
+class UpperCase implements WritingState {
+  public function write(string $words) {
+    echo strtoupper($words);
+  }
+}
+
+class LowerCase implements WritingState {
+  public function write(string $words) {
+    echo strtolower($words);
+  }
+}
+
+class DefaultText implements WritingState {
+  public function write(string $words) {
+    echo $words;
+  }
+}
+
+class TextEditor {
+  protected $state;
+
+  public function __construct(WritingState $state) {
+    $this->state = $state;
+  }
+
+  public function setState(WritingState $state) {
+    $this->state = $state;
+  }
+
+  public function type(string $words) {
+    $this->state->write($words);
+  }
+}
+
+// client
+$editor = new TextEditor(new DefaultText());
+
+$editor->type('First line');
+
+$editor->setState(new UpperCase());
+
+$editor->type('Second line');
+$editor->type('Third line');
+
+$editor->setState(new LowerCase());
+
+$editor->type('Fourth line');
+$editor->type('Fifth line');
+
+// Output:
+// First line
+// SECOND LINE
+// THIRD LINE
+// fourth line
+// fifth line
 ```

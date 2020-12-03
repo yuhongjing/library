@@ -3,12 +3,15 @@ title: PHP实现
 ---
 
 # 简单工厂模式-PHP
+
 * [数据库](#数据库)
 * [加减乘除](#加减乘除)
 * [木门](#木门)
 
 ## 数据库
+
 切换数据库场景。
+
 ```php
 <?php
 class DataBase {
@@ -42,7 +45,9 @@ $dbSqlServer->connect(); // 链接SqlServer数据库
 ```
 
 ## 加减乘除
+
 加减乘除场景。
+
 ```php
 <?php
 class Operation {

@@ -1,7 +1,7 @@
 ---
-title: VS Code必备插件
+title: vscode必备插件
 ---
-# VS Code必备插件
+# vscode必备插件
 以下插件能够大大的提高开发效率和开发幸福感。
 
 ## 代码规范类插件
@@ -21,8 +21,10 @@ title: VS Code必备插件
 
 ## 主题插件
 * [Dracula Official](https://marketplace.visualstudio.com/items?itemName=dracula-theme.theme-dracula) 德古拉吸血鬼主题
+* [Atom One Light Theme](https://marketplace.visualstudio.com/items?itemName=akamud.vscode-theme-onelight) Atom浅色系主题
 
 ## 其他插件
-* [Code Runner](https://marketplace.visualstudio.com/items?itemName=formulahendry.code-runner) 支持多重语言的立即执行
+* [Code Runner](https://marketplace.visualstudio.com/items?itemName=formulahendry.code-runner) 支持多种语言的运行
 * [carbon-now-sh](https://marketplace.visualstudio.com/items?itemName=ericadamski.carbon-now-sh) 截取代码并生成漂亮的代码图
 * [WakaTime](https://marketplace.visualstudio.com/items?itemName=WakaTime.vscode-wakatime) 统计每日敲代码时间及记录操作习惯
+* [Open in External App](https://marketplace.visualstudio.com/items?itemName=YuTengjing.open-in-external-app) 在vscode内，右击md文件直接打开Typora软件。

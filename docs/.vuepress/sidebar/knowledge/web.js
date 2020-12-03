@@ -71,8 +71,14 @@ module.exports = [
             'javascript/函数式编程/柯里化',
             'javascript/函数式编程/组合'
           ]
+        },
+        {
+          title: '编写规范',
+          children: [
+            'javascript/编写规范/read',
+            'javascript/编写规范/代码注释'
+          ]
         }
-        
       ]
     },
     {
@@ -120,6 +126,7 @@ module.exports = [
         },
         'react/完全理解高阶组件',
         'react/ReactHooks',
+        'react/useEffect',
         'react/Immer',
         'react/ReduxThunk'
       ]

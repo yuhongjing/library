@@ -1,12 +1,12 @@
 ---
-title: ESLint
+title: eslint
 ---
 
-# ESLint是个啥？
+# eslint是个啥？
 
 同一个项目，保持代码风格的一致，是非常重要的一个规范。
 
-ESLint可以极大的提高团队代码的一致性和规范性，ESLint可以根据配置自动修复和格式化代码。
+eslint可以极大的提高团队代码的一致性和规范性，eslint可以根据配置自动修复和格式化代码。
 
 ## 那该如何安装这个玩意呢？
 
@@ -66,6 +66,12 @@ module.exports = {
 eslint --ext .js,.vue src --fix // 修复src文件夹下的js和vue文件
 eslint test.js --fix // 修复根目录下的test.js文件
 ```
+
+## 类似的代码校验工具
+
+除了eslint，其他优秀的代码校验工具。
+
+* [FECS](http://fecs.baidu.com/)
 
 ## 最后
 

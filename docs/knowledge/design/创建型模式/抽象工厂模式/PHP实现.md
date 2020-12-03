@@ -3,9 +3,12 @@ title: PHP实现
 ---
 
 # 抽象工厂模式-PHP
+
 * [数据库](#数据库)
+* [安装一扇门](#安装一扇门)
 
 ## 数据库
+
 就不能不换DB吗？
 
 当一个普通的软件程序需要切换数据库时是非常痛苦的。
@@ -164,3 +167,87 @@ $id->getDepartment(1);
 ```
 
 本例中，抽象工厂封装了Sqlserver和MySQL对于查询和插入的操作。
+
+## 安装一扇门
+
+```php
+<?php
+// 门
+interface Door {
+  public function getDescription();
+}
+
+class WoodenDoor implements Door {
+  public function getDescription() {
+    echo 'I am a wooden door';
+  }
+}
+
+class IronDoor implements Door {
+  public function getDescription() {
+    echo 'I am an iron door';
+  }
+}
+
+// 装门工
+interface DoorFittingExpert {
+  public function getDescription();
+}
+
+class Welder implements DoorFittingExpert {
+  public function getDescription() {
+    echo 'I can only fit iron doors';
+  }
+}
+
+class Carpenter implements DoorFittingExpert {
+  public function getDescription() {
+    echo 'I can only fit wooden doors';
+  }
+}
+
+// 抽象工厂
+interface DoorFactory {
+  public function makeDoor(): Door;
+  public function makeFittingExpert(): DoorFittingExpert;
+}
+
+// 木门工厂，返回木门和对应的木门工
+class WoodenDoorFactory implements DoorFactory {
+  public function makeDoor(): Door {
+    return new WoodenDoor();
+  }
+
+  public function makeFittingExpert(): DoorFittingExpert {
+    return new Carpenter();
+  }
+}
+
+// 铁门工厂，返回铁门和对应的铁门工
+class IronDoorFactory implements DoorFactory {
+  public function makeDoor(): Door {
+    return new IronDoor();
+  }
+
+  public function makeFittingExpert(): DoorFittingExpert {
+    return new Welder();
+  }
+}
+
+// client
+$woodenFactory = new WoodenDoorFactory();
+
+$door = $woodenFactory->makeDoor();
+$expert = $woodenFactory->makeFittingExpert();
+
+$door->getDescription(); // I am a wooden door
+$expert->getDescription(); // I can only fit wooden doors
+
+$ironFactory = new IronDoorFactory();
+
+$door = $ironFactory->makeDoor();
+$expert = $ironFactory->makeFittingExpert();
+
+$door->getDescription(); // I am an iron door
+$expert->getDescription(); // I can only fit iron doors
+```

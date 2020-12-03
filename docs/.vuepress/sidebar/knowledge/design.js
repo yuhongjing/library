@@ -18,7 +18,7 @@ module.exports = [
       title: '创建型模式',
       children: [
         {
-          title: '简单工厂模式',
+          title: '简单工厂模式', // done
           children: [
             '创建型模式/简单工厂模式/read',
             '创建型模式/简单工厂模式/PHP实现',
@@ -26,7 +26,7 @@ module.exports = [
           ]
         },
         {
-          title: '工厂方法模式',
+          title: '工厂方法模式', // done
           children: [
             '创建型模式/工厂方法模式/read',
             '创建型模式/工厂方法模式/PHP实现',
@@ -35,7 +35,7 @@ module.exports = [
         },
         '创建型模式/原型模式',
         {
-          title: '建造者模式',
+          title: '建造者模式', // done
           children: [
             '创建型模式/建造者模式/read',
             '创建型模式/建造者模式/PHP实现',
@@ -43,7 +43,7 @@ module.exports = [
           ]
         },
         {
-          title: '抽象工厂模式',
+          title: '抽象工厂模式', // done
           children: [
             '创建型模式/抽象工厂模式/read',
             '创建型模式/抽象工厂模式/PHP实现',
@@ -51,7 +51,7 @@ module.exports = [
           ]
         },
         {
-          title: '单例模式',
+          title: '单例模式', // done
           children: [
             '创建型模式/单例模式/read',
             '创建型模式/单例模式/PHP实现',
@@ -64,7 +64,7 @@ module.exports = [
       title: '行为型模式',
       children: [
         {
-          title: '策略模式',
+          title: '策略模式', // done
           children: [
             '行为型模式/策略模式/read',
             '行为型模式/策略模式/PHP实现',
@@ -72,7 +72,7 @@ module.exports = [
           ]
         },
         {
-          title: '模板模式',
+          title: '模板模式', // done
           children: [
             '行为型模式/模板模式/read',
             '行为型模式/模板模式/PHP实现',
@@ -80,7 +80,7 @@ module.exports = [
           ]
         },
         {
-          title: '观察者模式',
+          title: '观察者模式', // done
           children: [
             '行为型模式/观察者模式/read',
             '行为型模式/观察者模式/PHP实现',
@@ -88,7 +88,7 @@ module.exports = [
           ]
         },
         {
-          title: '状态模式',
+          title: '状态模式', // done
           children: [
             '行为型模式/状态模式/read',
             '行为型模式/状态模式/PHP实现',
@@ -96,7 +96,7 @@ module.exports = [
           ]
         },
         {
-          title: '备忘录模式',
+          title: '备忘录模式', // done
           children: [
             '行为型模式/备忘录模式/read',
             '行为型模式/备忘录模式/PHP实现',
@@ -104,7 +104,7 @@ module.exports = [
           ]
         },
         {
-          title: '迭代器模式',
+          title: '迭代器模式', // done
           children: [
             '行为型模式/迭代器模式/read',
             '行为型模式/迭代器模式/PHP实现',
@@ -112,7 +112,7 @@ module.exports = [
           ]
         },
         {
-          title: '命令模式',
+          title: '命令模式', // done
           children: [
             '行为型模式/命令模式/read',
             '行为型模式/命令模式/PHP实现',
@@ -120,7 +120,7 @@ module.exports = [
           ]
         },
         {
-          title: '职责链模式',
+          title: '职责链模式', // done
           children: [
             '行为型模式/职责链模式/read',
             '行为型模式/职责链模式/PHP实现',
@@ -128,7 +128,7 @@ module.exports = [
           ]
         },
         {
-          title: '中介者模式',
+          title: '中介者模式', // done
           children: [
             '行为型模式/中介者模式/read',
             '行为型模式/中介者模式/PHP实现',
@@ -144,9 +144,11 @@ module.exports = [
           ]
         },
         {
-          title: '访问者模式',
+          title: '访问者模式', // done
           children: [
-            '行为型模式/访问者模式/read'
+            '行为型模式/访问者模式/read',
+            '行为型模式/访问者模式/PHP实现',
+            '行为型模式/访问者模式/JS实现'
           ]
         }
       ]

@@ -5,6 +5,7 @@ title: PHP实现
 # 迭代器模式-PHP
 
 * [上车买票](#上车买票)
+* [电台](#电台)
 
 ## 上车买票
 
@@ -92,3 +93,81 @@ while (!$i->isDone())
 }
 ```
 
+## 电台
+
+电台有很多个频道，我们通过上一个和下一个按钮，来遍历电台的所有频道。
+
+```php
+<?php
+use Countable;
+use Iterator;
+
+class RadioStation {
+  protected $frequency;
+
+  public function __construct(float $frequency) {
+    $this->frequency = $frequency;
+  }
+
+  public function getFrequency(): float {
+    return $this->frequency;
+  }
+}
+
+class StationList implements Countable, Iterator {
+  /** @var RadioStation[] $stations */
+  protected $stations = [];
+
+  /** @var int $counter */
+  protected $counter;
+
+  public function addStation(RadioStation $station) {
+    $this->stations[] = $station;
+  }
+
+  public function removeStation(RadioStation $toRemove) {
+    $toRemoveFrequency = $toRemove->getFrequency();
+    $this->stations = array_filter($this->stations, function (RadioStation $station) use ($toRemoveFrequency) {
+      return $station->getFrequency() !== $toRemoveFrequency;
+    });
+  }
+
+  public function count(): int {
+    return count($this->stations);
+  }
+
+  public function current(): RadioStation {
+    return $this->stations[$this->counter];
+  }
+
+  public function key() {
+    return $this->counter();
+  }
+
+  public function next() {
+    return $this->counter++;
+  }
+
+  public function rewind() {
+    $this->counter = 0;
+  }
+
+  public function valid(): bool {
+    return isset($this->stations[$this->counter]);
+  }
+}
+
+// client
+$stationList = new StationList();
+
+$stationList->addStation(new RadioStation(89));
+$stationList->addStation(new RadioStation(101));
+$stationList->addStation(new RadioStation(102));
+$stationList->addStation(new RadioStation(103.2));
+
+foreach($stationList as $station) {
+  echo $station->getFrequency() . PHP_EOL;
+}
+
+$stationList->removeStation(new RadioStation(89));
+```

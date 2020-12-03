@@ -6,8 +6,6 @@ module.exports = [
       'read',
       'Mac必备应用',
       'Vscode必备插件',
-      'Node插件',
-      'Webpack插件',
       'Chrome插件'
     ]
   }
