@@ -33,7 +33,14 @@ module.exports = [
             '创建型模式/工厂方法模式/JS实现'
           ]
         },
-        '创建型模式/原型模式',
+        {
+          title: '原型模式',
+          children: [
+            '创建型模式/原型模式/read',
+            '创建型模式/原型模式/PHP实现',
+            '创建型模式/原型模式/JS实现'
+          ]
+        },
         {
           title: '建造者模式', // done
           children: [
@@ -157,7 +164,7 @@ module.exports = [
       title: '结构型模式',
       children: [
         {
-          title: '装饰模式',
+          title: '装饰模式', // done
           children: [
             '结构型模式/装饰模式/read',
             '结构型模式/装饰模式/PHP实现',
@@ -165,7 +172,7 @@ module.exports = [
           ]
         },
         {
-          title: '代理模式',
+          title: '代理模式', // done
           children: [
             '结构型模式/代理模式/read',
             '结构型模式/代理模式/PHP实现',
@@ -173,7 +180,7 @@ module.exports = [
           ]
         },
         {
-          title: '外观模式',
+          title: '外观模式', // done
           children: [
             '结构型模式/外观模式/read',
             '结构型模式/外观模式/PHP实现',
@@ -181,7 +188,7 @@ module.exports = [
           ]
         },
         {
-          title: '适配器模式',
+          title: '适配器模式', // done
           children: [
             '结构型模式/适配器模式/read',
             '结构型模式/适配器模式/PHP实现',
@@ -189,7 +196,7 @@ module.exports = [
           ]
         },
         {
-          title: '组合模式',
+          title: '组合模式', // done
           children: [
             '结构型模式/组合模式/read',
             '结构型模式/组合模式/PHP实现',
@@ -197,7 +204,7 @@ module.exports = [
           ]
         },
         {
-          title: '桥接模式',
+          title: '桥接模式', // done
           children: [
             '结构型模式/桥接模式/read',
             '结构型模式/桥接模式/PHP实现',
@@ -205,9 +212,11 @@ module.exports = [
           ]
         },
         {
-          title: '享元模式',
+          title: '享元模式', // done
           children: [
-            '结构型模式/享元模式/read'
+            '结构型模式/享元模式/read',
+            '结构型模式/享元模式/PHP实现',
+            '结构型模式/享元模式/JS实现'
           ]
         }
       ]

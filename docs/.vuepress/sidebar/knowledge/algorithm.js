@@ -5,5 +5,12 @@ module.exports = [
       children: [
         'read'
       ]
+    },
+    {
+      title: "经典算法",
+      children: [
+        'classic/read',
+        'classic/埃拉托斯特尼筛法',
+      ]
     }
   ]

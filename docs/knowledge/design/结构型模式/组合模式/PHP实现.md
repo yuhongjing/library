@@ -4,9 +4,12 @@ title: PHP实现
 
 # 组合模式-PHP
 
-* [公司或文件组织结构](#公司或文件组织结构)
+* [标准例子](#标准例子)
+* [员工类型](#员工类型)
 
-##  公司或文件组织结构
+## 标准例子
+
+组合模式的标准例子。
 
 ```php
 <?php
@@ -111,3 +114,102 @@ $root->display(1);
 // ---Leaf C
 ```
 
+## 员工类型
+
+公司有不同职位员工，他们虽然工作的内容不同，但是他们拥有一些相同的信息，例如都有薪资信息、姓名信息等。他们共同组成了公司的组织架构。
+
+```php
+<?php
+
+interface Employee {
+  public function __construct(string $name, float $salary);
+  public function getName(): string;
+  public function setSalary(float $salary);
+  public function getSalary(): float;
+  public function getRoles(): array;
+}
+
+class Developer implements Employee {
+  protected $salary;
+  protected $name;
+  protected $roles;
+
+  public function __construct(string $name, float $salary) {
+    $this->name = $name;
+    $this->salary = $salary;
+  }
+
+  public function getName(): string {
+    return $this->name;
+  }
+
+  public function setSalary(float $salary) {
+    $this->salary = $salary;
+  }
+
+  public function getSalary(): float {
+    return $this->salary;
+  }
+
+  public function getRoles(): array {
+    return $this->roles;
+  }
+}
+
+class Designer implements Employee {
+  protected $salary;
+  protected $name;
+  protected $roles;
+
+  public function __construct(string $name, float $salary) {
+    $this->name = $name;
+    $this->salary = $salary;
+  }
+
+  public function getName(): string {
+    return $this->name;
+  }
+
+  public function setSalary(float $salary) {
+    $this->salary = $salary;
+  }
+
+  public function getSalary(): float {
+    return $this->salary;
+  }
+
+  public function getRoles(): array {
+    return $this->roles;
+  }
+}
+
+class Organization {
+  protected $employees;
+
+  public function addEmployee(Employee $employee) {
+    $this->employees[] = $employee;
+  }
+
+  public function getNetSalaries(): float {
+    $netSalary = 0;
+
+    foreach($this->employees as $employee) {
+      $netSalary += $employee->getSalary();
+    }
+
+    return $netSalary;
+  }
+}
+
+// client
+// Prepare the employees
+$john = new Developer('John Doe', 12000);
+$jane = new Developer('Jane Doe', 15000);
+
+// Add them to organization
+$organization = new Organization();
+$organization->addEmployee($john);
+$organization->addEmployee($jane);
+
+echo "Net salaries: " . $organization->getNetSalaries(); // Net Salaries: 27000
+```

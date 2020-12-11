@@ -10,7 +10,7 @@ title: 技术书籍
 - [x] 《CSS世界》
 - [x] 《CSS揭秘》
 - [ ] 《高性能的JavaScript》
-- [x] 《You Dont Know JS》
+- [x] 《You Don't Know JS》（你不知道的JavaScript）
 - [x] 《JavaScript函数式编程》
 - [x] 《JavaScript语言精粹》
 - [x] 《JS权威指南》
@@ -27,12 +27,15 @@ title: 技术书籍
 - [ ] 《Node即学即用》
 - [ ] 《深入浅出Node.js》
 - [ ] 《Node.js 来一打C++扩展》
-- [ ] 《高性能MySQL》
-- [ ] 《MySQL必知必会》
-- [ ] 《MySQL是怎样运行的：从根上理解MySQL》
 - [ ] 《C Primer Plus》
 - [ ] 《PHP核心技术与最佳实践》
 - [ ] 《疯狂Java讲义》
+
+## 数据库
+- [ ] 《高性能MySQL》
+- [ ] 《MySQL必知必会》
+- [ ] 《Designing Data-Intensive Application》（设计数据密集型应用）
+- [ ] 《MySQL是怎样运行的：从根上理解MySQL》
 
 ## 软件管理
 - [ ] 《201 principles of software development》

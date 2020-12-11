@@ -5,8 +5,7 @@ title: PHP实现
 # 桥接模式-PHP
 
 * [各品牌手机软件兼容](#各品牌手机软件兼容)
-
-
+* [网站主题](#网站主题)
 
 ## 各品牌手机软件兼容
 
@@ -76,3 +75,71 @@ $ab->setHandsetSoft(new HandsetAddressList());
 $ab->run(); // 运行手机通讯录
 ```
 
+## 网站主题
+
+网站有许多页面，每个页面都可以设置相应的主题。可以使用桥接模式来减少类的数量。
+
+```php
+<?php
+
+interface WebPage {
+  public function __construct(Theme $theme);
+  public function getContent();
+}
+
+class About implements WebPage {
+  protected $theme;
+
+  public function __construct(Theme $theme) {
+    $this->theme = $theme;
+  }
+
+  public function getContent() {
+    return "About page in" . $this->theme->getColor();
+  }
+}
+
+class Careers implements WebPage {
+  protected $theme;
+
+  public function __construct(Theme $theme) {
+    $this->theme = $theme;
+  }
+
+  public function getContent() {
+    return "Careers page in" . $this->theme->getColor();
+  }
+}
+
+interface Theme {
+  public function getColor();
+}
+
+class DarkTheme implements Theme {
+  public function getColor() {
+    return 'Dark Black';
+  }
+}
+
+class LightTheme implements Theme {
+  public function getColor() {
+    return 'Off white';
+  }
+}
+
+class AquaTheme implements Theme {
+  public function getColor() {
+    return 'Light blue';
+  }
+}
+
+// client
+
+$darkTheme = new DarkTheme();
+
+$about = new About($darkTheme);
+$careers = new Careers($darkTheme);
+
+echo $about->getContent(); // "About page in Dark Black";
+echo $careers->getContent(); // "Careers page in Dark Black";
+```

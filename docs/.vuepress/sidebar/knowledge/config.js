@@ -9,14 +9,14 @@ module.exports = [
       'mysql',
       'c',
       'redis',
-      {
-        title: 'Git',
-        children: [
-          'git/read',
-          'git/commit',
-          'git/branch'
-        ]
-      }
+    ]
+  },
+  {
+    title: 'Git',
+    children: [
+      'git/read',
+      'git/commit',
+      'git/branch'
     ]
   }
 ]

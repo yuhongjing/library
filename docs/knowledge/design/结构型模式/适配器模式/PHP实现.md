@@ -5,8 +5,10 @@ title: PHP实现
 # 适配器模式-PHP
 
 * [翻译](#翻译)
+* [猎人捕猎](#猎人捕猎)
 
 ## 翻译
+
 外籍球员需要翻译才能与大家进行沟通。
 
 ```php
@@ -89,4 +91,67 @@ $forwards->Defense(); // 前锋:巴蒂尔 防守
 $translator = new Translator("姚明");
 $translator->Attack(); // 外籍中锋:姚明 进攻
 $translator->Defense(); // 外籍中锋:姚明 防守
+```
+
+## 猎人捕猎
+
+猎人根据狮子的吼叫声来定位狮子的位置并捕杀它。
+但现在猎人又需要捕猎鬣狗，鬣狗却只会犬吠，所以我们需要适配鬣狗。
+
+```php
+<?php
+
+interface Lion {
+  public function roar();
+}
+
+class AfricanLion implements Lion {
+  public function roar() {
+    echo '非洲狮在吼叫!!!';
+  }
+}
+
+class AsianLion implements Lion {
+  public function roar() {
+    echo '亚洲狮在吼叫!!!';
+  }
+}
+
+class Hunter {
+  public function hunt(Lion $lion) {
+    $lion->roar();
+  }
+}
+
+// This needs to be added to the game
+class WildDog {
+  public function bark() {
+    echo '非洲野狗在犬吠!!!';
+  }
+}
+
+// Adapter around wild dog to make it compatible with our game
+class WildDogAdapter implements Lion {
+  protected $dog;
+
+  public function __construct(WildDog $dog) {
+    $this->dog = $dog;
+  }
+
+  public function roar() {
+    $this->dog->bark();
+  }
+}
+
+// client
+$hunter = new Hunter();
+
+$africanLion = new AfricanLion();
+$asianLion = new AsianLion();
+$hunter->hunt($africanLion); // 非洲狮在吼叫!!!
+$hunter->hunt($asianLion); // 亚洲狮在吼叫!!!
+
+$wildDog = new WildDog();
+$wildDogAdapter = new WildDogAdapter($wildDog);
+$hunter->hunt($wildDogAdapter); // 非洲野狗在犬吠!!!
 ```
