@@ -26,6 +26,12 @@ module.exports = [
         {
           title: '基础概念',
           children: [
+            {
+              title: 'You-Dont-Know-JS',
+              children: [
+                'javascript/基础概念/you-dont-know-js/read'
+              ]
+            },
             'javascript/基础概念/原型与原型链',
             'javascript/基础概念/作用域执行上下文与闭包',
             'javascript/基础概念/同步异步',
@@ -54,14 +60,20 @@ module.exports = [
           title: '正则表达式',
           children: [
             'javascript/正则表达式/read',
-            'javascript/正则表达式/字符匹配攻略',
-            'javascript/正则表达式/位置匹配攻略',
-            'javascript/正则表达式/括号的作用',
-            'javascript/正则表达式/回溯法原理',
-            'javascript/正则表达式/正则表达式的拆分',
-            'javascript/正则表达式/正则表达式的构建',
-            'javascript/正则表达式/正则表达式编程',
-            'javascript/正则表达式/速查表'
+            {
+              title: 'JavaScript正则迷你书',
+              children: [
+                'javascript/正则表达式/JS正则迷你书/read',
+                'javascript/正则表达式/JS正则迷你书/字符匹配攻略',
+                'javascript/正则表达式/JS正则迷你书/位置匹配攻略',
+                'javascript/正则表达式/JS正则迷你书/括号的作用',
+                'javascript/正则表达式/JS正则迷你书/回溯法原理',
+                'javascript/正则表达式/JS正则迷你书/正则表达式的拆分',
+                'javascript/正则表达式/JS正则迷你书/正则表达式的构建',
+                'javascript/正则表达式/JS正则迷你书/正则表达式编程',
+                'javascript/正则表达式/JS正则迷你书/速查表'
+              ]
+            }
           ]
         },
         {
@@ -147,7 +159,14 @@ module.exports = [
       title: "Node",
       children: [
         'node/read',
-        'node/npm管理包'
+        'node/npm管理包',
+        {
+          title: 'CLI',
+          children: [
+            'node/cli/read',
+            'node/cli/template-cli',
+          ]
+        }
       ]
     },
   ]

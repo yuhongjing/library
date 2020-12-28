@@ -34,7 +34,7 @@ module.exports = [
           ]
         },
         {
-          title: '原型模式',
+          title: '原型模式', // done
           children: [
             '创建型模式/原型模式/read',
             '创建型模式/原型模式/PHP实现',
@@ -143,7 +143,7 @@ module.exports = [
           ]
         },
         {
-          title: '解释器模式',
+          title: '解释器模式', // done
           children: [
             '行为型模式/解释器模式/read',
             '行为型模式/解释器模式/PHP实现',
