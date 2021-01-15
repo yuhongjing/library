@@ -2,6 +2,7 @@
 title: Mac必备应用
 ---
 # Mac必备应用汇总
+
 提高Mac开发效率的应用
 
 ## 编辑器
@@ -32,3 +33,4 @@ title: Mac必备应用
 * [PicGo](https://github.com/Molunerfinn/PicGo/releases) 图床
 * [印象笔记](https://www.yinxiang.com/) 记录学习的点点滴滴
 * [Anki](https://apps.ankiweb.net/) 单词记忆软件
+* [OmniGraffle Pro](https://xclient.info/s/omnigraffle.html) 斌哥PPT——强大的图形工具

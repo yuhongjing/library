@@ -5,13 +5,11 @@ title: vscode必备插件
 以下插件能够大大的提高开发效率和开发幸福感。
 
 ## 代码规范类插件
-* [vscode-fecs-plugin](https://marketplace.visualstudio.com/items?itemName=l5oo00.vscode-fecs-plugin) 百度FE代码规范检测，可以实时查看编码是否规范
 * [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) 自动校验代码，每次保存代码时自动整理代码
 * [vscode-fileheader](https://marketplace.visualstudio.com/items?itemName=mikey.vscode-fileheader) 自动补全头部文件注释
 
 ## 文件高亮类插件
 * [Vetur](https://marketplace.visualstudio.com/items?itemName=octref.vetur) 支持.vue文件
-
 ## 贴心功能类插件
 * [Import Cost](https://marketplace.visualstudio.com/items?itemName=wix.vscode-import-cost) 显示每一个引入包的大小
 * [GitLens](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens) 根据git，显示每一行代码的作者，代码提交时间以及commit信息

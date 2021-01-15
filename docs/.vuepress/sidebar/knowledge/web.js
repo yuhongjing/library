@@ -29,7 +29,13 @@ module.exports = [
             {
               title: 'You-Dont-Know-JS',
               children: [
-                'javascript/基础概念/you-dont-know-js/read'
+                'javascript/基础概念/you-dont-know-js/read',
+                'javascript/基础概念/you-dont-know-js/入门与进阶',
+                'javascript/基础概念/you-dont-know-js/作用域与闭包',
+                'javascript/基础概念/you-dont-know-js/this与对象原型',
+                'javascript/基础概念/you-dont-know-js/类型与文法',
+                'javascript/基础概念/you-dont-know-js/异步与性能',
+                'javascript/基础概念/you-dont-know-js/ES6与未来'
               ]
             },
             'javascript/基础概念/原型与原型链',
