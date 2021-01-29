@@ -11,6 +11,8 @@ module.exports = [
       children: [
         'classic/read',
         'classic/埃拉托斯特尼筛法',
+        'classic/冒泡算法',
+        'classic/二分查找法',
       ]
     }
   ]

@@ -1,4 +1,4 @@
----
+`---
 title: this与对象原型
 ---
 
@@ -772,11 +772,11 @@ console.log(baz.a); // 3
 
 现在，我们可以按照优先顺序来总结一下从函数调用的调用点来判定`this`的规则了。
 
-1. 函数是通过`new`被调用的吗**(new绑定)**？如果是，`this`就是新构建的对象。
+1. 函数是通过`new`被调用的吗(**new绑定**)？如果是，`this`就是新构建的对象。
 
    `var bar = new foo()`
 
-2. 函数是通过`call`或`apply`被调用**(明确绑定)**，甚至是隐藏在`bind`硬绑定之中吗？如果是，`this`就是那个被明确指定的对象。
+2. 函数是通过`call`或`apply`被调用(**明确绑定**)，甚至是隐藏在`bind`硬绑定之中吗？如果是，`this`就是那个被明确指定的对象。
 
    `var bar = foo.call(obj2)`
 
@@ -1197,7 +1197,7 @@ myArray.baz; // "baz"
 
 注意，添加命名属性不会改变数组的`length`值。
 
-**小心：**如果你试图在数组上添加属性，但是属性名*看起来*像一个数字，那么最终它会成为一个数字索引：
+**小心**：如果你试图在数组上添加属性，但是属性名*看起来*像一个数字，那么最终它会成为一个数字索引：
 
 ```js
 var myArray = ["foo", 42, "bar"];
@@ -1257,7 +1257,7 @@ newObj.d === anotherFunction; // true
 
 在ES5之前，JavaScript语言没有给出直接的方法考察属性性质间的区别，比如属性是否为只读。
 
-在ES5中，所有的属性都用**属性描述符(Property Descriptros)**来描述。
+在ES5中，所有的属性都用**属性描述符**(Property Descriptros)来描述。
 
 考虑如下代码：
 
@@ -1296,5 +1296,1152 @@ myObject.a; // 2
 
 使用`defineProperty()`，可以手动明确地在`myObject`上添加一个直白、普通的`a`属性，一般你不会使用这个方法，除非你需要修改描述符的值。
 
-##### 可写性
+##### 可写性(Writable)
 
+`writable`控制改变属性值的能力。
+
+思考如下代码：
+
+```js
+var myObject = {};
+
+Object.defineProperty(myObject, "a", {
+  value: 2,
+  writable: false, // 不可写
+  configurable: true,
+  enumerable: true
+});
+
+myObject.a = 3;
+myObject.a; // 2
+```
+
+如你所见，`value`属性无法修改了，如果在`strict mode`下尝试，会得到报错：
+
+```js
+"use strict";
+
+var myObject = {};
+
+Object.defineProperty(myObject, "a", {
+  value: 2,
+  writable: false, // 不可写!
+  configurable: true,
+  enumerable: true
+});
+
+myObject.a = 3; // TypeError
+```
+
+##### 可配置性(Configurable)
+
+只要属性当前是可配置的，就可以使用相同的`defineProperty`工具，修改描述符定义。
+
+```js
+var myObject = {
+  a: 2
+};
+
+myObject.a = 3;
+myObject.a;
+
+Object.defineProperty(myObject, "a", {
+  value: 4,
+  writable: true,
+  configurable: false, // 不可配置!
+  enumerable: true
+});
+
+myObject.a; // 4;
+myObject.a = 5;
+myObject.a; // 5
+
+Object.defineProperty(myObject, "a", {
+  value: 6,
+  writable: true,
+  configurable: true,
+  enumerable: true
+}); // TypeError
+```
+
+::: warning 注意
+
+`configurable`设置为`false`是**一个单向操作，不可撤销！**
+
+:::
+
+`configuable: false`另外一个事情功能是阻止`delete`操作符功能。
+
+```js
+var myObject = {
+  a: 2
+};
+
+myObject.a; // 2
+delete myObject.a;
+myObject.a; // undefined
+
+Object.defineProperty(myObject, "a", {
+  value: 2,
+  writable: true,
+  configurable: false,
+  enumerable: true
+});
+
+myObject.a; // 2
+delete myObject.a;
+myObject.a; // 2
+```
+
+现在`delete`操作符失效了。
+
+##### 可枚举性(Enumerable)
+
+此属性控制对象是否能够枚举，使用`for..in`等。用户自定义的属性默认都是`enumberable`的，如果你想隐藏枚举，设置为`false`即可。
+
+#### 不可变性(Immutability)
+
+如果我们希望属性或对象不可改变，在ES5中有几种方式可以支持此功能。
+
+重要的注意点：这几种方法创建的都是浅不可变性。也就是，它们仅影响对象和它的直属属性的性质。如果对象拥有对其他对象(数组、对象、函数)的引用，那个被引用的对象*内容*不会受到影响，依然可变。
+
+```js
+myImmutableObject.foo; // [1,2,3]
+myImmutableObject.foo.push(4);
+myImmutableObject.foo; // [1,2,3,4]
+```
+
+以上代码，我们希望`myImmutableObject`对象不可变。你可以使用下面一个或多个方法实现。
+
+::: warning 注意
+
+封印(seal)和冻结(freeze)对象，使对象值的潜在变化更加健壮。
+
+:::
+
+##### 对象常量(OBject Constant)
+
+`writable: false`与`configurable: false`结合，创建作为对象属性的*常量*(不能改变，重定义或删除)
+
+```js
+var myObject = {};
+
+Object.defineProperty(myObject, "FAVORITE_NUMBER", {
+  value: 42,
+  writable: false,
+  configurable: false
+});
+```
+
+##### 防止扩展(Prevent Extensions)
+
+如果想防止对象被新增属性，又要保留既存属性，可以调用`Object.preventExtensions`
+
+```js
+var myObject = {
+  a: 2
+};
+
+Object.preventExtensions(myObject);
+
+myObject.b = 3;
+myObject.b; // undefined
+```
+
+在`strict mode`模式下，会抛错`TypeError`。
+
+##### 封印(Seal)
+
+`Object.seal`创建一个『封印』对象，相当于调用了`Object.preventExtensions`并标记了`configurable: false`，所以你不能添加新属性、也不能重新配置和删除既存属性(但可以修改既存属性)。
+
+##### 冻结(Freeze)
+
+`Object.freeze`创建一个『冻结』对象，相当于调用了`Object.seal`并标记了`writable: false`，所以值也不可改变。
+
+这种方法是最高级别的不可变性，因为它能阻止任何对对象或属性的改变。
+
+你可以『深度冻结』一个对象，通过递归实现，但是有可能会影响到『共享』的对象。
+
+#### `[[Get]]`
+
+关于属性访问如何工作的一个重要细节。
+
+思考如下代码：
+
+```js
+var myObject = {
+  a: 2
+};
+
+myObject.a; // 2
+```
+
+`myObject.a`是一个属性访问，但它并不是仅仅在`myObject`中寻找名为`a`属性那么简单的操作。
+
+根据语言规范，其实际上执行了`[[Get]]`操作，对对象进行默认的内建`[[Get]]`操作，会*首先*检查对象，寻找一个拥有被请求的名称的属性，找到就返回相应值。
+
+但`[[Get]]`操作的一个重要结果是，如果通过任何方法都找不到被请求的属性值，会返回`undefined`。
+
+```js
+var myObject = {
+  a: 2
+};
+
+myObject.b; // undefined
+```
+
+这个行为和通过标识符名称引用*变量不同*。如果引用了词法作用域无法解析的变量，会抛出`ReferenceError`。
+
+```js
+var myObject = {
+  a: undefined
+};
+
+myObject.a; // undefined
+
+myObject.b; // undefined
+```
+
+从*值*的角度来说，这两个引用没区别，结果都是`undefined`，但是在`[[Get]]`操作的底层，处理`.a`比`.b`要多一些潜在的『工作』。
+
+如果仅考察结果的值，无法分别一个属性是存在并持有一个`undefined`值，还是它根本不存在。
+
+#### `[[Put]]`
+
+既然存在`[[Get]]`，那么肯定也就存在`[[Put]]`。
+
+这很容易让人认为，给对象的属性赋值，将会在对象上调用`[[Put]]`来设置或创建这个属性，但实际情况不同。
+
+调用`[[Put]]`时，它根据几个因素表现不同的行为，包括属性是否在对象中存在了。
+
+如果属性存在，`[[Put]]`算法将会大致检查：
+
+1. 这个属性是访问器描述符吗？**如果是，而且是setter，就调用setter**。
+2. 这个属性是`writable`为`false`数据描述符吗？**如果是，strict mode抛出TypeError**。
+3. 否则，正常设置属性值。
+
+如果属性不存在，`[[Put]]`会变得更加复杂，后续`[[Prototype]]`时会回到这里讲解。
+
+#### Getters与Setters
+
+对象默认的`[[Put]]`和`[[Get]]`操作分别完全控制着如何设置既存或新属性的值和如何取得既存属性。
+
+ES5引入了一个方法来覆盖这些默认操作的一部分，但不是在对象级别而是针对每个属性，而是通过`getters`和`setters`，Getter是实际上调用一个隐藏函数来取得值的属性。Setter实际上是调用一个隐藏函数来设置值的属性。
+
+当你将一个属性定义为拥有getter或setter或两者兼备，那么它的定义就成为了『访问器描述符』(与『数据描述符』相对)。对于访问器描述符，它的`value`和`writable`性质因没有意义而被忽略，取而代之的是JS将会考虑属性的`set`和`get`性质(还有`configurable`和`enumerable`)。
+
+思考如下代码：
+
+```js
+var myObject = {
+  // 为a定义一个getter
+  get a() {
+    return 2;
+  }
+};
+
+Object.defienProperty(
+  myObject, // 目标对象
+  "b", // 属性名
+  { // 描述符
+    // 为b定义getter
+    get: function() {return this.a * 2},
+    //确保b作为对象属性出现
+    enumerable: true
+  }
+);
+
+myObject.a; // 2
+myObject.b; // 4
+```
+
+不管通过字面对象中使用`get a()`还是通过`defineProperty()`定义，我们都在对象上创建了一个没有实际值的属性，访问它们将会自动地对getter函数进行隐藏的函数调用，其返回的任何值就是属性访问的结果。
+
+```js
+var myObject = {
+  // 为a定义getter
+  get a() {
+    return 2;
+  }
+};
+
+myObject.a = 3;
+myObject.a; // 2
+```
+
+因为只定义了getter，所以赋值操作会被废弃。普通属性的逻辑如下：
+
+```js
+var myObject = {
+  get a() {
+    return this._a_;
+  }
+
+  set a(val) {
+    this._a_ = val * 2;
+  }
+};
+
+myObject.a = 2;
+myObject.a; // 4
+```
+
+#### 存在性(Existence)
+
+我们前面留下一个问题，一个属性返回`undefined`，无法分辨是属性存在但值为`undefined`，还是无此属性的情况。
+
+现在我们可以通过此方式来判断：
+
+```js
+var myObject = {
+  a: 2
+};
+
+("a" in myObject); // true
+("b" in myObject); // false
+
+myObject.hasOwnProperty("a"); // true
+myObject.hasOwnProperty("b"); // false
+```
+
+`in`操作符会检查属性是否存在*对象*中，或者是否存在`[[Prototype]]`链对象遍历的更高层中。相比之下，`hasOwnProperty`仅仅检查`myObject`是否拥有属性，不会查询原型链。
+
+通过委托到`Object.prototype`，所有对象都可以访问`hasOwnProperty`。
+
+##### 枚举(Enumeration)
+
+先前，学习`enumerable`属性描述符性质时，只是简单解释其含义。现在来更详细的分析它。
+
+```js
+var myObject = {};
+
+Object.defineProperty(
+  myObject,
+  "a",
+  {enumerable: true, value: 2}
+);
+
+Object.defineProperty(
+  myObject,
+  "b",
+  {enumerable: false, value: 3}
+);
+
+myObject.b; // 3
+("b" in myObject); // true
+myObject.hasOwnProperty("b"); // true
+
+// ......
+
+for (var k in myObject) {
+  console.log(k, myObject[k]);
+}
+
+// "a" 2
+```
+
+`myObject.b`存在，但是不出现在`for...in`循环中。这是因为"enumerable"意味着『如果对象的属性被迭代时会被包含在内』。
+
+::: warning 注意
+
+将`for...in`在数组上使用，可能出现意外的结果，因为枚举不仅仅包含数组所有下标，还包含所有可枚举属性。
+
+因此`for..in`循环最好仅在对象中使用，数组用`for`循环。
+
+:::
+
+另一个可以区分可枚举和不可枚举属性的方法是：
+
+```js
+var myObject = {};
+
+Object.defineProperty(
+  myObject,
+  "a",
+  {enumerable: true, value: 2}
+);
+
+Object.defineProperty(
+  myObject,
+  "b",
+  {enumerable: false, value: 3}
+);
+
+myObject.propertyIsEnumerable("a"); // true
+myObject.propertyIsEnumerable("b"); // false
+
+Object.keys(myObject); // ["a"]
+Object.getOwnPropertyNames(myObject); // ["a", "b"]
+```
+
+`propertyIsEnumerable`测试给定的属性名是否*存在*对象上，并且是`enumerable: true`。
+
+`Object.keys()`返回一个所有可枚举属性的数组，而`Object.getOwnPropertyNames`返回一个所有属性的数组，无论能不能枚举。
+
+`in`和`hasOwnProperty`区别在于它们是否查询`[[Prototype]]`链，而`Object.keys`和`Object.getOwnPropertyNames`都*只*考察直接给定的对象。
+
+目前只有`in`操作符，可以查询整个`[[Prototype]]`链。
+
+### 迭代(Iteration)
+
+`for..in`循环迭代在一个对象上(包括`[[Prototype]]`)链所有的可迭代属性。但是你想要迭代值呢？
+
+最典型的就是`for`循环，比如：
+
+```js
+var myArray = [1, 2, 3];
+
+for (var i = 0; i < myArray.length; i++) {
+  console.log(myArray[i]);
+}
+// 1 2 3
+```
+
+但是这并没有迭代值，而是迭代了所有下标。如果想直接迭代值，而不是数组下标(或对象属性)呢？ES6新增了`for...of`可以解决这个问题：
+
+```js
+var myArray = [1, 2, 3];
+
+for (var v of myArray) {
+  console.log(v);
+}
+// 1 2 3
+```
+
+`for..of`要求被迭代目标提供迭代器对象`@@iterator`，每次循环默认调用迭代器`next()`方法。
+
+手动尝试一下内建迭代器`@@iterator`：
+
+```js
+var myArray = [1, 2, 3];
+vat it = myArray[Symbol.iterator]();
+
+it.next(); // {value: 1, done: false}
+it.next(); // {value: 2, done: false}
+it.next(); // {value: 3, done: false}
+it.next(); // {done: true}
+```
+
+注意：`@@iterator`本身**不是迭代器对象**，而是返回迭代器的方法。
+
+数组虽然可以使用`for...of`循环自动迭代，但是普通对象**没有内建的`@@iterator`**。
+
+### 混淆类的对象
+
+经过上一章对对象的探索，现在很自然的将注意力转移到『面向对象(OO)编程』与类(class)。我们会首先考察『面向类』的设计模式，再考察『类』的机制：实例化(instantiation)、继承(inheritance)、多态(relative polymorphism)。
+
+你会发现，这些概念不能很自然的映射到JS的对象机制上。许多JS开发者为了兼容这些机制做了挺多mixins等。
+
+### 类理论
+
+『类/继承』描述了一种特定的代码组织和结构形式，一种在我们的软件中对真实世界的建模方法。
+
+OO或者面向类的编程强调数据和操作它的行为之间固有的联系，所以合理的设计是将数据和行为打包在一起(也称为封装)。在正式的计算机科学中称为『数据结构』。
+#### JavaScript的类
+
+实际上JavaScript并没有『类』。
+
+由于类是一种设计模式，因此可以尽可能的模仿出类的行为。JS通过提供像类的语法，来满足开发者对类的需求。
+
+虽然看起来语法是一致的，但是JavaScript机制却在抵抗你使用*类的设计模式*，因为在底层，它与正常类的工作机制完全不同。因此虽然JS语法糖『Class』把真实情况对你隐藏了起来，但是你迟早会面对现实——其他语言类与JS模拟类的不同。
+
+总而言之，类是软件设计的可选模式。我们接下来会探索，使用类所需付出的代价。
+
+### 类机制
+
+在许多面向类语言中，『标准库』会提供『栈』数据结构，用`Stack`类表示，这个类拥有一组变量来存储数据，还拥有一组可公开访问的行为，这些行为使你的代码有能力与数据互动。
+
+但在这样的语言中，你不能直接在`Stack`上操作，必须**实例化**这个`Stack`类。
+
+#### 建筑物
+
+传统的『类』和『实例』好比建筑物的建造。
+
+建筑师规划出建筑的所有性质：宽、高、窗户、墙壁甚至天花板等。但她并不关心建筑物会被建造在*哪里*，也不关心这栋建筑有多少拷贝等。
+
+同时她也不关心这栋建筑的内容——家具、墙纸、吊扇等。她仅关心建筑物含有何种结构。
+
+她生成的建筑学上的蓝图仅仅是建筑物的『方案』，并不实际构成真正的建筑物。为了构建真正的建筑物，需要建筑工人根据方案精确的*建造*这栋建筑物，相当于工人把方案中意图的性质*拷贝*到物理建筑中。
+
+这栋建筑就是蓝图的一个物理实例，一个完美的*拷贝*。然后建筑工人可以移动隔壁再建造另一个拷贝。
+
+建筑物与蓝图间的关系是间接的。你可以检视蓝图来了解建筑物是如何构造的。但是仅有蓝图是不够的，如果你想打开一扇门，就不得不走进建筑物本身(在纸上你是没办法打开一扇门的)——蓝图仅仅是用来表示门的位置而画在纸上的线条。
+
+一个类就是一个蓝图。为了实际得到一个对象并与之互动，我们必须从类中建造(实例化)某些东西。这种『构建』的最终结果是一个对象，通常称为一个『实例』，我们可以按需要调用它的方法，访问它的公共数据属性。
+
+**这个对象是所有在类中被描述的特性的拷贝**。
+
+类和对象实例的关系为：**一个类通过拷贝操作被实例化为对象的形式**。
+
+#### 构造器(Constructor)
+
+类的实例由类的一种特殊方法构建，这个方法名通常与类名相同，称为『构造器』。这个方法的具体工作就是，初始化实例所需的所有信息(状态)。
+
+比如，考虑下面假想代码(语法自创)：
+
+```js
+class CoolGuy {
+  specialTrick = nothing;
+
+  CoolGuy(trick) {
+    specialTrick = trick;
+  }
+
+  showOff() {
+    output("Here's my trick: ", specialTrick);
+  }
+}
+```
+
+为了*制造*一个`CoolGuy`实例，需要调用类的构造器：
+
+```js
+Joe = new CoolGuy("jumping rope");
+
+Joe.showOff(); // Here's my trick: jumping ropo
+```
+
+构造器大多数情况下总是需要通过`new`来调用，以便语言引擎知道你想构建一个*新的*类的实例。
+
+### 类继承
+
+在面向类的语言中，你不仅可以定义一个能够初始化它自己的类，还可以定义另外一个类**继承**自第一个类。通常称为『父类』与『子类』。
+
+子类被定义时，会得到父类行为的初始拷贝，但子类可以覆盖这些继承的行为，甚至是定义新行为。
+
+#### 多态(Polymorphism)
+
+子类定义了覆盖父类的同名方法，仍然可以引用父类的同名方法。这种技术称为『多态』、『虚拟多态』、『相对多态』。
+
+注意：传统面向类语言通过`super`可以从子类构造器直接访问父类构造器，因为真正的类其构造器属于这个类。然而在JS中，这是相反的——实际上认为『类』属于构造器(`Foo.prototype`类型引用)更恰当。因为在JS中，父子关系仅存在于它们各自的构造器的两个`.prototype`对象间，构造器本身不直接关联，而且没有简单的方法从一个中相对引用另一个。
+
+不要让多态把你搞糊涂，让你认为子类是链接到父类上的。子类实际上只是得到父类继承的拷贝，**类继承就是拷贝**。
+
+#### 多重继承(Multiple Inheritance)
+
+有些面向类的语言允许你指定一个以上的『父类』，多重继承意味着每个父类的定义都会被拷贝到子类中。
+
+而JS不提供『多重继承』机制，但是开发者可以使用各种方法来模拟它。我们接下来就看看。
+
+### 混合(Mixin)
+
+当『继承』和『实例化』时，JavaScript的对象机制不会*自动地*执行拷贝行为。因为JS没有『类』可以拿来实例化，只有对象。而且对象也不会被拷贝到另一个对象中，而是*被链接在一起*。
+
+其他语言中类的行为就是拷贝，让我们看看JS开发者如何在JS中**模拟**这种*缺失*的类的拷贝行为：mixins(混合)。我们会看到两种『mixin』，**明确的**(explicit)和**隐含的**(implicit)。
+
+#### 明确的Mixin(Explicit Mixins)
+
+许多库/框架都有`extend`方法，但为了便于说，这里叫它`mixin`。
+
+```js
+// 简化的mixin示例：
+function mixin(sourceObj, targetObj) {
+  for (var key in sourceObj) {
+    // 仅拷贝非既存内容
+    if (!(key in targetObj)) {
+      targetObj[key] = sourceObj[key];
+    }
+  }
+  return targetObj;
+}
+```
+
+通过此工具函数，就可以复制源对象的属性到目标对象上。技术上讲，函数并没有实际复制，而是指向函数的*引用*被复制了。
+
+#### 隐含的Mixin(Implicit Mixins)
+
+...略过
+
+## 原型
+
+`[[Prototype]]`即原型链。
+
+### `[[Prototype]]`
+
+JavaScript对象中有一个内部属性，语言规范中称为`[[Prototype]]`，它只是其他对象的引用，几乎所有对象创建时，此属性都赋予非`null`值。
+
+注意，我们接下来就可以看见一个对象拥有空的`[[Prototype]]`属性。
+
+思考如下代码：
+
+```js
+var myObject = {
+  a: 2
+};
+
+myObject.a; // 2
+```
+
+`[[Prototype]]`引用有啥用呢？第三章中的`[[Get]]`操作，获取对象属性时，如果不存在就会在原型链上寻找。
+
+```js
+var anotherObject = {
+  a: 2
+};
+
+// 创建一个链接到anotherObject对象
+var myObject = Object.create(anotherObject);
+myObject.a; // 2
+```
+
+如上，就是在原型链中寻找到属性。
+
+#### Object.prototype
+
+但是`[[Prototype]]`链在哪里终结？
+
+每个普通的`[[Prototype]]`链的最顶端，是内建的`Object.prototype`。这个对象包含各种被整个JS使用的共通工具，因为JavaScript中所有普通(内建，而非宿主环境拓展)的对象都*衍生自*`Object.prototype`对象。
+
+比如`toString`、`valueOf`、`hasOwnProperty`等等。
+
+#### 设置与遮蔽属性
+
+之前我们说过，在对象上设置属性要比仅仅在对象上添加新属性或改变既存属性的值更加微妙，现在我们来重温这个话题。
+
+```js
+myObject.foo = "bar";
+```
+
+这段代码，可能出现以下执行方式：
+
+* 如果`myObject`已经存在`foo`属性，那么就是普通的赋值。
+* 如果`foo`存在于原型链高层，这里就会出现奇怪的情况，后续说明。
+* 如果`foo`同时存在于`myObject`和原型链高层，那么高层就会被遮蔽，总查询最底层的`foo`属性。
+
+在`myObject`的`foo`遮蔽没有看起来那么简单。现在让我们考察`myObject.foo = "bar"`赋值的三种场景，当`foo`**不直接存在**于`myObject`，但**存在**于`myObject`的`[[Prototype]]`链的更高层时：
+
+* 如果`foo`在高层访问到，而且**没有标记只读**(`writable: false`)，那么`myObject`就会被新添`foo`属性，形成一个**遮蔽属性**。
+* 如果`foo`在高层访问到，而且**标记只读**(`writable: true`)，那么赋值失效。
+* 如果`foo`在高层访问到，而且是一个setter，那么setter被调用，`myObject`不会被新添属性。
+
+大多数开发者认为，一个属性存在于原型链高层，那么对其赋值总会造成遮蔽，但实际上这只是三种场景的第一种。
+
+### 类
+
+现在你可能想知道：为什么一个对象需要链到另一个对象，其好处是什么？
+
+正如第四章讲解的那样，在JavaScript中，对于对象来说没有抽象模式/蓝图，即没有面向类的语言中那样的类。JavaScript只有对象。
+
+#### 类函数
+
+在JavaScript中有一种奇异的行为被无耻地滥用了许多年来*山寨*成某些看起来像*类*的东西。
+
+『某种程度的类』这种奇特的行为取决于函数的一个奇怪的性质：所有的函数默认都会得到一个公有的，不可枚举的属性，称为`Prototype`，它可以指向任何对象。
+
+```js
+function Foo() {
+  // ...
+}
+
+Foo.prototype; // {}
+```
+
+这个对象经常被称为"Foo的原型"，因为我们通过`Foo.prototype`的属性引用来访问它。这个对象到底是什么呢？
+
+解释它的最直接的方法是，每个由调用`new Foo()`而创建的对象将最终被`[[Prototype]]`链接到这个`Foo.原型`对象。
+
+让我们描绘一下：
+
+```js
+function Foo() {
+  // ...
+}
+
+var a = new Foo();
+
+Object.getPrototypeOf(a) === Foo.prototype; // true
+```
+
+当调用`new Foo()`创建`a`时，会发生的事情之一是，`a`得到一个内部`[[Prototype]]`链接，此链接链到`Foo.prototype`所指向的对象。
+
+在面向类的语言中，可以制造一个类的多个**拷贝**(即"实例")，因为初始化(或继承)类的处理意味着，将行为计划从这个类拷贝到物理对象中。
+
+在JavaScript中不会出现拷贝，不会创建类的多个实例，但可以创建多个对象，它们的`[[Prototype]]`连接至一个共通对象。但正因为如此，这些多个对象并不是完全分离的，而是**链接在一起**。
+
+`new Foo()`得到一个新对象，这个新对象`a`内部地被`[[Prototype]]`链接至`Foo.prototype`对象。
+
+**结果我们得到两个对象，彼此链接**。
+
+这种机制常被称为『原型继承』，但事实上它叫作『原型委托』会更为精确。
+
+#### 构造器(Constructors)
+
+让我们会看前面的代码：
+
+```js
+function Foo() {
+  // ...
+}
+
+var a = new Foo();
+```
+
+是什么导致我们认为`Foo`是一个类？
+
+其一，是因为`new`关键字，感觉它执行了类*构造器*方法。
+
+为了使『构造器』语义更令人糊涂，被随意贴上标签的`Foo.prototype`对象还有另外一招，思考如下代码:
+
+```js
+function Foo() {
+  // ...
+}
+
+Foo.prototype.constructor === Foo; // true
+
+var a = new Foo();
+a.constructor === Foo; // true
+```
+
+`Foo.prototype`对象默认会得到一个公有的`constructor`的不可枚举属性，而这个属性回指这个对象关联的函数。使被『构造器』创建的对象`a`看起来好像也有了`constructor`属性。
+
+注意：事实上`a`并没有`constructor`属性。
+
+其二，JavaScript惯例，『类』都以大写字母开头，因此更让你混淆。尽管对于JS引擎来说，这个大写一点作用都没有。
+
+##### 构造器还是调用？
+
+上面代码中，我们会误认为`Foo`是一个『构造器』，因为我们使用`new`调用它，而且它『构建』了一个对象。
+
+在现实中，`Foo`和其他函数都一样。函数自身**不是**构造器。但是你通过`new`来调用函数，就将函数调用变成了『构造器调用』。事实上，`new`在某种意义劫持了普通函数并将它以另一种方式调用：构建一个对象，**外加这个函数要做的其他任何事**。
+
+举个例子：
+
+```js
+function NothingSpecial() {
+  console.log("Don't mind me!");
+}
+
+var a = new NothingSpecial();
+// "Don't mind me!"
+
+a; // {}
+```
+
+`NothingSpecial`仅仅是一个普通函数，但用`new`调用时，几乎是一种副作用，它会*构建*一个对象返回，这个**调用**是一个*构造器调用*，但是`NothingSpecial`本身并不是一个构造器。
+
+换句话说，在JavaScript中，更合适的说法是，『构造器』是前面**用`new`关键字调用的任何函数**。
+
+函数不是构造器，但`new`调用时，函数调用是一个『构造器调用』。
+
+#### 机制
+
+仅仅是这些原因使得JavaScript的『类』命运多舛吗？
+
+**不全是**。JS开发者努力尽可能地模拟面向类：
+
+```js
+function Foo(name) {
+  this.name = name;
+}
+
+Foo.prototype.myName = function() {
+  return this.name;
+}
+
+var a = new Foo("a");
+var b = new Foo("b");
+
+a.myName(); // "a"
+b.myName(); // "b"
+```
+
+这段代码展示了另外两种『面向类』的花招：
+
+1. `this.name = name`：在每个对象上添加了`name`属性，模拟类的实例包装数据值。
+2. `Foo.prototype.myName = ...`：让实例通过原型链访问属性，模拟实例被创建时*拷贝*了一份属性。
+
+##### 复活构造器
+
+思考如下代码：
+
+```js
+function Foo() {}
+
+Foo.prototype = {};
+
+var a1 = new Foo();
+a1.constructor === Foo; // false
+a1.constructor === Object; // true
+```
+
+现在你知道`constructor`的实现有多随便了吧？
+
+### 原型继承
+
+我们已经看到了一些近似的『类』机制黑进JavaScript程序。但是现在还缺少近似的『继承』机制。
+
+实际上，我们前面已经看到了一个常被称为『原型继承』的机制如何工作：`a`可以『继承自』`Foo.prototype`并因此可以访问`myName()`函数，但是我们传统的想法是认为『继承』是两个『类』间的关系，而非『类』与『实例』的关系。
+
+下面是一段典型的『原型风格』代码：
+
+```js
+function Foo(name) {
+  this.name = name;
+}
+
+Foo.prototype.myName = function() {
+  return this.name;
+};
+
+function Bar(name, label) {
+  Foo.call(this, name);
+  this.label = label;
+}
+
+// 这里，创建一个新的`Bar.prototype`链接到`Foo.prototype`
+Bar.prototype = Object.create(Foo.prototype);
+
+// 注意，现在Bar.prototype.constructor不存在了
+// 如果你有依赖这个属性的习惯，它可以被手动『修复』
+// Bar.prototype.constructor = Bar;
+Bar.prototype.myLabel = function() {
+  return this.label;
+}
+
+var a = new Bar("a", "obj a");
+
+a.myName(); // "a"
+a.myLabel(); // "obj a"
+```
+
+重要的部分是`Bar.prototype = Object.create(Foo.prototype)`。凭空*创建*了一个『新』对象，并将对象内部的`[[Prototype]]`链接到指定的对象上。
+
+注意：这里有一个常见的误解/困惑时，下面两种方法*也能*工作，但会产生其他的问题：
+
+```js
+// 不会如你期望的那样工作
+Bar.prototype = Foo.prototype;
+
+// 会如你期望的那样工作
+// 但会产生其他副作用
+Bar.prototype = new Foo();
+```
+
+`Bar.prototype = Foo.prototype`会出现一个问题，即Foo和Bar共用同一个原型对象，Bar修改了原型属性会影响到Foo的原型属性，从而影响到Foo的所有实例，这肯定是不行的。
+
+`Bar.prototype = new Foo()`，这里创建了新的对象，并且链接到了`Foo.prototype`。但是它是用`Foo`的构造器实现的，如果构造器存在副作用(loding、改变状态等等)，这些副作用就会在链接时发生。
+
+因此，我们只能通过`Object.create()`来创建新对象，而且没调用`Foo`时所产生的副作用。唯一的缺点就是，必须创建一个新对象，并把旧的扔掉，而不是修改提供给我们的默认既存对象。
+
+如果有一种标准且可靠的方法来修改既存对象链接就好了。ES6之前，有一个非标准的，非所有浏览器通用的方法可以实现：`__proto__`属性。ES6中新增了`Object.setPrototypeOf`辅助工具，提供了标准且可预见的方法。
+
+接下来让我们比较一下ES6之前和ES6如何链接`Bar.prototype`至`Foo.prototype`。
+
+```js
+// ES6以前
+// 扔掉默认既存的Bar.prototype
+Bar.prototype = Object.create(Foo.prototype);
+
+// ES6+
+// 修改既存的Bar.prototype
+Object.setPrototypeOf(Bar.prototype, Foo.prototype);
+```
+
+如果忽略`Object.create`在性能上的劣势(丢对象)，其实它更易读。
+
+#### 考察『类』关系
+
+如果有一个对象`a`并希望找到它委托至哪个对象该如何实现呢？考察一个实例的继承血统(在JS是委托链接)，在传统的面向类环境中称为*自省*(introspection)或*反射*(reflection)。
+
+思考如下代码：
+
+```js
+function Foo() {
+  // ...
+}
+
+Foo.prototype.blah = ...;
+
+var a = new Foo();
+```
+
+那么我们如何反射`a`来找到它的*祖先*呢？一种方式是接受『类』的困惑：
+
+```js
+a instanceof Foo; // true
+```
+
+通过`instanceof`可以查询对象原型链上是否存在指向`a`。
+
+但是你需要获得测试函数(Foo)，否则仅两个普通对象，想知道它们原型链是否关联，就无能为力。
+
+第二种方法，是利用`[[Prototype]]`反射：
+
+```js
+Foo.prototype.isPrototypeOf(a); // true
+
+// 可以直接比较两个对象
+b.isPrototypeOf(c);
+```
+
+在这种情况下，我们不关心`Foo`，甚至不需要`Foo`，仅需要一个对象来与另一个对象测试。
+
+### 对象链接
+
+之前我们看到`[[Prototype]]`机制是一个内部链接。
+
+这种链接(主要)在对一个对象进行属性/方法引用，如果对象不存在，就会在被链接的对象上寻找，如此链结构形成了所谓的『原型链』。
+
+#### 创建链接
+
+现在我们已经明白了为什么JavaScript的`[[Prototype]]`机制和类不一样。
+
+`[[Prototype]]`机制的意义是什么？为什么JS开发者需要搞乱这些链接？
+
+记得我们之前说过的`Object.create`是英雄吗？现在，我们准备好看看为什么了？
+
+```js
+var foo = {
+  something: function() {
+    console.log("Tell me something good...");
+  }
+};
+
+var bar = Object.create(foo);
+
+bar.something(); // Tell me something good...
+```
+
+`Object.create`创建了一个链接到我们指定的对象(foo)上的新对象(bar)，这给了我们`[[Prototype]]`机制的所有力量(委托)，而且没有`new`函数作为类和构造器调用产生的副作用，搞乱了`prototype`和`constructor`引用或者其他的多余的东西。
+
+::: warning 注意
+
+`Object.create(null)`创建一个拥有空(`null`)`[[Prototype]]`链接的对象，如此这个对象不能委托到任何地方。因为这样的对象没有原型链，`instanceof`操作符没有东西可查。
+
+它们的典型用途是存储数据(字典)，因为它们不会受到原型链任何委托属性/函数的影响。
+
+:::
+
+我们不需要类在两个对象间创建有意义的关系。我们需要**真正关心**的唯一问题是对象为了委托而链接在一起，而`Object.create`给我们这种链接并且没有一切关于类的烂设计。
+
+##### 填补`Object.create`
+
+`Object.create()`在ES5中加入。如果需要支持ES5之前的填补：
+
+```js
+if (!Object.create) {
+  Object.create = function(o) {
+    function F(){}
+    F.prototype = o;
+    return new F();
+  }
+}
+```
+
+这个填补工具通过一次性的F函数并覆盖它的`prototype`属性链接到指定的对象。通过`new F`构造器调用来制造一个将会链接到我们指定对象上的新对象。
+
+#### 链接作为候补？
+
+也许这么想很吸引人：对象间的链接主要是为了给『缺失』的属性和方法提供某种候补。但是这种方式不太好。
+
+```js
+var anotherObject = {
+  cool: function() {
+    console.log("cool!");
+  }
+};
+
+var myObject = Object.create(anotherObject);
+
+myObject.cool(); // "cool!"
+```
+
+得益于`[[Prototype]]`，这段代码可以工作，但是开发者会觉得迷惑。
+
+**这里不要错过一个重要的细节**。
+
+即使`myObject`不存在`cool`方法，但是它也能工作，感觉在API设计上加入了『魔法』气息，这会使开发者很吃惊。因此尽可能少使用这样的『魔法』。
+
+## 行为委托
+
+JavaScript重要的实质**全部在于被连接到其他对象的对象**。
+
+### 迈向面向委托的设计
+
+为了最直接了当的使用`[[Prototype]]`，我们必须意识到它从根本上与类是不同的设计模式。
+
+::: warning 注意
+
+某些面向类的设计依然很有效，所以不要全部摒弃，比如封装等。
+
+:::
+
+我们需要试着将思维从类/继承的设计模式改变为行为代理设计模式，接下来进行一些理论练习与实践。
+
+#### 类理论
+
+比如我们有几个相似的任务(XYZ，ABC等)需要在软件中建模。
+
+使用类，设计场景的方式是：定义一个泛化的父类(基类)比如`Task`，为所有同类的任务定义共享行为。然后，定义子类`XYZ`和`ABC`，它们都继承自`Task`，每个都分别添加了特化的行为来处理各自的任务。
+
+**重要的是**，类设计模式会让继承发挥最大功效，当你在`XYZ`任务中覆盖`Task`的某些泛化方法的定义时，你将会想利用方法覆盖(和多态)，也许会利用`super`来调用这个方法的泛化版本，为它添加更多的行为。**你很可能会找到几个这样的地方：可以『抽象』到父类中，并在子类中特化(覆盖)的一般化行为**。
+
+关于这个场景的假想代码：
+
+```js
+class Task {
+  id;
+
+  // Task构造器
+  Task(ID) {id = ID;}
+  ouputTask() {output(id);}
+}
+
+class XYZ inherits Task {
+  label;
+
+  // XYZ构造器
+  XYZ(ID, Label) {super(ID); label = Label;}
+  outputTask() {super(); output(label);}
+}
+
+class ABC inherits Task {
+  // ...
+}
+```
+
+现在，你可以初始化一个或多个`XYZ`子类的**拷贝**，并且使用这些实例来执行『XYZ』任务。这些实例已经**同时拷贝**了泛化的`Task`定义的行为和具体的`XYZ`定义的行为。类似地，`ABC`类的实例将拷贝`Task`的行为和具体的`ABC`的行为。在构建完成之后，你通常仅会与这些实例交互(而不是类)，因为每个实例都拷贝完成计划任务的所有行为。
+
+#### 委托理论
+
+但现在让我们试着用*行为委托*代替*类*来思考同样的问题。
+
+你将首先定义一个称为`Task`的**对象**，而且它将拥有具体的行为，这些行为包含各种任务可以使用的(委托至)工具方法。然后，对于每个任务(XYZ、ABC)，你定义一个**对象**来持有这个特定任务的数据/行为。你**链接**你的特定任务对象到`Task`工具对象，允许它们在必要的时候可以委托到它。
+
+基本上，你认为执行任务`XYZ`就是从两个兄弟/对等的对象(XYZ和Task)中请求行为来完成它。与其通过类的拷贝将它们组合在一起，它们可以将它们保持在分离的对象中，而且可以在需要的情况下允许`XYZ`对象**委托到Task**。
+
+下面是简单的代码实现：
+
+```js
+var Task = {
+  setID: function(ID) {this.id = ID;}
+  outputID: function() {console.log(this.id);}
+};
+
+// 使XYZ委托到Task
+var XYZ = Object.create(Task);
+
+XYZ.prepareTask = function(ID, Label) {
+  this.setID(ID);
+  this.label = Label;
+};
+
+XYZ.outputTaskDetails = function() {
+  this.outputID();
+  console.log(this.label);
+}
+
+// ABC = Object.create(Task);
+// ABC ... = ...
+```
+
+与面向类(也就是OO)对比，这种风格的代码为"OLOO"(objects-linked-to-other-objects 链接到其他对象的对象)。所以我们*真正*关心的是，对象XYZ委托到对象Task。
+
+在JavaScript中，`[[Prototype]]`机制将**对象**链接到其他**对象**。无论你多么想说服自己这不是真的，JavaScript没有像『类』那样的抽象机制。这就像逆水行舟：你*可以*做到，但是你选择逆流而上，所以很显然，**你会更困难地到达目的地**。
+
+**行为委托**意味着：在某个对象的属性或方法没能在这个对象上找到时，让这个对象为属性或方法引用提供一个委托。
+
+这是一个*极其强大*的设计模式，与父类和子类、继承、多态等有很大不同，与其在你的思维中纵向地，从上面父类到下面子类地组织对象，你应当并列地，对等地考虑对象，而且对象间拥有方向性的委托链接。
+
+##### 相互委托(不允许)
+
+你不能在两个或多个对象间互相地委托，否则会得到一个错误。
+
+#### 思维模型比较
+
+现在你至少在理论上可以看到『类』和『委托』设计模式的不同了，现在让我们比较一下其思维模型。
+
+我们将查看一些更加理论上的代码，然后比较两种代码实现。首先是经典的OO(原型)风格：
+
+```js
+function Foo(who) {
+  this.me = who;
+}
+Foo.prototype.identify = function() {
+  return "I am " + this.me;
+}
+
+function Bar(who) {
+  Foo.call(this, who);
+}
+Bar.prototype = Object.create(Foo.prototype);
+
+Bar.prototype.speak = function() {
+  alert("Hello, " + this.identify() + ".");
+}
+
+var b1 = new Bar("b1");
+var b2 = new Bar("b2");
+
+b1.speak();
+b2.speak();
+```
+
+很普通的原型模式，没啥太具开拓性的东西发生。
+
+现在，让我们使用*OLOO*风格的代码**实现完全相同的功能**：
+
+```js
+var Foo = {
+  init: function(who) {
+    this.me = who;
+  },
+  identify: function() {
+    return "I am " + this.me;
+  }
+};
+
+var Bar = Object.create(Foo);
+
+Bar.speak = function() {
+  alert("Hello, " + this.identify() + ".");
+}
+
+var b1 = Object.create(Bar);
+b1.init("b1");
+var b2 = Object.create(Bar);
+b2.init("b2");
+
+b1.speak();
+b2.speak();
+```
+
+将三个对象链接到了一起，省略了类的东西，构造器、原型和`new`调用等。
+
+因此OLOO风格代码接受了JS没有类的事实：我们唯一需要真正关心的事情是**链接到其他对象的对象**。
+
+### classes vs. Objects
+
+用类的构造器，你强制构建和初始化在同一个步骤进行。然后，在许多情况下，分开这两步做(OLOO)会更灵活。
+
+OLOO对关注点分离原则有*更好*的支持，也就是创建和初始化没必要合并在同一个操作中。
+
+OLOO是一种没有类的抽象，而直接创建和关联对象的代码风格，OLOO十分自然地实现了基于原型链的行为委托。
+
+例如如下代码：
+
+```js
+var Foo = {};
+
+var Bar = Object.create(Foo);
+Bar...
+
+var b1 = Object.create(Bar);
+```
+
+## 附录
+
+### ES6 class
+
+如果是本书后半部分有什么关键信息，那就是类是一种代码的可选设计模式，而JavaScript来实现它总是很尴尬。
+
+虽然尴尬的一大部分来源于语法，但关于类的设计的问题要深刻多了。第四章指出传统的面向类语言中，类实际上发生了从父类向子类，由子类向实例的*拷贝*动作，而在`[[Prototype]]`中，动作**不是**一个拷贝，而是委托链接。
+
+OLOO风格和行为委托接受了`[[Prototype]]`，而不是将它隐藏起来，比较它们的简单性是，类在JS的问题就暴露了出来。
+
+#### 静态优于动态？
+
+ES6最大的问题就是动态，虽然`class`语法让你看起来它是一个静态定义，但事实上它仅仅是一个对象，一个可以直接互动的对象。
+
+在传统面向类的语言中，不会存在定义类之后还来调整它的情况，因此类设计模式不提供这样的能力，但是JS**最强大的部分**就是它的*动态*的，任何对象的定义都是可变的，而且它对这种动态机制带来的陷阱不提供任何支持。
