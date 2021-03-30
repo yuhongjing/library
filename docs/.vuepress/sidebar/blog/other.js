@@ -5,6 +5,7 @@ module.exports = [
       children: [
         'read',
         '5W1H',
+        'STAR'
       ]
     }
 ]

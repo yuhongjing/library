@@ -8,7 +8,7 @@ module.exports = [
         'win10激活',
         '移动端调试',
         'git修改作者',
-        'PicGo配合Github图床'
+        'PicGo配合Github图床',
       ]
     }
 ];

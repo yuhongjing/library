@@ -26,18 +26,29 @@ title: commit 提交规范
 * fix：修复了bug。
 * feat：新增了功能。
 * BREAKING CHANGE：在可选的正文或脚注的起始位置带有`BREAKING CHANGE:`，表示引入了破坏性API变更。破坏性变更可以是任意`类型`提交的一部分。
-* chore：修改构建过程或辅助工具。
+* chore：其它改动，例如注释修改或者文件清理。不影响src和test代码文件都可以放这里。
+* ci：持续集成修改。
 * perf：优化相关，比如提升性能、体验等。
 * docs：修改文档。
 * style：修改代码格式。
 * test：修改测试用例。
 * refactor：重构功能。
 * revert：回滚功能。
-* merge：代码合并
-* sync：同步主线/分支的bug
+* merge：代码合并。
+* sync：同步主线/分支的bug。
 * misc：其他修改，比如依赖管理等。
 
 类型参照：[commit lint](https://commitlint.js.org/#/reference-rules)、[sees parkbox](https://seesparkbox.com/foundry/semantic_commit_messages)
+
+## 范围scope
+
+主要指代码的影响面，一般没有强制要求。但是团队可以按照自己的理解进行设计。通常有『技术纬度』和『业务纬度』两种划分方式。
+
+按照技术分为：`controller`、`dto`、`service`等。
+
+按照业务分为：`user`、`order`等。
+
+不填写范围也是可以的。
 
 ## 示例
 

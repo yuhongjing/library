@@ -4,7 +4,8 @@ module.exports = [
     collapsable: false,
     children: [
       'read',
-      'vscode'
+      'vscode',
+      'Charles抓包'
     ]
   }
 ]
