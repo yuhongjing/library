@@ -96,7 +96,8 @@ module.exports = [
           title: '编写规范',
           children: [
             'javascript/编写规范/read',
-            'javascript/编写规范/代码注释'
+            'javascript/编写规范/代码注释',
+            'javascript/编写规范/clean-code-javascript',
           ]
         }
       ]
