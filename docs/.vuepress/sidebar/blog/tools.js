@@ -6,7 +6,6 @@ module.exports = [
         'read',
         'git连接多仓库',
         'win10激活',
-        '移动端调试',
         'git修改作者',
         'PicGo配合Github图床',
       ]

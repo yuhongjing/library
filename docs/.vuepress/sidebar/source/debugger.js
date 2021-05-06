@@ -5,7 +5,9 @@ module.exports = [
     children: [
       'read',
       'vscode',
-      'Charles抓包'
+      'Charles抓包',
+      '移动端调试',
+      'XSwitch代理'
     ]
   }
 ]
