@@ -29,7 +29,7 @@ title: Npm管理包
 
 ## 更新包
 
-项目根目录下输入命令，`npm version patch`、`npm publish`
+项目根目录下输入命令，`npm version patch`、`npm publish`、`npm install 包名@版本号`
 
 [更新包详情及命令](https://docs.npmjs.com/cli-commands/version.html)
 

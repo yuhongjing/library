@@ -16,6 +16,7 @@ title: Mac必备应用
 
 * [Postman](https://www.getpostman.com/) 功能强大的测试API工具
 * [Charles](https://www.charlesproxy.com/) 抓包代理
+* [Sketch](https://www.sketch.com/) 界面设计工具
 
 ## 系统工具
 

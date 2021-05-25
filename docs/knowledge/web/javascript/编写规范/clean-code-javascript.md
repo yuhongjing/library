@@ -10,13 +10,11 @@ title: clean-code-javascript
 * [函数](#函数)
 * [对象和数据结构](#对象和数据结构)
 * [类](#类)
-* [SOLID](#SOLID)
-* [测试](#测试)
-* [并行](#并行)
-* [错误处理](#错误处理)
+* [健壮性](#健壮性)
+* [并发性](#并发性)
+* [容错性](#容错性)
 * [格式化](#格式化)
 * [注释](#注释)
-* [翻译](#翻译)
 
 ## 变量
 
@@ -780,3 +778,814 @@ console.log(`Employee name: ${employee.getName()}`); // Employee name: John Doe
 ```
 
 ## 类
+
+### ES2015/ES6类优先与ES5纯函数
+
+经典的ES5类的继承、构造和定义可读性不太好。因此尽量优先使用ES6的类。
+
+```js
+// Bad
+const Animal = function(age) {
+  if (!(this instanceof Animal)) {
+    throw new Error('Instantiate Animal with `new`');
+  }
+
+  this.age = age;
+};
+
+Animal.prototype.move = function move() {};
+
+const Mammal = function(age, furColor) {
+  if (!(this instanceof Mammal)) {
+    throw new Error('Instantiate Mammal with `new`');
+  }
+
+  Animal.call(this, age);
+  this.furColor = furColor;
+};
+
+Mammal.prototype = Object.create(Animal.prototype);
+Mammal.prototype.constructor = Mammal;
+Mammal.prototype.liveBirth = function liveBirth() {};
+
+const Human = function(age, furColor, languageSpoken) {
+  if (!(this instanceof Human)) {
+    throw new Error('Instantiate Human with `new`');
+  }
+
+  Mammal.call(this, age, furColor);
+  this.languageSpoken = languageSpoken;
+};
+
+Human.prototype = Object.create(Mammal.prototype);
+Human.prototype.constructor = Human;
+Human.prototype.speak = function speak() {};
+
+// Good
+class Animal {
+  constructor(age) {
+    this.age = age;
+  }
+
+  move() {}
+}
+
+class Mammal extends Animal {
+  constructor(age, furColor) {
+    super(age);
+    this.furColor = furColor;
+  }
+
+  liveBirth() {}
+}
+
+class Human extends Mammal {
+  constructor(age, furColor, languageSpoken) {
+    super(age, furColor) {
+      this.languageSpoken = languageSpoken;
+    }
+  }
+
+  speak() {}
+}
+```
+
+### 使用方法链
+
+方法链在JavaScript中是非常有用的，并在许多类库比如jQuery和Lodash中见到。它允许你的代码变得富有表现力，并减少啰嗦。在类/方法中返回this，就可以把类的其它方法链在一起。
+
+```js
+// Bad
+class Car {
+  constructor() {
+    this.make = 'Honda';
+    this.model = 'Accord';
+    this.color = 'white';
+  }
+
+  setMake(make) {
+    this.make = make;
+  }
+
+  setModel(model) {
+    this.model = model;
+  }
+
+  setColor(color) {
+    this.color = color;
+  }
+
+  save() {
+    console.log(this.make, this.model, this.color);
+  }
+}
+
+const car = new Car();
+car.setColor('pink');
+car.setMake('Ford');
+car.setModel('F-150');
+car.save();
+
+// Good
+class Car {
+  constructor() {
+    this.make = 'Honda';
+    this.model = 'Accord';
+    this.color = 'white';
+  }
+
+  setMake(make) {
+    this.make = make;
+    return this;
+  }
+
+  setModel(model) {
+    this.model = model;
+    return this;
+  }
+
+  setColor(color) {
+    this.color = color;
+    return this;
+  }
+
+  save() {
+    console.log(this.make, this.model, this.color);
+    return this;
+  }
+}
+
+const car = new Car()
+  .setColor('pink')
+  .setMake('Ford')
+  .setModel('F-150')
+  .save();
+```
+
+### 组合优先于继承
+
+尽可能先优先使用组合而不是继承。
+
+```js
+// Bad
+class Employee {
+  constructor(name, email) {
+    this.name = name;
+    this.email = email;
+  }
+
+  // ...
+}
+
+class EmployeeTaxData extends Employee {
+  constructor(ssn, salary) {
+    super();
+    this.ssn = ssn;
+    this.salary = salary;
+  }
+
+  // ...
+}
+
+// Good
+class EmployeeTaxData {
+  constructor(ssn, salary) {
+    this.ssn = ssn;
+    this.salary = salary;
+  }
+
+  // ...
+}
+
+class Employee {
+  constructor(name, email) {
+    this.name = name;
+    this.email = email;
+  }
+
+  setTaxData(ssn, salary) {
+    this.taxData = new EmployeeTaxData(ssn, salary);
+  }
+  // ...
+}
+```
+
+## 健壮性
+
+### 单一职责原则(SRP)
+
+正如代码整洁之道所述，"永远不要有超过一个理由来修改一个类"。给一个类塞满许多功能，就像你在航班上只能带一个行李箱一样，这样做的会导致类缺少内聚性，经常对它进行修改。
+
+```js
+// Bad
+class UserSettings {
+  constructor(user) {
+    this.user = user;
+  }
+
+  changeSettings(settings) {
+    if (this.verifyCredentials()) {
+      // ...
+    }
+  }
+
+  verifyCredentials() {
+    // ...
+  }
+}
+
+// Good
+class UserAuth {
+  constructor(user) {
+    this.user = user;
+  }
+
+  verifyCredentials() {
+    // ...
+  }
+}
+
+class UserSettings {
+  constructor(user) {
+    this.user = user;
+    this.auth = new UserAuth(user);
+  }
+
+  changeSettings(settings) {
+    if (this.auth.verifyCredentials()) {
+      // ...
+    }
+  }
+}
+```
+
+### 开闭原则(OCP)
+
+Bertrand Meyer说过，"软件实体(类、模块、函数等)应该为扩展开放，但是为修改关闭。"这是什么意思呢？这个原则基本上说明了你应该允许用户添加功能而不必修改现在的代码。
+
+```js
+// Bad
+class AjaxAdapter extends Adapter {
+  constructor() {
+    super();
+    this.name = 'ajaxAdapter';
+  }
+}
+
+class NodeAdapter extends Adapter {
+  constructor() {
+    super();
+    this.name = 'nodeAddapter';
+  }
+}
+
+class HttpRequester {
+  constructor(adapter) {
+    this.adapter = adapter;
+  }
+
+  fetch(url) {
+    if (this.adapter.name === 'ajaxAdapter') {
+      return makeAjaxCall(url).then((response) => {
+        // ...
+      });
+    }
+
+    if (this.adapter.name === 'httpNodeAdapter') {
+      return makeHttpCall(url).then((response) => {
+        // ...
+      });
+    }
+  }
+}
+
+function makeAjaxCall(url) {
+  // ...
+}
+
+function makeHttpCall(url) {
+  // ...
+}
+
+// Good
+class AjaxAdapter extends Adapter {
+  constructor() {
+    super();
+    this.name = 'ajaxAdapter';
+  }
+
+  request(url) {
+    // ...
+  }
+}
+
+class NodeAdapter extends Adapter {
+  constructor() {
+    super();
+    this.name = 'nodeAdapter';
+  }
+
+  request(url) {
+    // ...
+  }
+}
+
+class HttpRequest {
+  constructor(adapter) {
+    this.adapter = adapter;
+  }
+
+  fetch(url) {
+    return this.adapter.request(url).then((response) => {
+      // ...
+    });
+  }
+}
+```
+
+### Liskov替换原则(LSP)
+
+里氏替换原则，**子类可以扩展父类的功能，但不能改变父类原有的功能**。也就是说：子类继承父类时，除添加新的方法完成新增功能外，尽量不要重写父类的方法。
+
+```js
+// Bad
+class Rectangle {
+  constructor() {
+    this.width = 0;
+    this.height = 0;
+  }
+
+  setColor(color) {
+    // ...
+  }
+
+  render(area) {
+    // ...
+  }
+
+  setWidth(width) {
+    this.width = width;
+  }
+
+  setHeight(height) {
+    this.height = height;
+  }
+
+  getArea() {
+    return this.width * this.height;
+  }
+}
+
+class Square extends Rectangle {
+  setWidth(width) {
+    this.width = width;
+    this.height = width;
+  }
+
+  setHeight(height) {
+    this.width = height;
+    this.height = height;
+  }
+}
+
+function renderLargeRectangles(rectangles) {
+  rectangles.forEach((rectangle) => {
+    rectangle.setWidth(4);
+    rectangle.setHeight(5);
+    const area = rectangle.getArea(); // BAD: 返回了25，应该返回20
+    rectangle.render(area);
+  });
+}
+
+const rectangles = [new Rectangle(), new Rectangle(), new Square()];
+renderLargeRectangles(rectangles);
+
+// Good
+class Shape {
+  setColor(color) {
+    // ...
+  }
+
+  render(area) {
+    // ...
+  }
+}
+
+class Rectangle extends Shape {
+  constructor(widht, height) {
+    super();
+    this.width = width;
+    this.height = height;
+  }
+
+  getArea() {
+    return this.width * this.height;
+  }
+}
+
+class Square extends Shape {
+  constructor(length) {
+    super();
+    this.length = length;
+  }
+
+  getArea() {
+    return this.length * this.length;
+  }
+}
+
+function renderLargeShapes(shapes) {
+  shapes.forEach((shape) => {
+    const area = shape.getArea();
+    shape.render(area);
+  });
+}
+
+const shapes = [new Rectangle(4, 5), new Rectangle(4, 5), new Square(5)];
+renderLargeShapes(shapes);
+```
+
+### 接口隔离原则(ISP)
+
+JavaScript没有接口，所以这个原则不像其它语言那么严格。不过，对于JavaScript这种缺少类型的语言来说，它依然是重要并且有意义的。
+
+接口隔离原则说的是"客户端不应该强制依赖他们不需要的接口。"在JavaScript这种弱类型语言中，接口是隐式的契约。
+
+在JavaScript中能比较好的说明这个原则的是一个类需要一个巨大的配置对象。不需要客户端去设置大量的选项是有益的，因为多数情况下他们不需要全部的设置。让它们变成可选的有助于防止出现一个"胖接口"。
+
+```js
+// Bad
+class DOMTraverser {
+  constructor(settings) {
+    this.settings = settings;
+    this.setup();
+  }
+
+  setup() {
+    this.rootNode = this.settings.rootNode;
+    this.animationModule.setup();
+  }
+
+  traverse() {
+    // ...
+  }
+}
+
+const $ = new DOMTraverser({
+  rootNode: document.getElementsByTagName('body'),
+  animationModule() {}
+});
+
+// Good
+class DOMTraverser {
+  constructor(settings) {
+    this.settings = settings;
+    this.options = settings.options;
+    this.setup();
+  }
+
+  setup {
+    this.rootNode = this.settings.rootNode;
+    this.setupOptions();
+  }
+
+  setupOptions() {
+    if (this.options.animationModule) {
+      // ...
+    }
+  }
+
+  traverse() {
+    // ...
+  }
+}
+
+const $ = new DOMTraverser({
+  rootNode: document.getElementsByTagName('body'),
+  options: {
+    animationModule() {}
+  }
+});
+```
+
+### 依赖反转原则(DIP)
+
+这个原则阐述了两个重要的事情：
+
+1. 高级模块不应该依赖于低级模块，两者都应该依赖于抽象。
+2. 抽象不应当依赖于具体实现，具体实现应当依赖于抽象。
+
+如上所述，JavaScript没有接口，所以被依赖的抽象是隐式契约。也就是说，一个对象/类的方法和属性直接暴露给另外一个对象/类。在下面的例子中，任何一个Request模块的隐式契约InventoryTracker将有一个requestItems方法。
+
+```js
+// Bad
+class InventoryRequester {
+  constructor() {
+    this.REQ_METHODS = ['HTTP'];
+  }
+
+  requestItem(item) {
+    // ...
+  }
+}
+
+class InventoryTracker {
+  constructor(items) {
+    this.items = items;
+
+    this.requester = new InventoryRequester();
+  }
+
+  requestItems() {
+    this.items.forEach((item) => {
+      this.requester.requestItem(item);
+    });
+  }
+}
+
+const inventoryTracker = new InventoryTracker(['apples', 'bananas']);
+inventoryTracker.requestItems();
+
+// Good
+class InventoryTracker {
+  constructor(items, requester) {
+    this.items = items;
+    this.requester = requester;
+  }
+
+  requestItems() {
+    this.items.forEach((item) => {
+      this.requester.requestItem(item);
+    });
+  }
+}
+
+class InventoryRequesterV1 {
+  constructor() {
+    this.REQ_METHODS = ['HTTP'];
+  }
+
+  requestItem(item) {
+    // ...
+  }
+}
+
+class InventoryRequesterV2 {
+  constructor() {
+    this.REQ_METHODS = ['WS'];
+  }
+
+  requestItem(item) {
+    // ...
+  }
+}
+
+const inventoryTracker = new InventoryTracker(['apples', 'bananas'], new InventoryRequesterV2());
+inventoryTracker.requestItems();
+```
+
+## 并发性
+
+### 使用Promises而不是callback
+
+回调不够简洁，因为他们会产生过多的嵌套。在ES2015/ES6中，Promises已经是内置的全局类型了。
+
+```js
+// Bad
+import { get } from 'request';
+import { writeFile } from 'fs';
+
+get('xxx/xxx', (requestErr, response) => {
+  if (requestErr) {
+    console.error(requestErr);
+  } else {
+    writeFile('xxxx', response.body, (writeErr) => {
+      if (writeErr) {
+        console.error(writeErr);
+      } else {
+        // ...
+      }
+    });
+  }
+});
+
+// Good
+import { get } from 'request';
+import { writeFile } from 'fs';
+
+get('xxx')
+  .then((response) => {
+    return writeFile('xxxx', response);
+  })
+  .then(() => {
+    // ...
+  })
+  .catch((err) => {
+    console.error(err);
+  });
+```
+
+### Async/Await比Promises更加简洁
+
+Promises是回调的一个非常简洁的替代品，但是ES2017/ES8带来的async和await提供了一个更加简洁的解决方案。你需要的只是一个前缀为async关键字的函数，接下来就可以不需要then函数链来编写逻辑了。
+
+```js
+// Bad
+import { get } from 'request-promise';
+import { writeFile } from 'fs-promise';
+
+get('xxx')
+  .then((response) => {
+    return writeFile('xxx', response);
+  })
+  .then(() => {
+    console.log('xxx');
+  })
+  .catch((err) => {
+    console.error(err);
+  });
+
+// Good
+import { get } from 'request-promise';
+import { writeFile } from 'fs-promise';
+
+async function getCleanCodeArticle() {
+  try {
+    const response = await get('xxx');
+    await writeFile('xxx', response);
+  } catch(err) {
+    console.error(err);
+  }
+}
+```
+
+## 容错性
+
+抛出错误是一件好事情！他们意味着当你的程序有错时运行时可以成功确认，并且通过停止执行当前堆栈上的函数来让你知道，结束当前进程，在控制器中用一个堆栈跟踪提示你。
+
+### 不要忽略捕捉错误
+
+对捕捉到的错误不做任何处理不能给你修复错误或者响应错误的能力。向控制台记录错误也不怎么好，因为往往会丢失在海量的控制台输出中。如果你把任意一段代码用try/catch包装那就意味着你想到这里可能会错，因此你应该有个修复计划，或者当错误发生时有一个代码路径。
+
+```js
+// Bad
+try {
+  functionThatMightThrow();
+} catch(error) {
+  console.log(error);
+}
+
+// Good
+try {
+  functionThatMightThrow();
+} catch(error) {
+  console.error(error);
+  notifyUserOfError(error);
+  reportErrorToService(error);
+}
+```
+
+### 不要忽略被拒绝的promise
+
+与你不应忽略来自try/catch的错误的原因相同。
+
+```js
+// Bad
+getdata()
+  .then((data) => {
+    functionThatMightThrow(data);
+  })
+  .catch((error) => {
+    console.log(error);
+  })
+
+// Good
+getdata()
+  .then((data) => {
+    functionThatMightThrow(data);
+  })
+  .catch((error) => {
+    console.error(error);
+    notifyUserOfError(error);
+    reportErrorToService(error);
+  });
+```
+
+## 格式化
+
+格式化是主观的。就像其它规则一样，没有必须让你遵循的硬性规则。重点是不要因为格式去争论，使用工具来自动格式化即可。
+
+### 保持大小写一致
+
+JavaScript是无类型的，所以大小写告诉你关于你的变量、函数等的很多事情。这些规则是主观的，所以你的团队可以选择他们想要的。重点是，不管你们选择了什么，要保持一致。
+
+```js
+// Bad
+const DAYS_IN_WEEK = 7;
+const daysInMonth = 30;
+
+const songs = ['Back In Black', 'Stairway to Heaven', 'Hey Jude'];
+const Artists = ['ACDC', 'Led Zepplein', 'The Beatles'];
+
+function eraseDatabase() {}
+function restore_database() {}
+
+class animal {}
+class Alpaca {}
+
+// Good
+const DAYS_IN_WEEK = 7;
+const DAYS_IN_MONTH = 30;
+
+const songs = ['Back In Black', 'Stairway to Heaven', 'Hey Jude'];
+const artists = ['ACDC', 'Led Zeppelin', 'The Beatles'];
+
+function eraseDatabase() {}
+function restoreDatabase() {}
+
+class Animal {}
+class Alpaca {}
+```
+
+### 函数的调用方与被调用方应该靠近
+
+如果一个函数调用另一个，则在代码中这两个函数的竖直位置应该靠近。理想情况下，保持被调用函数在被调用函数的正上方。我们倾向于从上到下阅读代码，就像读一章报纸。
+
+```js
+// Bad
+class PerformanceReview {
+  constructor(employee) {
+    this.employee = employee;
+  }
+
+  lookupPeers() {
+    return db.lookup(this.employee, 'peers');
+  }
+
+  lookupManager() {
+    return db.lookup(this.employee, 'manager');
+  }
+
+  getPeerReviews() {
+    const peers = this.lookupPeers();
+    // ...
+  }
+
+  perfReview() {
+    this.getPeerReviews();
+    this.getManagerReview();
+    this.getSelfReview();
+  }
+
+  getManagerReview() {
+    const manager = this.lookupManager();
+  }
+
+  getSelfReview() {
+    // ...
+  }
+}
+
+const review = new PerformanceReview(user);
+review.perfReview();
+
+// Good
+class PerformanceReview {
+  constructor(employee) {
+    this.employee = employee;
+  }
+
+  perfReview() {
+    this.getPeerReviews();
+    this.getManagerReview();
+    this.getSelfReview();
+  }
+
+  getPeerReviews() {
+    const peers = this.lookupPeers();
+    // ...
+  }
+
+  lookupPeers() {
+    return db.lookup(this.employee, 'peers');
+  }
+
+  getManagerReview() {
+    const manager = this.lookupManager();
+  }
+
+  lookupManager() {
+    return db.lookup(this.employee, 'manager');
+  }
+
+  getSelfReview() {
+    // ...
+  }
+}
+
+const review = new PerformanceReview(user);
+review.perfReview();
+```
+
+## 注释
+
