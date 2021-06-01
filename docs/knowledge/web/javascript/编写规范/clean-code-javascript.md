@@ -1589,3 +1589,108 @@ review.perfReview();
 
 ## 注释
 
+### 仅仅对包含复杂业务逻辑的代码进行注释
+
+注释是代码的解释，不是要求。多数情况下，好的代码就是文档。
+
+```js
+// Bad
+function hashIt(data) {
+  // 这是hash
+  let hash = 0;
+  // 字符长度
+  const length = data.length;
+
+  // 遍历字符串
+  for (let i = 0; i < length; i++) {
+    // 获取字符编码
+    const char = data.charCodeAt(i);
+    // 制造Hash
+    hash = ((hash << 5) - hash) + char;
+    // 转换为32位数字
+    hash &= hash;
+  }
+}
+
+// Good
+function hashIt(data) {
+  let hash = 0;
+  const length = data.length;
+
+  for (let i = 0; i < length; i++) {
+    const char = data.charCodeAt(i);
+    hash = ((hash << 5) - hash) + char;
+    // 转换为32位数字
+    hash &= hash;
+  }
+}
+```
+
+### 不要在代码库中保存注释掉的代码
+
+因为有版本控制，把旧的代码留在历史记录即可。
+
+```js
+// Bad
+doStuff();
+// doOtherStuff();
+// doSomeMoreStuff();
+// doSoMuchStuff();
+
+// Good
+doStuff();
+```
+
+### 不要有日志式的评论
+
+记住，使用版本控制！不需要僵尸代码，注释掉的代码，尤其是日志式的评论。使用git log来获取历史记录。
+
+```js
+// Bad
+/**
+ * 2016-12-20: Removed monads, didn't understand them (RM)
+ * 2016-10-01: Improved using special monads (JP)
+ * 2016-02-03: Removed type-checking (LI)
+ * 2015-03-14: Added combine with type-checking (JR)
+ */
+function combine(a, b) {
+  return a + b;
+}
+
+// Good
+function combine(a, b) {
+  return a + b;
+}
+```
+
+### 避免不必要的占位符
+
+它们仅仅添加了干扰性。让函数和变量名称与合适的缩进和格式化为你的代码提供视觉结构。
+
+```js
+// Bad
+////////////////////////////////////////////////////////////////////////////////
+// Scope Model Instantiation
+////////////////////////////////////////////////////////////////////////////////
+$scope.model = {
+  menu: 'foo',
+  nav: 'bar'
+};
+
+////////////////////////////////////////////////////////////////////////////////
+// Action setup
+////////////////////////////////////////////////////////////////////////////////
+const actions = function() {
+  // ...
+};
+
+// Good
+$scope.model = {
+  menu: 'foo',
+  nav: 'bar'
+};
+
+const actions = function() {
+  // ...
+};
+```
