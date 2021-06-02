@@ -4,13 +4,14 @@ module.exports = [
     collapsable: false,
     children: [
       'read',
+      'semver'
     ]
   },
   {
     title: 'Lodash',
     children: [
       'lodash/read',
-      
+
       'lodash/slice支持负数',
       'lodash/实现Map',
       'lodash/实现findIndex',
