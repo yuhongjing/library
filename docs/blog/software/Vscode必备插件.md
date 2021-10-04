@@ -29,3 +29,6 @@ title: vscode必备插件
 * [carbon-now-sh](https://marketplace.visualstudio.com/items?itemName=ericadamski.carbon-now-sh) 截取代码并生成漂亮的代码图
 * [WakaTime](https://marketplace.visualstudio.com/items?itemName=WakaTime.vscode-wakatime) 统计每日敲代码时间及记录操作习惯
 * [Open in External App](https://marketplace.visualstudio.com/items?itemName=YuTengjing.open-in-external-app) 在vscode内，右击md文件直接打开Typora软件。
+
+## 字体
+* [Inconsolata](https://fonts.google.com/specimen/Inconsolata#standard-styles) Inconsolata字体，非常清晰

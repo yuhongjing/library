@@ -24,6 +24,7 @@ title: Mac必备应用
 * [Homebrew](https://brew.sh/) Mac必备的下载工具
 * [FileZilla](https://filezilla-project.org/) Ftp连接工具
 * [Navicat](https://www.navicat.com.cn/products) 数据库可视化管理工具
+* [iHosts](https://apps.apple.com/cn/app/ihosts-etc-hosts-%E7%BC%96%E8%BE%91%E5%99%A8/id1102004240?mt=12) 管理本地Host工具
 
 ## 其他工具
 
@@ -36,3 +37,5 @@ title: Mac必备应用
 * [印象笔记](https://www.yinxiang.com/) 记录学习的点点滴滴
 * [Anki](https://apps.ankiweb.net/) 单词记忆软件
 * [OmniGraffle Pro](https://xclient.info/s/omnigraffle.html) 斌哥PPT——强大的图形工具
+* [XMind](https://www.xmind.cn/) 思维导图工具
+* [](https://apps.apple.com/cn/app/focus-matrix-task-manager/id1087284172?mt=12) Focus Matrix 基于四象限法则的任务管理器
