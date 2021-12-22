@@ -25,7 +25,9 @@ title: Npm管理包
 
 ## 发布包
 
-项目根目录下输入命令，`npm publish`
+项目根目录下输入命令，`npm publish`，发布正式包
+
+项目根目录下输入命令，`npm publish --tag beta`，发布Tag（自定义）测试包
 
 ## 更新包
 

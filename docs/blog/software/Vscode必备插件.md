@@ -19,6 +19,7 @@ title: vscode必备插件
 * [TODO Highlight](https://marketplace.visualstudio.com/items?itemName=wayou.vscode-todo-highlight) 高亮注释TODO、FIXME，再也不怕工作被打断了
 * [Trailing Spaces](https://marketplace.visualstudio.com/items?itemName=shardulm94.trailing-spaces) 突出尾随空格
 * [Codelf](https://marketplace.visualstudio.com/items?itemName=unbug.codelf) 变量命名神器
+* [Document This](https://marketplace.visualstudio.com/items?itemName=oouo-diogo-perdigao.docthis) 函数参数文档
 
 ## 主题插件
 * [Dracula Official](https://marketplace.visualstudio.com/items?itemName=dracula-theme.theme-dracula) 德古拉吸血鬼主题
