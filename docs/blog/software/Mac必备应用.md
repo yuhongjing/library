@@ -11,6 +11,8 @@ title: Mac必备应用
 * [VSCode](https://code.visualstudio.com/) 很优秀的前端 IDE，[相关插件推荐](./Vscode必备插件.md)
 * [PhpStorm](https://www.jetbrains.com/phpstorm/) 优秀的PHP IDE
 * [Scivener](https://www.literatureandlatte.com/scrivener/overview) 写作编辑器
+* [Xcode](https://developer.apple.com/xcode/) IOS开发工具、模拟器
+* [Andriod Studio](https://developer.android.com/studio) Andriod开发工具、模拟器
 
 ## 前端工具
 

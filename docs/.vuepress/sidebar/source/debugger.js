@@ -7,7 +7,8 @@ module.exports = [
       'vscode',
       'Charles抓包',
       '移动端调试',
-      'XSwitch代理'
+      'XSwitch代理',
+      'XcodeSimulator'
     ]
   }
 ]
