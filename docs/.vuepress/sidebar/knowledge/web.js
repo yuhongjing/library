@@ -161,7 +161,8 @@ module.exports = [
     {
       title: "TypeScript",
       children: [
-        'typescript/read'
+        'typescript/read',
+        'typescript/冷门概念'
       ]
     },
     {

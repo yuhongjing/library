@@ -15,6 +15,9 @@ const blogOtherFile = require('./sidebar/blog/other.js');
 // 知识整理
 const mindmapFile = require('./sidebar/knowledge/mindmap.js');
 const webFile = require('./sidebar/knowledge/web.js');
+const hybridFile = require('./sidebar/knowledge/hybrid.js');
+const androidFile = require('./sidebar/knowledge/android.js');
+const iosFile = require('./sidebar/knowledge/ios.js');
 const backendFile = require('./sidebar/knowledge/backend.js');
 const databaseFile = require('./sidebar/knowledge/database.js');
 const algorithmFile = require('./sidebar/knowledge/algorithm.js');
@@ -48,6 +51,9 @@ module.exports = {
 
     '/knowledge/mindmap/': mindmapFile,
     '/knowledge/web/': webFile,
+    '/knowledge/hybrid/': hybridFile,
+    '/knowledge/android/': androidFile,
+    '/knowledge/ios/': iosFile,
     '/knowledge/backend/': backendFile,
     '/knowledge/database/': databaseFile,
     '/knowledge/algorithm/': algorithmFile,

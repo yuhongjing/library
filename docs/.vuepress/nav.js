@@ -22,6 +22,9 @@ module.exports = [
       items: [
         { text: '知识脑图', link: '/knowledge/mindmap/read' },
         { text: '前端知识', link: '/knowledge/web/read' },
+        { text: '跨端知识', link: '/knowledge/hybrid/read' },
+        { text: 'Android知识', link: '/knowledge/android/read' },
+        { text: 'IOS知识', link: '/knowledge/ios/read' },
         { text: '后端知识', link: '/knowledge/backend/read' },
         { text: '数据库知识', link: '/knowledge/database/read' },
         { text: '算法知识', link: '/knowledge/algorithm/read' },
