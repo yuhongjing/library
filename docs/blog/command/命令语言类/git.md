@@ -110,3 +110,25 @@ find .git/objects -type f | xargs ls -lt | sed 10q
 # 还原文件
 git cat-file -p ID > 地址(例如docs/a.md)
 ```
+
+* 远程仓库pull到本地产生冲突时回滚到之前的状态
+
+```git
+# 显示所有的操作记录，包括提交、回退的操作。
+git reflog
+
+git reset --hard HEAD@{0}
+# 或者
+git reset --hard commitId
+```
+
+* 替代git pull的命令，避免冲突
+
+```git
+git fetch origin branch
+
+git diff branch origin/branch
+
+git merge origin/branch
+```
+

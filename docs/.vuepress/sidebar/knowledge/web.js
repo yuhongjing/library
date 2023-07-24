@@ -10,7 +10,8 @@ module.exports = [
       title: "HTML",
       children: [
         'html/read',
-        'html/滚动条'
+        'html/滚动条',
+        'html/字体',
       ]
     },
     {
@@ -162,7 +163,15 @@ module.exports = [
       title: "TypeScript",
       children: [
         'typescript/read',
-        'typescript/冷门概念'
+        'typescript/冷门概念',
+        'typescript/类型系统实战课',
+        'typescript/泛型编程',
+        {
+          title: '深入理解TypeScript',
+          children: [
+            'typescript/深入理解TypeScript/read',
+          ]
+        }
       ]
     },
     {

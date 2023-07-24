@@ -13,8 +13,9 @@ module.exports = [
         'database',
         'structure',
         'network',
+        'review2023',
         'othertools',
-        'otherknowlage'
+        'otherknowlage',
       ]
     }
   ]

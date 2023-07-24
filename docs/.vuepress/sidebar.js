@@ -25,9 +25,11 @@ const structureFile = require('./sidebar/knowledge/structure.js');
 const designFile = require('./sidebar/knowledge/design.js');
 const networkFile = require('./sidebar/knowledge/network.js');
 const hardFile = require('./sidebar/knowledge/hard.js');
+const softFile = require('./sidebar/knowledge/soft.js');
 const systemFile = require('./sidebar/knowledge/system.js');
 const configFile = require('./sidebar/knowledge/config.js');
 const architectureFile = require('./sidebar/knowledge/architecture.js');
+const projectFile = require('./sidebar/knowledge/project.js');
 const englishFile = require('./sidebar/knowledge/english.js');
 // 源码
 const debuggerFile = require('./sidebar/source/debugger.js');
@@ -61,9 +63,11 @@ module.exports = {
     '/knowledge/design/': designFile,
     '/knowledge/network/': networkFile,
     '/knowledge/hard/': hardFile,
+    '/knowledge/soft/': softFile,
     '/knowledge/system/': systemFile,
     '/knowledge/config/': configFile,
     '/knowledge/architecture/': architectureFile,
+    '/knowledge/project/': projectFile,
     '/knowledge/english/': englishFile,
 
     '/source/debugger/': debuggerFile,

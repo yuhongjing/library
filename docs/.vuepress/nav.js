@@ -32,9 +32,11 @@ module.exports = [
         { text: '设计模式知识', link: '/knowledge/design/read' },
         { text: '网络知识', link: '/knowledge/network/read' },
         { text: '硬件知识', link: '/knowledge/hard/read' },
+        { text: '软件工程知识', link: '/knowledge/soft/read' },
         { text: '操作系统知识', link: '/knowledge/system/read' },
         { text: '环境配置', link: '/knowledge/config/read' },
-        { text: '项目架构', link: '/knowledge/architecture/read' },
+        { text: '工程架构', link: '/knowledge/architecture/read' },
+        { text: '项目管理', link: '/knowledge/project/read' },
         { text: '英语知识', link: '/knowledge/english/read' }
       ]
     },
