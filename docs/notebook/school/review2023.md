@@ -128,6 +128,134 @@ class Comp {
 
 虚拟DOM优点：简单、性能大部分场景下比较好，减少重排、跨平台；缺点：极致性能难达标、首次渲染更耗时。
 
+### useContext
+
+```js
+import React, { useState } from 'react';
+import ReactDOM from 'react-dom';
+let AppContext = React.createContext()
+
+// useContext 实现
+function useContext(context){
+    return context._currentValue
+}
+
+function Counter() {
+    let { state, setState } = useContext(AppContext)
+    return (
+        <>
+            <button onClick={() => setState({ number: state.number + 1 })}>+</button>
+        </>
+    );
+}
+function App() {
+    let [state, setState] = useState({ number: 0 })
+    return (
+        <AppContext.Provider value={{ state, setState }}>
+            <div>
+                <h1>{state.number}</h1>
+                <Counter></Counter>
+            </div>
+        </AppContext.Provider>
+    )
+}
+function render() {
+    ReactDOM.render(
+        <App />,
+        document.getElementById('root')
+    );
+}
+render()
+```
+
+### useState
+
+```js
+let lastIndex = 0;   //记录当前下标
+let LastStates = []; //记录 states
+
+function useState(initValue) {
+    //1、记录当前 state 的下标(这里使用了闭包的原理)
+    const currentIndex = lastIndex;
+    
+    //2、记录初始值
+    lastStates[currentIndex] = lastStates[currentIndex] ?? initValue;
+    
+    //3、setState 回调修改 state
+    function setState(newValue) {
+        lastStates[currentIndex] = newValue
+        //修改后，重新render
+        render()
+    }
+    
+    //4、返回数组
+    return [lastStatas[lastIndex++], setState]
+}
+```
+
+### useReducers
+
+```js
+let lastIndex = 0;
+let lastStates = [];
+
+function useReducer(reducer, initState) {
+    //1、记录当前 state 下标
+    const currentIndex = lastIndex;
+    //2、记录初始值
+    lastStates[currentIndex] = lastStates[currentIndex] ?? initState;
+    
+    //3、定义 dispatch
+    function dispatch(action) {
+        // reducer 处理 state，返回处理后的结果
+        lastStates[currentIndex] = reducer(lastStates[currentIndex], action);
+        // 重新渲染
+        render();
+    }
+    
+    return [lastStates[lastIndex++], dispatch]
+}
+```
+
+### useCallback&useMemo
+
+```js
+let lastResult;
+let lastDependencies;
+
+function useCallback(callback, dependencies) {
+    //1、判断是否传入了依赖项
+    if (dependencies) {
+        const isChange = !dependencies.every((item, index) => {
+            return item === lastDependencies[index]
+        })
+        //如果依赖项改变
+        if (isChange) {
+            lastResult = callback(); //更新记忆值
+            lastDependencies = dependencies;  //记录最新的依赖项
+        }
+    } else {
+        //没传入依赖项，可以当成是第一次调用 useMemo
+        lastResult = callback();
+        lastDependencies = dependencies;
+    }
+    
+    //返回记忆值函数
+    return lastResult
+}
+```
+
+### Hooks原理
+
+链表
+
+```js
+```
+
+
+
+
+
  ## HTML
 
 ### Property & Attribute
@@ -699,21 +827,108 @@ console.log(toCurry((a, b) => a + b)(1)(2))
 ### 深拷贝
 
 ```js
+// proxy。immer.js
+// lodash deepClone
+// JSON
+// 递归暴力
 ```
 
 ### 发布订阅模式
 
 ```js
+class EventHub {
+  constructor() {
+    this.map = {};
+  }
+  on(event, fn) {
+    this.map[event] = this.map[event] || [];
+    this.map[event].push(fn);
+  }
+  emit(event, data) {
+    const fnList = this.map[event] || [];
+    if (!fnList || fnList.length === 0) return;
+    fnList.forEach(fn => fn.call(undefined, data));
+  }
+  off(event, fn) {
+    const fnList = this.map[event] || {};
+    const index = fnList.indexOf(fn);
+    if (index < 0) return;
+    fnList.splice(index, 1);
+  }
+  once(event, fn) {
+    const f = (data) => {
+      fn(data);
+      this.off(event, f);
+    }
+    this.on(event, f);
+  }
+}
 ```
 
 ### 装饰者模式
 
-```js
+AOP设计模式/高阶函数都可以
 
+```js
+class SimpleCoffee {
+  getCost() {
+    return 10;
+  }
+
+  getDescription() {
+    return 'Simple Coffee';
+  }
+}
+
+class MilkCoffee {
+  constructor(coffee) {
+    this.coffee = coffee;
+  }
+
+  getCost() {
+    return this.coffee.getCost() + 2;
+  }
+
+  getDescription() {
+    return this.coffee.getDescription() + ', milk';
+  }
+}
+
+// client
+let someCoffee;
+
+someCoffee = new SimpleCoffee();
+console.log(someCoffee.getCost()); // 10
+console.log(someCoffee.getDescription()); // Simple Coffee
+
+someCoffee = new MilkCoffee(someCoffee);
+console.log(someCoffee.getCost()); // 12
+console.log(someCoffee.getDescription()); // Simple Coffee, milk
 ```
 
-### 回溯剪枝
+### Lodash.get
 
 ```js
+function myGet(obj: {}, path, defaultValue) {
+  if (typeof path === 'string') {
+    // 正则表达式配合 replace，将 `[` 替换为 `.` ,把 `]` 替换为空字符串
+    // 如`a[0].b.c[1]` 处理为 `a.0.b.b.1`
+    path = path.replace(/([\[\]])/g, ($1) => {
+      return $1 === '[' ? '.' : ''
+    }).split('.');
+  }
+
+  if (!obj || typeof obj !== 'object' || !Array.isArray(path) || path.length === 0) {
+    return path.length === 0 ? obj : defaultValue
+  }
+
+  let target = obj
+  for (const item of path) {
+    target = target[item]
+    if (!target) break
+  }
+
+  return target || defaultValue
+}
 ```
 
