@@ -13,6 +13,8 @@ title: Mac必备应用
 * [Scivener](https://www.literatureandlatte.com/scrivener/overview) 写作编辑器
 * [Xcode](https://developer.apple.com/xcode/) IOS开发工具、模拟器
 * [Andriod Studio](https://developer.android.com/studio) Andriod开发工具、模拟器
+* [IDEA](https://www.jetbrains.com/zh-cn/idea/) Android开发工具
+* [Sourcetree][https://www.sourcetreeapp.com/] Git GUI
 
 ## 前端工具
 
@@ -40,4 +42,4 @@ title: Mac必备应用
 * [Anki](https://apps.ankiweb.net/) 单词记忆软件
 * [OmniGraffle Pro](https://xclient.info/s/omnigraffle.html) 斌哥PPT——强大的图形工具
 * [XMind](https://www.xmind.cn/) 思维导图工具
-* [](https://apps.apple.com/cn/app/focus-matrix-task-manager/id1087284172?mt=12) Focus Matrix 基于四象限法则的任务管理器
+* [Focus Matrix – Task Manager](https://apps.apple.com/cn/app/focus-matrix-task-manager/id1087284172?mt=12) Focus Matrix 基于四象限法则的任务管理器

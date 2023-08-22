@@ -248,6 +248,7 @@ module.exports = [
         'classic/冒泡算法',
         'classic/二分查找法',
         'classic/牛顿迭代法',
+        'classic/动态规划',
       ]
     }
   ]

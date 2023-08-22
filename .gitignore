@@ -66,6 +66,7 @@ typings/
 # other stuff
 .DS_Store
 Thumbs.db
+.git
 
 # IDE configurations
 .idea

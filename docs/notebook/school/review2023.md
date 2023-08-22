@@ -1,5 +1,5 @@
 ---
-title: review2023
+  title: review2023
 ---
 
 # Review2023
@@ -7,6 +7,16 @@ title: review2023
 2023跳槽学习准备。
 
 ## React
+
+### 路由
+
+#### Hash
+
+通过#来实现，onHashChange监听改变，路由改变和刷新时，不会请求服务端。
+
+#### History
+
+通过H5 API pushState和popState实现，前进和后退不会请求服务端，但是刷新时容易出现404问题，因为会真实请求服务端。
 
 ### 合成事件与原生事件
 
@@ -67,6 +77,10 @@ React事件机制总结如下：
 * React自身实现了一套事件冒泡机制，所以这就是`e.stopPropagation()`无效的原因。
 * React通过队列的形式，从触发的组件向父组件回溯，然后调用他们JSX中定义的callback。
 * React有一套自己的合成事件`SyntheticEvent`。
+
+### Hook能否在条件判断中实现
+
+不能，闭包链表原因，条件判断可能会丢失记录。
 
 ### setState
 
@@ -245,17 +259,6 @@ function useCallback(callback, dependencies) {
 }
 ```
 
-### Hooks原理
-
-链表
-
-```js
-```
-
-
-
-
-
  ## HTML
 
 ### Property & Attribute
@@ -275,7 +278,23 @@ id、type、value
 document.querySelector('#this-input').nodeType
 ```
 
+### 浏览器一帧都干了啥
+
+【1】接受输入事件
+ 【2】执行事件回调
+ 【3】开始一帧
+ 【4】执行 RAF (RequestAnimationFrame)
+ 【5】页面布局，样式计算
+ 【6】绘制渲染
+ 【7】执行 RIC (RequestIdelCallback)
+
 ## CSS
+
+### transform：translateZ(0)有什么作用
+
+GPU加速，优化前端性能。
+
+这个问题是因为使用transform和opacity做CSS动画的时候，会将元素提升为一个复合层；而使用js操作css属性做动画时，必须使用translateZ或will-change才能将元素强行提升至一个复合层。
 
 ### 设备像素、CSS像素、设备独立像素、dpr、ppi
 
@@ -408,7 +427,6 @@ vw根据窗口的宽度，分成100等份，同理vh是窗口的高度。
 
 ### Chrome支持小于12px的文字方式
 
-* zoom，基本没啥用
 * scale，缩放
 * Text-size-adjust: none，设定文字大小是否根据设备来自动调整大小
 
@@ -425,6 +443,18 @@ vw根据窗口的宽度，分成100等份，同理vh是窗口的高度。
 * CSS雪碧图
 
 ## Network
+
+### 强缓存/协商缓存
+
+强缓存：不请求服务端，本地200，cache controle/etag等，多用于图片
+
+协商缓存：请求服务端，命中走304，使用本地缓存，last-modify
+
+### 同源限制
+
+浏览器安全限制，host/port/协议相同为同源。
+
+CORS/JSONP/postMessage/反向代理
 
 ### 从输入URL到展示的过程
 
@@ -477,6 +507,10 @@ vw根据窗口的宽度，分成100等份，同理vh是窗口的高度。
    2. 拥塞避免
    3. 快速重传
    4. 快速恢复
+
+### TCP和UDP区别
+
+**TCP 是面向连接的、可靠的、有序的、速度慢的协议；UDP 是无连接的、不可靠的、无序的、速度快的协议**。 TCP 开销比UDP 大，TCP 头部需要20 字节，UDP 头部只要8 个字节。 TCP 无界有拥塞控制，UDP 有界无拥塞控制
 
 ### 缓存策略
 
@@ -590,23 +624,59 @@ function jsonp(url, jsonpCallback, success) {
 * 设置白名单，不被第三方网站请求
 * 请求校验
 
+## WebPACK
+
+### Loader和plugins区别
+
+loader是转换器，加载非JS文件，Plugins在loader之后，基于事件机制扩展功能。
+
+### Webpack构建流程
+
+1. 初始化参数webpack.config.js
+2. 开始编译，初始化compiler对象，注册plugins，监听webpack生命周期
+3. 确定入口，根据ast解析文件树
+4. 编译模块，递归loader
+5. 完成编译输出文件，根据entry和output生成代码chunk
+6. 打包完成
+
+### Webpack事件机制
+
+tapable定义了9个钩子，插件在监听对应事件钩子，然后执行逻辑即可
+
+### Tree-shaking原理
+
+从入口文件entry开始，遍历文件依赖树，标记模块依赖并导出。
+
+### Webpack优化
+
+* Tree-shaking
+* 代码压缩
+* 分包动态加载
+* 小图片转base64
+* 生产环境/开发环境分别打包，干掉debug信息
+
 ## JS
+
+### 垃圾回收
+
+引用计数（循环引用）/标签清除
+
+### 事件循环
+
+单线程执行异步操作，宏微任务控制，一个宏任务执行其内部产生的所有微任务以及新产生的微任务。
+
+### Async和await实现同步
+
+Generator的语法糖，返回迭代器Iterator，这两都属于协程。
 
 ### 实现bind函数
 
 ```js
-Function.prototype.myBind = function (context) {
-  if (typeof this !== 'function') {
-    throw new TypeError('Error');
-  }
-  
+Function.prototype.myBind = function (context) {  
   var _this = this;
   var args = [...arguments].slice(1);
 
   return function F() {
-    if (this instanceof F) {
-      return new _this(...args, ...argument);
-    }
     return _this.apply(context, args.concat(...arguments));
   }
 } 
@@ -634,16 +704,80 @@ Function.prototype.myApply = function (context) {
   var context = context || window;
   // 给context添加一个方法，指向this
   context.fn = this;
-  
   var result;
   if (arguments[1]) {
     result = context.fn(...arguments[1]);
   } else {
     result context.fn();
   }
-  
   delete context.fn;
   return result;
+}
+```
+
+### 手写Promise基础版
+
+```js
+const PENDING = 'PENDING';
+const FULFILLED = 'FULFILLED';
+const REJECTED = 'REJECTED';
+
+class Promise {
+  constructor(executor) {
+    this.status = PENDING;
+    this.value = undefined;
+    this.reason = undefined;
+    // 存放成功的回调
+    this.onResolvedCallbacks = [];
+    // 存放失败的回调
+    this.onRejectedCallbacks= [];
+
+    let resolve = (value) => {
+      if(this.status ===  PENDING) {
+        this.status = FULFILLED;
+        this.value = value;
+        // 依次将对应的函数执行
+        this.onResolvedCallbacks.forEach(fn=>fn());
+      }
+    } 
+
+    let reject = (reason) => {
+      if(this.status ===  PENDING) {
+        this.status = REJECTED;
+        this.reason = reason;
+        // 依次将对应的函数执行
+        this.onRejectedCallbacks.forEach(fn=>fn());
+      }
+    }
+
+    try {
+      executor(resolve,reject)
+    } catch (error) {
+      reject(error)
+    }
+  }
+
+  then(onFulfilled, onRejected) {
+    if (this.status === FULFILLED) {
+      onFulfilled(this.value)
+    }
+
+    if (this.status === REJECTED) {
+      onRejected(this.reason)
+    }
+
+    if (this.status === PENDING) {
+      // 如果promise的状态是 pending，需要将 onFulfilled 和 onRejected 函数存放起来，等待状态确定后，再依次将对应的函数执行
+      this.onResolvedCallbacks.push(() => {
+        onFulfilled(this.value)
+      });
+
+      // 如果promise的状态是 pending，需要将 onFulfilled 和 onRejected 函数存放起来，等待状态确定后，再依次将对应的函数执行
+      this.onRejectedCallbacks.push(()=> {
+        onRejected(this.reason);
+      })
+    }
+  }
 }
 ```
 
@@ -683,13 +817,15 @@ Promise.all = function (iterable) {
         let count = 0;
         // 并发执行每一个promise
         for (let i = 0; i < promises.length; i++) {
-            Promise.resolve(promises[i]).then(res => {
-                result[i] = res;
-                count++;
-                if (count === promises.length) {
-                    resolve(result);
-                }
-            }).catch(err => reject(err))
+            Promise.resolve(promises[i])
+              .then(res => {
+                  result[i] = res;
+                  count++;
+                  if (count === promises.length) {
+                      resolve(result);
+                  }
+              })
+              .catch(err => reject(err))
         }
     })
 }
@@ -722,8 +858,8 @@ function debounce(func, wait) {
   return function () {
     if (timeout !== null) {
       clearTimeout(timeout);
-      timeout = setTimeout(func, wait);
     }
+    timeout = setTimeout(func, wait);
   }
 }
 
@@ -814,6 +950,7 @@ console.log('wrap', wrapDispath(1000))
 function toCurry(func, ...args) {
   return function () {
       args = [...args, ...arguments];
+    	// func.length为函数的参数
       if (args.length < func.length) {
           return toCurry(func, ...args);
       }
@@ -932,3 +1069,293 @@ function myGet(obj: {}, path, defaultValue) {
 }
 ```
 
+### 数组转二叉树
+
+```js
+function TreeNode(val) {
+  this.val = val;
+  this.left = this.right = null;
+}
+
+function arr2Bst(arr) {
+  if (!arr.length) {
+    return null;
+  }
+  if (arr.length === 1) {
+    return arr[0];
+  }
+  let mid = parseInt(arr.length / 2, 10);
+  root = new TreeNode(arr[mid]);
+  root.left = arr2Bst(arr.slice(0, mid));
+  root.right = arr2Bst(arr.slice(mid + 1));
+  return root
+}
+
+console.log(arr2Bst([1, 5, 2, 3, -1, 10]))
+```
+
+### 深度优先遍历
+
+```js
+function dfs(root) {
+  root.children.forEach(dfs)
+}
+
+dfs(root)
+```
+
+### 广度优先遍历
+
+```js
+function bfs(root) {
+  const stack = [root];
+  while(stack.length > 0) {
+    const node = stack.shift();
+    node.children.forEach((item) => stack.push(item));
+  }
+}
+
+bfs(root)
+
+
+function bfs(pRoot){
+    if(!node){
+        return []
+    }
+    let queue = [pRoot]  //将根节点加入到队列中
+    let result = []  //结果数组
+    while(queue.length){
+        let len = queue.length   //队列中长度循环一次就得变一次
+        let tempArr = []  //存储每层节点值的临时数组，方便一层层打印
+        for(let i = 0; i < len; i++){   //遍历每层节点
+            let temp = queue.shift()
+            tempArr.push(temp.val)
+            if(temp.left){
+                queue.push(pNode.left)
+            }
+            if(temp.right){
+                queue.push(pNode.right)
+            }
+        }
+       result.push([...tempArr])
+    }
+    return result
+}
+```
+
+### 二叉树遍历(前序/中序/后序/层序广度)
+
+```js
+// 前序，根左右
+let res = []
+function preorderTraverse(pRoot){
+    if(!pRoot){//递归的出口
+        return 
+    }
+    res.push(pRoot.val)
+    preorderTraverse(pRoot.left)
+    preorderTraverse(pRoot.right)
+}
+
+
+// 中序，左根右
+let res = []
+function inorderTraverse(pRoot){
+    if(!pRoot){//递归的出口
+        return 
+    }
+    inorderTraverse(pRoot.left)
+    res.push(pRoot.val)
+    inorderTraverse(pRoot.right)
+}
+
+// 后序，左右根
+let res = []
+function postorderTraverse(pRoot){
+    if(!pRoot){//递归的出口
+        return 
+    }
+    postorderTraverse(pRoot.left)
+    postorderTraverse(pRoot.right)
+    res.push(pRoot.val)
+}
+```
+
+### 判断对称二叉树
+
+```js
+//对称二叉树
+const symmetricalTree = {
+  val: 8,
+  left: {
+    val: 6,
+    left: { val: 5, left: null, right: null },
+    right: { val: 7, left: null, right: null }
+  },
+  right: {
+    val: 6,
+    left: { val: 7, left: null, right: null },
+    right: { val: 5, left: null, right: null }
+  }
+}
+
+//非对称二叉树
+const binaryTree = {
+  val: 8,
+  left: {
+    val: 6,
+    left: { val: 5, left: null, right: null },
+    right: { val: 7, left: null, right: null }
+  },
+  right: {
+    val: 9,
+    left: { val: 7, left: null, right: null },
+    right: { val: 5, left: null, right: null }
+  }
+}
+
+function isSymmetrical(pRoot) {
+  return isSymmetricalTree(pRoot, pRoot);
+}
+
+function isSymmetricalTree(node1, node2) {
+  //判断两个节点都是否为空
+  if (!node1 && !node2) {
+    return true;
+  }
+  //判断两个节点是否存在一个为空
+  if (!node1 || !node2) {
+    return false;
+  }
+  //判断两个节点是否相同
+  if (node1.val != node2.val) {
+    return false;
+  }
+  return isSymmetricalTree(node1.left, node2.right) && isSymmetricalTree(node1.right, node2.left);
+}
+
+console.log(isSymmetrical(symmetricalTree));
+console.log(isSymmetrical(binaryTree));
+```
+
+### 选择排序
+
+```js
+function selectionSort(arr) {
+  let minIndex;
+  for (let i = 0; i < arr.length - 1; i++) {
+    minIndex = i;
+    for (let j = i + 1; j < arr.length; j++) {
+      if (arr[j] < arr[minIndex]) {
+        minIndex = j;
+      }
+    }
+    temp = arr[i];
+    arr[i] = arr[minIndex];
+    arr[minIndex] = temp;
+  }
+  return arr;
+}
+
+console.log(selectionSort([1, 5, 2, 3, -1, 10]))
+```
+
+### 冒泡排序
+
+```js
+function bubbleSort(arr) {
+  for (let i = 0; i < arr.length - 1; i++) {
+    for (let j = 0; j < arr.length - i - 1; j++) {
+      if (arr[j] > arr[j + 1]) {
+        let temp = arr[j];
+        arr[j] = arr[j + 1];
+        arr[j + 1] = temp;
+      }
+    }
+  }
+  return arr;
+}
+
+console.log(bubbleSort([1, 5, 2, 3, -1, 10]))
+```
+
+### 快速排序 
+
+```js
+function quickSort(arr) {
+  if (arr.length <= 1) {
+    return arr;
+  }
+  let middle = Math.floor(arr.length / 2);
+  let position = arr.splice(middle, 1)[0];
+  let left = [];
+  let right = [];
+
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] < position) {
+      left.push(arr[i])
+    } else {
+      right.push(arr[i]);
+    }
+  }
+
+  return [...quickSort(left), position, ...quickSort(right)];
+}
+
+console.log(quickSort([1, 5, 2, 3, -1, 10]))
+```
+
+### 循环链表判断
+
+```js
+var hasCycle = function(head) {
+    if(!head || !head.next) {
+        return false
+    }
+    let fast = head.next.next, slow = head
+    while(fast !== slow) {
+        if(!fast || !fast.next) return false
+        fast = fast.next.next
+        slow = slow.next
+    }
+    return true
+};
+```
+
+### 扁平化数组
+
+```js
+var arr = [ [1, 2, 2], [3, 4, 5, 5], [6, 7, 8, 9, [11, 12, [12, 13, [14] ] ] ], 10];
+
+function flat(arr) {
+  let result = [];
+  for (let i = 0; i < arr.length; i++) {
+    if (Array.isArray(arr[i])) {
+      result = result.concat(flat(arr[i]))
+    } else {
+      result = result.concat(arr[i])
+    }
+  }
+  return result;
+}
+
+console.log(flat(arr))
+```
+
+## 操作系统
+
+### 进程和线程的区别是啥
+
+**进程是操作系统进行资源分配的最小单元，线程是操作系统进行运算调度的最小单元**
+
+## 跨端
+
+### JS Bridge实现原理
+
+Javascript通知Native
+
+* API注入，Native获取Javascript环境上下文，并在上面挂载对象或方法，让JS可以直接调用。
+* URL Scheme跳转拦截
+* prompt/console/alert拦截
+
+Native通知Javascript：Native是H5的宿主，因此有更大的权限，可以直接通过WebView API执行JS代码。
