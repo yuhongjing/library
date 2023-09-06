@@ -4,7 +4,8 @@ module.exports = [
     collapsable: false,
     children: [
       'read',
-      'Cannon'
+      'Cannon',
+      '架构图',
     ]
   }
 ]
