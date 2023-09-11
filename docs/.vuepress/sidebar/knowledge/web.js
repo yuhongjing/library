@@ -63,7 +63,8 @@ module.exports = [
             'javascript/ECMAScript/弱引用映射',
             'javascript/ECMAScript/代理',
             'javascript/ECMAScript/反射',
-            'javascript/ECMAScript/Symbol'
+            'javascript/ECMAScript/Symbol',
+            'javascript/ECMAScript/MessageChannel',
           ]
         },
         {
