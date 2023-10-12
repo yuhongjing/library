@@ -4,7 +4,8 @@ module.exports = [
     collapsable: false,
     children: [
       'read',
-      '情书'
+      '情书',
+      '字节第一天'
     ]
   }
 ]
